@@ -4,17 +4,17 @@ public class SamsungTV implements Tv {
 
 	@Override
 	public void power() {
-		System.out.print("SamsungTV power....");
+		System.out.println("SamsungTV power....");
 		
 	}
 
 	public void chUp() {
-		System.out.print("SamsungTV chUp....");
+		System.out.println("SamsungTV chUp....");
 		
 	}
 
 	public void soundUp() {
-		System.out.print("SamsungTV soundUp....");
+		System.out.println("SamsungTV soundUp....");
 		
 	}
 }

@@ -14,6 +14,10 @@ public class IoCTest1 {
 		lgtv.chUp();
 		lgtv.soundUp();
 		
+		Tv samsungtv = new SamsungTV();
+		samsungtv.power();
+		samsungtv.chUp();
+		samsungtv.soundUp();
 		
 		
 	}
