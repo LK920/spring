@@ -1,16 +1,17 @@
-package kr.co.ch04.sub2;
+package kr.co.ch05.sub2;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 /*
- * date : 20/09/01
+ * date : 20/09/02
  * name : kang
  * content : AOP Advice 동작시점 실습하기
  */
 public class AdviceTest {
 	
 	public static void main(String[] args) throws Exception {
+		
 		ApplicationContext ctx = new GenericXmlApplicationContext("spring-context.xml");
 		
 		BoardService bs = (BoardService) ctx.getBean("bs2");
