@@ -24,10 +24,9 @@ public class UserService {
 	public List<UserVO> selectUsers() {
 		return dao.selectUsers();
 	}
-	public void updateUser() {
-		dao.updateUser();
+	public void updateUser(UserVO vo) {
+		dao.updateUser(vo);
 	}
-	
 	public void deleteUser(String uid) {
 		dao.deleteUser(uid);
 	}

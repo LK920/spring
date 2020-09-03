@@ -8,19 +8,19 @@
 </head>
 <body>
 	<h3>직원 수정하기</h3>
-	<form action="/ch07/user/update" method="post">
+	<form action="/ch07/user/update"method="post">
 		<table border="1">
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="uid" value="${user.uid}"/></td>
+				<td><input type="text" name="uid" value="<c:out value="${user.uid}"/>" readonly="readonly"/></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="name"/></td>
+				<td><input type="text" name="name" value="<c:out value="${user.name}"/>" /></td>
 			</tr>
 			<tr>
 				<td>휴대폰</td>
-				<td><input type="text" name="hp"/></td>
+				<td><input type="text" name="hp" value="<c:out value="${user.hp}"/>"/></td>
 			</tr>
 			<tr>
 				<td>직급</td>
@@ -48,7 +48,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					<input type="submit" value="등록하기">
+					<input type="submit" value="수정하기">
 				</td>
 			</tr>
 		</table>

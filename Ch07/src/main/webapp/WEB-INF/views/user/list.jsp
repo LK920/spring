@@ -27,7 +27,7 @@
 			<td>${user.dep}</td>
 			<td>${user.rdate}</td>
 			<td>
-				<a href="<c:url value="update"/>?uid=${user.uid}">수정</a>
+				<a href="<c:url value="select"/>?uid=${user.uid}">수정</a>
 				<a href= "<c:url value="delete"/>?uid=${user.uid}"> 삭제</a>
 			</td>
 		</tr>

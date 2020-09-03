@@ -32,8 +32,11 @@ public class UserDAO {
 		
 		return users;
 	}
-	public void updateUser() {
-		
+	
+	public void updateUser(UserVO vo) {
+		String sql = "UPDATE `MEMBER` SET `name`=? ,`hp`=? ,`pos`=? ,`dep`= ? WHERE `uid`=?";
+		Object[] params = {vo.getName(), vo.getHp(), vo.getPos(), vo.getDep(), vo.getUid() };
+		jdbc.update(sql, params);
 	}
 	
 	public void deleteUser(String uid) {

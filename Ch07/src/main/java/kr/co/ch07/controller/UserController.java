@@ -48,13 +48,18 @@ public class UserController {
 		return "redirect:/user/list";
 	}
 	
-	@RequestMapping(value = "/user/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/select", method = RequestMethod.GET)
 	public String select(@RequestParam String uid, Model model) {
 		UserVO vo =  service.selectUser(uid);
-		
 		model.addAttribute("user",vo);
 		return "user/update";
 	}
 	
+	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
+	public String update(UserVO vo) {
+		service.updateUser(vo);
+		
+		return "redirect:/user/list";
+	}
 
 }
