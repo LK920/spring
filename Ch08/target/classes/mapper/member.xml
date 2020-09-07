@@ -5,7 +5,13 @@
 <mapper namespace="mapper.member">
 
 	<insert id="INSERT_MEMBER">
-		INSERT INTO `MEMBER` VALUES (#{uid}, #{name}, #{hp}, #{pos}, #{dep}, NOW());		
+		INSERT INTO `MEMBER` SET
+			`uid`=#{uid},
+			`name`= #{name},
+			`hp` = #{hp},
+			`pos`= #{pos},
+			`dep` = #{dep},
+			`rdate` = NOW();		
 	</insert>
 
 	<select id="SELECT_MEMBER" resultType="kr.co.ch08.vo.MemberVO">
