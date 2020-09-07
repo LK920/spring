@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -36,16 +38,16 @@ public class MemberController {
 
 		return "/member/list";
 	}
-	@RequestMapping("/member/modify")
+	@GetMapping("/member/modify")
 	public String modify(String uid, Model model) {
 		
 		MemberVO member = service.selectMember(uid);
-		model.addAttribute("member", member);
+		model.addAttribute(member);
 		
 		return "/member/modify";
 	}
 	
-	@RequestMapping(value = "/member/modify", method = RequestMethod.POST)
+	@PostMapping("/member/modify")
 	public String modify(MemberVO vo) {
 		
 		service.updateMember(vo);

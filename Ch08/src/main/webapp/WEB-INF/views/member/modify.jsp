@@ -11,15 +11,15 @@
 		<table border="1">
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="uid" value="${member.uid}" readonly="readonly"/></td>
+				<td><input type="text" name="uid" value="${memberVO.uid}" readonly="readonly"/></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="name" value="${member.name}"/></td>
+				<td><input type="text" name="name" value="${memberVO.name}"/></td>
 			</tr>
 			<tr>
 				<td>휴대폰</td>
-				<td><input type="text" name="hp" value="${member.hp}"/></td>
+				<td><input type="text" name="hp" value="${memberVO.hp}"/></td>
 			</tr>
 			<tr>
 				<td>직급</td>

@@ -18,7 +18,7 @@ public class MemberService {
 		dao.insertMember(vo);
 	}
 	public MemberVO selectMember(String uid) {
-		 return dao.selectMember(uid);
+		return dao.selectMember(uid);
 	}
 	
 	public List<MemberVO> selectMembers() {
