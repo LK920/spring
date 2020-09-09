@@ -8,19 +8,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/sboard/js/checkRegister.js"></script>
     <script>
-		$(function(){
-			$('input[name=pass2]').focusout(function(){
-				var pass1 = $('input[name=pass1]').val();
-				var pass2 = $(this).val();
-
-				if(pass2 == pass1){
-					$('.resultPass').css('color','green').text('비밀번호가 일치합니다.');
-					}else{
-					$('.resultPass').css('color','red').text('비밀번호가 일치하지않습니다.');	
-					}
-				});
-
+    $(function(){
+		$('input[name=pass2]').focusout(function(){
+			var pass1 = $('input[name=pass1]').val();
+			var pass2 = $(this).val();
+			
+			if(pass2 == pass1){
+				$('.resultPass').css('color','green').text('비밀번호가 일치합니다.');
+				}else{
+				$('.resultPass').css('color','red').text('비밀번호가 일치하지않습니다.');	
+				}
 			});
+
+		});
     </script>
 </head>
 <body>

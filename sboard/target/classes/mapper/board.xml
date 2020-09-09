@@ -2,38 +2,26 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.user">
+<mapper namespace="mapper.board">
 
-	<select id="SELECT_TERMS" resultType="kr.co.sboard.vo.TermsVO">
-		SELECT * FROM `JBOARD_TERMS`;
-	</select>
-	
-	<insert id="INSERT_USER">
-		INSERT INTO `JBOARD_MEMBER` SET
+	<insert id="INSERT_BOARD">
+		INSERT INTO `JBOARD_ARTICLE` SET 
+			`title` = #{title},
+			`content` = #{content},
 			`uid` = #{uid},
-			`pass` = PASSWORD(#{pass1}),
-			`name` = #{name},
-			`nick` = #{nick},
-			`email` =  #{email},
-			`hp` = #{hp},
-			`zip` = #{zip},
-			`addr1` = #{addr1},
-			`addr2` = #{addr2},
 			`regip` = #{regip},
 			`rdate` = NOW();
 	</insert>
-	
-	<select id="SELECT_USER_COUNT" resultType="int">
-		SELECT COUNT(*) FROM `JBOARD_MEMBER` WHERE `uid` = #{uid};
+	<select id="SELECT_BOARDS" resultType="kr.co.sboard.vo.BoardVO">
+		SELECT a.*, b.nick FROM `JBOARD_ARTICLE` AS a
+		JOIN `JBOARD_MEMBER` AS b ON a.uid = b.uid
+		WHERE `parent` = 0
+		ORDER BY `seq` DESC
+		LIMIT #{start}, 10;
 	</select>
-	<select id="SELECT_NICK_COUNT" resultType="int">
-		SELECT COUNT(*) FROM `JBOARD_MEMBER` WHERE `nick` = #{nick};
+	<select id="SELECT_COUNT_BOARD" resultType="int">
+		SELECT COUNT(*) FROM `JBOARD_ARTICLE` WHERE `parent` = 0;
 	</select>
-	<select id="SELECT_USER" resultType="kr.co.sboard.vo.UserVO">
-		SELECT * FROM `JBOARD_MEMBER`
-		 WHERE `uid` = #{uid} AND `pass`=PASSWORD(#{pass});
-	</select>
-
 <!-- 
 	<insert id="INSERT_USER">
 		INSERT INTO `USER3` VALUES (#{uid}, #{name}, #{hp}, #{age});		

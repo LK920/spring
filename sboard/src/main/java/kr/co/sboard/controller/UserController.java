@@ -2,6 +2,7 @@ package kr.co.sboard.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,19 @@ public class UserController {
 	public String login() {
 		return "/user/login";
 	}
+	@PostMapping("/user/login")
+	public String login(HttpSession sess, UserVO vo) {
+		
+		UserVO user = service.selectUser(vo);
+		
+		if(user == null) {
+			return "redirect:/user/login?success=fail";			
+		}else {
+			sess.setAttribute("member", user);
+			return "redirect:/list";
+		}
+	}
+	
 	@GetMapping("/user/terms")
 	public String terms(Model model) {
 		TermsVO vo = service.selectTerms();
@@ -64,5 +78,11 @@ public class UserController {
 		
 		return new Gson().toJson(json);
 	}
-	
+	@GetMapping("/user/logout")
+	public String logout(HttpSession sess) {
+			
+		sess.invalidate();
+		
+		return "redirect:/user/login";
+	}
 }
