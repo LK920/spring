@@ -1,5 +1,7 @@
 package kr.co.sboard.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
 	
 	//테이블 column
@@ -16,7 +18,7 @@ public class BoardVO {
 	private String rdate;
 	
 	//form field
-	private String fname;
+	private MultipartFile fname;
 	
 	//추가 필드
 	private String nick;
@@ -116,11 +118,11 @@ public class BoardVO {
 		this.rdate = rdate;
 	}
 
-	public String getFname() {
+	public MultipartFile getFname() {
 		return fname;
 	}
 
-	public void setFname(String fname) {
+	public void setFname(MultipartFile fname) {
 		this.fname = fname;
 	}
 	

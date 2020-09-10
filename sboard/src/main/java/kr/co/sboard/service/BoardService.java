@@ -1,12 +1,18 @@
 package kr.co.sboard.service;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.sboard.dao.BoardDAO;
 import kr.co.sboard.vo.BoardVO;
+import kr.co.sboard.vo.FileVO;
 
 @Service
 public class BoardService {
@@ -14,8 +20,12 @@ public class BoardService {
 	@Autowired
 	private BoardDAO dao;
 	
-	public void insertBoard(BoardVO vo) {
-		dao.insertBoard(vo);
+	public int insertBoard(BoardVO vo) {
+		int seq = dao.insertBoard(vo);
+		return seq;
+	}
+	public void insertFile(FileVO fvo) {
+		dao.insertFile(fvo);
 	}
 	
 	public void selectBoard() {}
@@ -68,5 +78,41 @@ public class BoardService {
 		return currentPage;
 	}
 	
+	//파일 업로드
+	public FileVO fileUpload(HttpServletRequest req, MultipartFile file, int seq) {
+		
+		//시스템 경로
+		String path = req.getSession().getServletContext().getRealPath("/resources/files/");
+		
+		if(!file.isEmpty()) {
+			//파일 첨부 했을때
+			String oName = file.getOriginalFilename(); //파일 원래 명
+			String ext = oName.substring(oName.lastIndexOf(".")); //확장자
+			
+			//고유파일명 생성
+			String uName = UUID.randomUUID().toString()+ext;
+			
+			//파일 저장
+			try {
+				file.transferTo(new File(path+uName));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			FileVO vo = new FileVO();
+			vo.setParent(seq);
+			vo.setOldName(oName);
+			vo.setNewName(uName);
+			
+			return vo;
+			
+		}else {
+			//파일 첨부 안했을때
+			return null;
+		}
+		
+	}
+	//파일 다운로드
+	public void fileDownload() {}
 
 }

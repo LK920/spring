@@ -4,12 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.board">
 
-	<insert id="INSERT_BOARD">
+	<insert id="INSERT_BOARD" useGeneratedKeys="true" keyProperty="seq">
 		INSERT INTO `JBOARD_ARTICLE` SET 
 			`title` = #{title},
 			`content` = #{content},
 			`uid` = #{uid},
+			`file`=#{file},
 			`regip` = #{regip},
+			`rdate` = NOW();
+	</insert>
+	<insert id="INSERT_FILE" >
+		INSERT INTO `JBOARD_FILE` SET 
+			`parent` = #{parent},
+			`oldName` = #{oldName},
+			`newName` = #{newName},
 			`rdate` = NOW();
 	</insert>
 	<select id="SELECT_BOARDS" resultType="kr.co.sboard.vo.BoardVO">
