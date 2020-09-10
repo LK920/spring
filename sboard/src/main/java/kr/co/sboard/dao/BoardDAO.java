@@ -24,8 +24,9 @@ public class BoardDAO {
 		mybatis.insert("mapper.board.INSERT_FILE", fvo);
 	}
 	
-	
-	public void selectBoard() {}
+	public BoardVO selectBoard(int seq) {
+		return mybatis.selectOne("mapper.board.SELECT_BOARD", seq);
+	}
 	
 	public List<BoardVO> selectBoards(int start) {
 		return mybatis.selectList("mapper.board.SELECT_BOARDS", start);

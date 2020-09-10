@@ -28,7 +28,9 @@ public class BoardService {
 		dao.insertFile(fvo);
 	}
 	
-	public void selectBoard() {}
+	public BoardVO selectBoard(int seq) {
+		return dao.selectBoard(seq);
+	}
 	public List<BoardVO> selectBoards(int start) {
 		return dao.selectBoards(start);
 	}
@@ -85,6 +87,7 @@ public class BoardService {
 		String path = req.getSession().getServletContext().getRealPath("/resources/files/");
 		
 		if(!file.isEmpty()) {
+			
 			//파일 첨부 했을때
 			String oName = file.getOriginalFilename(); //파일 원래 명
 			String ext = oName.substring(oName.lastIndexOf(".")); //확장자

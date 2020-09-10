@@ -13,6 +13,7 @@
 			`regip` = #{regip},
 			`rdate` = NOW();
 	</insert>
+	
 	<insert id="INSERT_FILE" >
 		INSERT INTO `JBOARD_FILE` SET 
 			`parent` = #{parent},
@@ -20,6 +21,7 @@
 			`newName` = #{newName},
 			`rdate` = NOW();
 	</insert>
+	
 	<select id="SELECT_BOARDS" resultType="kr.co.sboard.vo.BoardVO">
 		SELECT a.*, b.nick FROM `JBOARD_ARTICLE` AS a
 		JOIN `JBOARD_MEMBER` AS b ON a.uid = b.uid
@@ -27,9 +29,17 @@
 		ORDER BY `seq` DESC
 		LIMIT #{start}, 10;
 	</select>
+	
+	<select id="SELECT_BOARD" resultType="kr.co.sboard.vo.BoardVO">
+		SELECT a.*, b.oldName, b.newName, b.download FROM `JBOARD_ARTICLE` AS a 
+		LEFT JOIN `JBOARD_FILE` AS b ON a.seq = b.parent
+		WHERE a.`parent` = 0 AND a.`seq` = #{seq} ;
+	</select>
+	
 	<select id="SELECT_COUNT_BOARD" resultType="int">
 		SELECT COUNT(*) FROM `JBOARD_ARTICLE` WHERE `parent` = 0;
 	</select>
+	
 <!-- 
 	<insert id="INSERT_USER">
 		INSERT INTO `USER3` VALUES (#{uid}, #{name}, #{hp}, #{age});		
