@@ -13,21 +13,23 @@
                         <th>날짜</th>
                         <th>조회</th>
                     </tr>
+                    <c:forEach var="board" items="${boards}">
 	                    <tr>
-	                        <td>1</td>
-	                        <td><a href="/farmstory/board/view?group=${group}&cate=${cate}">skttod</a>&nbsp;[0]</td>
-	                        <td>drfw</td>
-	                        <td>20-01-08</td>
-	                        <td>0</td>
+	                        <td>${board.seq}</td>
+			                <td><a href="/farmstory/board/view?group=${group}&cate=${cate}">${board.title}</a>&nbsp;[${board.comment}]</td>
+			                <td>${board.uid}</td>
+			                <td>${board.rdate.substring(2, 10)}</td>
+			                <td>${board.hit}</td>
 	                    </tr>
+	                </c:forEach>
                 </table>
             </article>
 
             <!-- 페이지 네비게이션 -->
             <div class="paging">
-                <a href="/farmstory/list?pg=${groupStart -1}" class="prev">이전</a>
-                	<a href="/farmstory/list?pg=${i}" class="num ${currentPg == i ? 'current': ''}">${i}</a>                
-                <a href="/farmstory/list?pg=${groupEnd + 1}" class="next">다음</a>
+                <a href="#" class="prev">이전</a>
+						<a href="/farmstory/board/list?group=${group}&cate=${cate}&pg=1" class="num ${currentPg == i ? 'current':''}">1</a>
+				<a href="#" class="next">다음</a>
             </div>
 
             <!-- 글쓰기 버튼 -->

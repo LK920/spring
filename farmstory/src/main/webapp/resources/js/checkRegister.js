@@ -6,7 +6,7 @@
 			var json = {'uid':uid};
 			
 			$.ajax({
-				url: '/sboard/user/uidCheck',
+				url: '/farmstory/user/uidCheck',
 				type : 'get',
 				data : json,
 				dataType : 'json',
@@ -30,7 +30,7 @@
 			var json = {'nick':nick};
 	
 			$.ajax({
-				url : '/sboard/user/nickCheck',
+				url : '/farmstory/user/nickCheck',
 				type : 'get',
 				data : json,
 				dataType : 'json',

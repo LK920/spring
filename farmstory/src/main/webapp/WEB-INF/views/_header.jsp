@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +30,14 @@
             <a href="/farmstory" class="logo"><img src="/farmstory/img/logo.png" alt="로고"/></a>
             <p>
                 <a href="/farmstory">HOME |</a>
-                <a href="/farmstory/user/terms">회원가입 |</a>
-                <a href="/farmstory/user/login">로그인 |</a>
-                <a href="#">로그아웃 |</a>
+                <c:if test="${empty user}">
+	                <a href="/farmstory/user/terms">회원가입 |</a>
+	                <a href="/farmstory/user/login">로그인 |</a>
+                </c:if>
+                <c:if test="${user != null}">
+                	<a href="#">${user.nick }님 |</a>
+                	<a href="/farmstory/user/logout">로그아웃 |</a>
+                </c:if>
                 <a href="#">고객센터</a>
             </p>
             <img src="/farmstory/img/head_txt_img.png" alt="3만원이상 무료배송, 팜카드 10%적립">
