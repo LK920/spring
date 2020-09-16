@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>layout1</title>
+</head>
+<body>
+	<h3>타임리프 layout</h3>
+	<!-- insert는 내용 안으로 들어온다.-->
+	<div th:insert="/fragments/_header.html::_header">헤더 영역</div>
+	<!-- include는 해당경로 안의 내용만 들어오는 것-->
+	<div th:include="/fragments/_header.html::_header">헤더 영역</div>
+	
+	<main>
+		<h2>main입니다.</h2>
+	</main>
+	<!-- 해당 영역자체가 경로의 내용으로 완전히 대체 된다. -->
+	<div th:replace="fragments/_footer.html::_footer">푸터 영역</div>
+	
+</body>
+</html>
