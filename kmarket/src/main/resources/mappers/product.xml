@@ -6,9 +6,12 @@
 <mapper namespace="kr.co.kmarket.admin.dao.AdminProductDAO">
 	
 	<select id="selectProducts" resultType="kr.co.kmarket.vo.ProductsVo">
-		SELECT * FROM `km_products` ORDER BY `code` DESC LIMIT #{start}, 10;
+		SELECT * FROM `km_products` LIMIT #{start}, 10;
 	</select>
-
+	
+	<select id="selectCountProducts" resultType="int">
+		SELECT COUNT(*) FROM `km_products`;
+	</select>
    <!--
 	<insert id="insertUser">
 		INSERT INTO `USER3` VALUES (#{uid}, #{name}, #{hp}, #{age});		

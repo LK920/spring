@@ -1,8 +1,8 @@
 //ajax 통신으로 상품분류 select 기능구현
 $(function(){
 	
-	var select1 = $('select[name=category1]');
-	var select2 = $('select[name=category2]');
+	var select1 = $('select[name=cate1]');
+	var select2 = $('select[name=cate2]');
 	var cate1Url = "/kmarket/admin/product/cate1";
 	var cate2Url = "/kmarket/admin/product/cate2";
 	

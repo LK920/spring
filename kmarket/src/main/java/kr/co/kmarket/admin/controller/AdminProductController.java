@@ -1,6 +1,10 @@
 package kr.co.kmarket.admin.controller;
 
+import java.io.File;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.kmarket.admin.persistence.AdminCategory1Repo;
 import kr.co.kmarket.admin.persistence.AdminCategory2Repo;
@@ -29,10 +34,31 @@ public class AdminProductController {
 	private AdminCategory2Repo cate2Repo;
 	
 	@GetMapping("/admin/product/list")
-	public String list(Model model) {
+	public String list(Model model, String pg) {
 		
-		List<ProductsVo> products = service.selectProducts();
+		int start = service.getLimitStart(pg);
+		int total = service.selectCountProducts();
+		int pageEnd = service.getPageEnd(total);
+		
+		int count = service.getListCount(total, start);
+		int currentPage = service.currentPage(pg);
+		
+		int groupCurrent = (int)Math.ceil(currentPage/10.0);
+		int groupStart = (groupCurrent - 1)*10 +1;
+		int groupEnd = groupCurrent * 10;
+		
+		if(groupEnd > pageEnd) {
+			groupEnd = pageEnd;
+		}
+		
+		List<ProductsVo> products = service.selectProducts(start);
 		model.addAttribute("products", products);
+		model.addAttribute("pageEnd", pageEnd);
+		model.addAttribute("currentPg", pg);
+		
+		model.addAttribute("count", count);
+		model.addAttribute("groupStart", groupStart);
+		model.addAttribute("groupEnd", groupEnd);
 		
 		return "/admin/product/list";
 	}
@@ -56,7 +82,31 @@ public class AdminProductController {
 	}
 	
 	@PostMapping("/admin/product/register")
-	public String register(ProductsVo vo) {
-		return "/admin/product/register";
+	public String register(ProductsVo vo, HttpServletRequest req) throws Exception {
+		
+		vo.setThumb1(vo.getFile1().getOriginalFilename());
+		vo.setThumb2(vo.getFile2().getOriginalFilename());
+		vo.setThumb3(vo.getFile3().getOriginalFilename());
+		vo.setDetail(vo.getFile4().getOriginalFilename());
+		
+		vo.setIp(req.getRemoteAddr());
+		vo.setRdate(LocalDateTime.now().toString());
+		
+		service.insertProduct(vo);
+		
+		//파일 업로드
+		MultipartFile f1 = vo.getFile1();
+		MultipartFile f2 = vo.getFile2();
+		MultipartFile f3 = vo.getFile3();
+		MultipartFile f4 = vo.getFile4();
+		
+		//f1.transferTo(new File("/thumb/file1.jpg"));
+		//f2.transferTo(new File("/thumb/file2.jpg"));
+		//f3.transferTo(new File("/thumb/file3.jpg"));
+		//f4.transferTo(new File("/thumb/file4.jpg"));
+		
+		
+				
+		return "redirect:/admin/product/register";
 	}
 }
