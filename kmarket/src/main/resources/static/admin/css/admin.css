@@ -120,10 +120,14 @@ main > section > nav {
     box-sizing: border-box;
 }
 
-main > section > nav > h3 {
+main > section > nav > h3{
     position: absolute;
     left: 0;
     bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+main > section > nav > h3 > a{
     font-size: 20px;
     font-weight: bold;
 }
