@@ -3,6 +3,7 @@ package kr.co.kmarket.admin.controller;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -84,29 +85,13 @@ public class AdminProductController {
 	@PostMapping("/admin/product/register")
 	public String register(ProductsVo vo, HttpServletRequest req) throws Exception {
 		
-		vo.setThumb1(vo.getFile1().getOriginalFilename());
-		vo.setThumb2(vo.getFile2().getOriginalFilename());
-		vo.setThumb3(vo.getFile3().getOriginalFilename());
-		vo.setDetail(vo.getFile4().getOriginalFilename());
-		
 		vo.setIp(req.getRemoteAddr());
 		vo.setRdate(LocalDateTime.now().toString());
 		
+		//썸네일 업로드
+		vo = service.uploadThumb(vo);
 		service.insertProduct(vo);
 		
-		//파일 업로드
-		MultipartFile f1 = vo.getFile1();
-		MultipartFile f2 = vo.getFile2();
-		MultipartFile f3 = vo.getFile3();
-		MultipartFile f4 = vo.getFile4();
-		
-		//f1.transferTo(new File("/thumb/file1.jpg"));
-		//f2.transferTo(new File("/thumb/file2.jpg"));
-		//f3.transferTo(new File("/thumb/file3.jpg"));
-		//f4.transferTo(new File("/thumb/file4.jpg"));
-		
-		
-				
 		return "redirect:/admin/product/register";
 	}
 }

@@ -1,9 +1,14 @@
 package kr.co.kmarket.admin.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.kmarket.admin.dao.AdminProductDAO;
 import kr.co.kmarket.admin.persistence.AdminProductsRepo;
@@ -78,6 +83,45 @@ public class AdminProductService {
 			}
 			return currentPage;
 		}
+		
+	//사용자 정의 속성에서 경로 설정
+		
+	@Value("${upload.path}")
+	private String uploadPath;
 	
-	
+	public ProductsVo uploadThumb(ProductsVo vo) {
+		//썸네일 업로드
+		//우선 경로 구하기(고정 경로를 넣어주기)
+		String path = new File(uploadPath).getAbsolutePath();
+		
+		//배열의 반복문
+		MultipartFile[] files = {vo.getFile1(),vo.getFile2(),vo.getFile3(),vo.getFile4()};
+		
+		for(int i =0 ; i<4 ; i++) {
+			MultipartFile file = files[i];
+			
+			if(!file.isEmpty()) {
+				//이름과 확장자 분리
+				String name = file.getOriginalFilename();
+				String ext = name.substring(name.lastIndexOf("."));
+				//이름을 암호화 	//고유파일명 생성
+				String uName = UUID.randomUUID().toString()+ext;
+				String fullpath = path+"/"+vo.getCate1()+"/"+vo.getCate2()+"/";
+				try {
+					file.transferTo(new File(fullpath));
+					
+					if(i==0) vo.setThumb1(uName);
+					if(i==1) vo.setThumb2(uName);
+					if(i==2) vo.setThumb3(uName);
+					if(i==3) vo.setDetail(uName);
+					
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				}catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return vo;
+	}
 }
