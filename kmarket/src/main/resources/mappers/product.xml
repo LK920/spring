@@ -12,6 +12,38 @@
 	<select id="selectCountProducts" resultType="int">
 		SELECT COUNT(*) FROM `km_products`;
 	</select>
+	<select id="selectCountProductsBySearch" resultType="int">
+		SELECT COUNT(*) FROM `km_products`WHERE
+		<if test='opt.equals("name")'>
+			`name` LIKE '%${keyword}%';
+		</if>
+		<if test='opt.equals("company")'>
+			`company` LIKE '%${keyword}%';
+		</if>
+		<if test='opt.equals("code")'>
+			`code` = '${keyword}';
+		</if>
+		<if test='opt.equals("seller")'>
+			`seller` LIKE '%${keyword}%';
+		</if>
+	</select>
+	
+	<select id="selectProductsBySearch" resultType="kr.co.kmarket.vo.ProductsVo">
+		SELECT * FROM `km_products` WHERE
+		<if test='opt.equals("name")'>
+			`name` LIKE '%${keyword}%'
+		</if>
+		<if test='opt.equals("company")'>
+			`company` LIKE '%${keyword}%'
+		</if>
+		<if test='opt.equals("code")'>
+			`code` = '${keyword}'
+		</if>
+		<if test='opt.equals("seller")'>
+			`seller` LIKE '%${keyword}%'
+		</if>
+		LIMIT #{start}, 10;
+	</select>
    <!--
 	<insert id="insertUser">
 		INSERT INTO `USER3` VALUES (#{uid}, #{name}, #{hp}, #{age});		

@@ -2,6 +2,9 @@ package kr.co.kmarket.admin.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +33,13 @@ public class AdminProductService {
 	}
 	public List<ProductsVo> selectProducts(int start){
 		return dao.selectProducts(start);
+	}
+	
+	public List<ProductsVo>  selectProductsBySearch(int start, String opt, String keyword){
+		return dao.selectProductsBySearch(start, opt, keyword);
+	}
+	public int selectCountProductsBySearch(String opt, String keyword) {
+		return dao.selectCountProductsBySearch(opt, keyword);
 	}
 	
 	public void updateProduct() {
@@ -107,8 +117,12 @@ public class AdminProductService {
 				//이름을 암호화 	//고유파일명 생성
 				String uName = UUID.randomUUID().toString()+ext;
 				String fullpath = path+"/"+vo.getCate1()+"/"+vo.getCate2()+"/";
+								
 				try {
-					file.transferTo(new File(fullpath));
+					Path root = Paths.get(fullpath);
+					Files.createDirectories(root);
+					
+					file.transferTo(new File(fullpath+uName));
 					
 					if(i==0) vo.setThumb1(uName);
 					if(i==1) vo.setThumb2(uName);

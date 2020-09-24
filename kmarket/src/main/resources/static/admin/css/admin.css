@@ -235,6 +235,10 @@ input {
     vertical-align: middle;
     box-sizing: border-box;
 }
+input.search{
+	width: 60px;
+	
+}
 
 input[type=checkbox] {
     width: auto;

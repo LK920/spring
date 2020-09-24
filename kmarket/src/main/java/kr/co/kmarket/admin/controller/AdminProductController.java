@@ -34,6 +34,36 @@ public class AdminProductController {
 	@Autowired
 	private AdminCategory2Repo cate2Repo;
 	
+	@GetMapping("/admin/product/search")
+	public String search(String keyword, String opt, String pg, Model model) {
+		
+		int start = service.getLimitStart(pg);
+		int total = service.selectCountProductsBySearch(opt, keyword);
+		int pageEnd = service.getPageEnd(total);
+		
+		int count = service.getListCount(total, start);
+		int currentPage = service.currentPage(pg);
+		
+		int groupCurrent = (int)Math.ceil(currentPage/10.0);
+		int groupStart = (groupCurrent - 1)*10 +1;
+		int groupEnd = groupCurrent * 10;
+		
+		if(groupEnd > pageEnd) {
+			groupEnd = pageEnd;
+		}
+		
+		List<ProductsVo> products = service.selectProductsBySearch(start ,opt, keyword);
+		model.addAttribute("products", products);
+		model.addAttribute("pageEnd", pageEnd);
+		model.addAttribute("currentPg", pg);
+		
+		model.addAttribute("count", count);
+		model.addAttribute("groupStart", groupStart);
+		model.addAttribute("groupEnd", groupEnd);
+		
+		return "/admin/product/list";
+	}
+	
 	@GetMapping("/admin/product/list")
 	public String list(Model model, String pg) {
 		
