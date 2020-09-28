@@ -1,8 +1,20 @@
 <html xmlns:th = "http://www.thymeleaf.org">
                 <!-- 카테고리 -->
-  <ul class="category" th:fragment="_category">     
+  <ul class="category" th:fragment="_category">  
+	<script>
+		var asideCate1 = $('#asideCate1');
+		var asideCate2 = $('#asideCate2');
+	
+		var cateUrl1 = "/kmarket/cate1";
+		var cateUrl2 = "/kmarket/cate2";
+		
+		$.get(cateUrl1, function(cate1List){
+			
+		});
+		
+	</script>   
       <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>
-      <li>
+      <li id="asideCate1">
           <a href="#"><i class="fas fa-tshirt"></i>패션·의류·뷰티</a>
           <ol>
               <li><a href="#">남성의류</a></li>

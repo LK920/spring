@@ -3,6 +3,67 @@
 	  layout:decorate="/layout/layout_admin.html">
 
  <section id="admin-product-list" layout:fragment="content">
+ 	<script>
+ 	 $(function (){
+ 		 
+ 		 var checkAll = $('input[name=all]');
+ 		 var btnChkDel = $('#btnChkDel');
+ 		 
+ 		 btnChkDel.click(function(){
+ 			 
+ 			 var codes = [];
+ 			 
+ 			 //체크한 체크박스 value 값 추출
+ 			 $('input[name=chkProduct]:checked').each(function(){
+ 				 var code = $(this).val();
+ 				 codes.push(code);
+ 			 });
+ 			 
+ 			 if(codes.length != 0){
+ 				 
+ 				 //제이슨 형식으로 바꿔서 data로 전달해야하기때문에 
+ 				 var param = {'codes' : codes};
+ 				 
+ 				$.ajax({
+ 	 				 url:'/kmarket/admin/product/delete',
+ 	 				 type:'get',
+ 	 				 data: param,
+ 	 				 traditional : true,
+ 	 				 //클라이언트에서 서버로 요청하고 난 다음에 서버에서 결과값을 돌려받는 data의 타입
+ 	 				 dataType:'text',
+ 	 				 success: function(data){
+ 	 					 alert('삭제 상품 갯수 : '+data);
+ 	 					 location.replace('/kmarket/admin/product/list');
+ 	 				 }
+ 	 			 });
+ 				 
+ 			 }else{
+ 				 alert('상품을 선택하세요.');
+ 			 }
+ 			 
+ 			 
+ 			 
+ 		 });
+ 		 
+ 		 checkAll.click(function(){
+			//alert('확인');
+			var isChecked = $(this).is(':checked');
+			
+ 			if(isChecked){
+ 				//체크 
+ 				$('input[name=chkProduct]').attr('checked', true);
+ 				
+ 			}else{
+ 				//체크해제
+ 				$('input[name=chkProduct]').attr('checked', false);
+ 			}
+			
+ 		 });
+ 		 
+ 	 });
+ 
+ 	
+ 	</script>
      <nav>
          <h3><a th:href="@{/admin/product/list}">상품목록</a></h3>
          <p>
@@ -40,7 +101,7 @@
 
              
              <tr th:each="product:${products}">
-                 <td><input type="checkbox" name="상품코드"/></td>
+                 <td><input type="checkbox" name="chkProduct" th:value="${product.code}"/></td>
                  <td><img th:src="@{'/thumb/'+${product.cate1}+'/'+${product.cate2}+'/'+${product.thumb1}}" class="thumb"></td>
                  <td>[[${product.code}]]</td>
                  <td>[[${product.name}]]</td>
@@ -59,12 +120,12 @@
          </table>
 
          
-         <input type="button" value="선택삭제" />                          
+         <input id='btnChkDel' type="button" value="선택삭제" />                          
 
 
          <div class="paging">
              <span class="prev">
-                 <a th:if="${groupStart} != 1" th:href="@{/admin/product/list(pg=${groupStart - 1})}"><&nbsp;이전</a>
+                 <a th:if="${groupStart} != 1" th:href="@{/admin/product/list(pg=${groupStart - 1})}">&lt;&nbsp;이전</a>
              </span>
              <span class="num">
                  <a th:href="@{/admin/product/list(pg=${num})}"
