@@ -2,17 +2,37 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="/layout/layout_member.html">
 
-            <div id="member-signup" layout:fragment="content">
+<div id="member-signup" layout:fragment="content">
+			<!-- 자바스크립트에 타임리프 사용하려면 th:inline 선언 -->
+            <script th:inline="javascript">
+            	$(function(){
+            		
+            		$('input.agree').click(function(){
+            			//체크여부확인
+            			
+            			//회원폼 이동
+            			var type = [[${type}]];
+            			if(type == 'normal'){
+            				location.href='/kmarket/member/register';	
+            			}else{
+            				location.href='/kmarket/member/register-seller';	
+            			}
+            		});
+            	});
+            
+            </script>
 				<h1>약관동의</h1>
 				<section>
 					<h3><span class="essential">(필수)</span>케이마켓 이용약관</h3>
 					<textarea class="terms" readonly></textarea>
 					<label><input type="checkbox" name="agree1" />동의합니다.</label>
-
+				</section>
+				<section th:if="${type == 'seller'}">
 					<h3><span class="essential">(필수)</span>전자금융거래 이용약관</h3>
 					<textarea class="financial" readonly></textarea>
 					<label><input type="checkbox" name="agree2" />동의합니다.</label>
-
+				</section>
+				<section>
 					<h3><span class="essential">(필수)</span>개인정보 수집동의</h3>
 					<textarea class="privacy" readonly></textarea>
 					<label><input type="checkbox" name="agree3" />동의합니다.</label>
@@ -27,6 +47,6 @@
 				<div>
 					<input type="button" class="agree" value="동의하기" />
 				</div>
-            </div>
+</div>
        
 </html>
