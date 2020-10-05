@@ -30,11 +30,27 @@
 					success: function(data){
 						$('.recommend > img[alt=loading]').remove();
 						//히트상품에 잇는 article을 복사하여 추천 상품 영역에 넣어주기
-						
-						for(var item in data){
+						$.each(data, function(i, item){
+							
 							var dom = $('.hit > article:eq(0)').clone();
+							
+							var imgUrl = '/kmarket/thumb/'+item.cate1+"/"+item.cate2+"/"+item.thumb1;
+							//태그의 속성을 수정하는 함수 attr
+							dom.find('.thumb > img').attr('src', imgUrl);
+							dom.find('h2').text(item.name);
+							dom.find('p').text(item.descript);
+							//.toLocaleString() 은 자바스크립트 내장함수로 숫자 세자리마다 콤마 찍어준다.
+							dom.find('.org_price > del').text(item.price.toLocaleString());
+							dom.find('.org_price > span').text(item.discount);
+							dom.find('.dis_price > ins').text(item.salePrice.toLocaleString());
+							
+							if(item.delivery > 0){
+								dom.find('.dis_price > span').remove();
+							}
+							
 							$('.recommend').append(dom);
-						}
+						});
+						
 					}
 					
 				});
@@ -68,7 +84,7 @@
                  </div>
                  <div class="dis_price">
                    <ins>[[${#numbers.formatInteger(hit.salePrice, 3, 'COMMA')}]]</ins>
-                   <span>[[${#numbers.formatInteger(hit.delivery, 3, 'COMMA')}]]</span>
+                   <span th:if="${hit.delivery} == 0">[[${#numbers.formatInteger(hit.delivery, 3, 'COMMA')}]]</span>
                  </div>
              </a>
          </article>
