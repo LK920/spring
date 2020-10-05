@@ -24,10 +24,15 @@ public class MainService {
 	public List<ProductsVo> selectBestProduct(){
 		return dao.selectBestProduct();
 	}
+	
+	public List<ProductsVo> selectRecProduct(){
+		return dao.selectRecProduct();
+	}
+	
 	public List<ProductsVo> selectNewProduct(){
 		return dao.selectNewProduct();
 	}
-	public List<ProductsVo> selectRecProduct(){
-		return dao.selectRecProduct();
+	public List<ProductsVo> selectDisProduct(){
+		return dao.selectDisProduct();
 	}
 }

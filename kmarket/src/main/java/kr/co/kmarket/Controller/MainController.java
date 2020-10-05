@@ -36,8 +36,19 @@ public class MainController {
 	
 	@ResponseBody
 	@GetMapping("/main/recommend")
-	public List<ProductsVo> recommend(Model model) {
+	public List<ProductsVo> recommend() {
 		return service.selectRecProduct();
+	}
+	
+	@ResponseBody
+	@GetMapping("/main/newItems")
+	public List<ProductsVo> newItems() {
+		return service.selectNewProduct();
+	}
+	@ResponseBody
+	@GetMapping("/main/discountItem")
+	public List<ProductsVo> discountItem() {
+		return service.selectDisProduct();
 	}
 	
 }

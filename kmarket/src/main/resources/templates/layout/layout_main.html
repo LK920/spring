@@ -15,7 +15,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <script>
-       
+       $(document).ready(function(){
+    	   
+    	   var menu = $('.menu ul:nth-child(1) a');
+    	   
+    	   $('#top').click(function(){
+    		   $('html, body').animate({'scrollTop' : 0});
+    	   });
+    	   
+    	   menu.click(function(e){
+    		   //e.preventDefault(); 랑 같은게 return false;
+    		   e.preventDefault();
+    		   //index 값(a태그의 인덱스는 0 하나만 되기 때문에 li의 인덱스를 구해준다.)
+    		   var i = $(this).parent().index();
+    		   var top = 622+(733*i);
+    		   $('html, body').animate({'scrollTop' : top});
+    	   });
+       });
     </script>
 </head>
 <body>
