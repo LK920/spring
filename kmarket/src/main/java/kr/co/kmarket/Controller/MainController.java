@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.kmarket.service.MainService;
+import kr.co.kmarket.vo.CategoriesVo;
 import kr.co.kmarket.vo.Category1Vo;
 import kr.co.kmarket.vo.ProductsVo;
 
@@ -21,12 +22,15 @@ public class MainController {
 	@GetMapping(value={"/", "/index"})
 	public String index(Model model) {
 		
-		List<Category1Vo> cate1List =  service.selectCate1();
+		List<CategoriesVo> cate1List =  service.selectCategories();
 		List<ProductsVo> bestList =  service.selectBestProduct();
 		List<ProductsVo> hitList =  service.selectHitProduct();
 		List<ProductsVo> newList =  service.selectNewProduct();
 				
 		model.addAttribute("cate1List", cate1List);
+		//System.out.println("길이 1 : "+cateList.size());
+		//System.out.println("길이 2 : "+cateList.get(0).getCate2List().size());
+		
 		model.addAttribute("bestList", bestList);
 		model.addAttribute("hitList", hitList);
 		model.addAttribute("newList", newList);

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.kmarket.dao.MainDAO;
+import kr.co.kmarket.vo.CategoriesVo;
 import kr.co.kmarket.vo.Category1Vo;
 import kr.co.kmarket.vo.ProductsVo;
 
@@ -15,8 +16,8 @@ public class MainService {
 	@Autowired
 	private MainDAO dao;
 	
-	public List<Category1Vo> selectCate1(){
-		return dao.selectCate1();
+	public List<CategoriesVo> selectCategories(){
+		return dao.selectCategories();
 	}
 	public List<ProductsVo> selectHitProduct(){
 		return dao.selectHitProduct();
