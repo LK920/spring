@@ -11,29 +11,30 @@
             		
             		$('input.agree').click(function(){
             			
+            			
+            			//체크여부확인
             			var chkTerms 	= checkbox.eq(0).is(':checked');
             			var chkFinance 	= checkbox.eq(1).is(':checked');
             			var chkPrivacy 	= checkbox.eq(2).is(':checked');
-            			var chkLocation	= checkbox.eq(3).is(':checked');
-            			
-            			alert(chkTerms);	
-	            			
-                    	                    	            			
-            			//체크여부확인
-            			/*            			
+            			            			            			
             			//회원폼 이동
             			var type = [[${type}]];
+            			
             			if(type == 'normal'){
-            				location.href='/kmarket/member/register';	
+            				if(chkTerms && chkPrivacy){
+            					location.href='/kmarket/member/register';	
+            				}else{
+            					alert("필수 동의를 체크하시오.");
+            				}
             			}else{
-            				location.href='/kmarket/member/register-seller';	
+            				if(chkTerms && chkPrivacy && chkFinance){
+            					location.href='/kmarket/member/register-seller';	
+            				}else{
+            					alert("필수 동의를 체크하시오.");
+            				}
             			}
-            			*/
             		});
             	});
-            	
-            
-            	
             
             </script>
 				<h1>약관동의</h1>
