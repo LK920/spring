@@ -7,9 +7,20 @@
             <script th:inline="javascript">
             	$(function(){
             		
+            		var checkbox = $('input[type=checkbox]');
+            		
             		$('input.agree').click(function(){
-            			//체크여부확인
             			
+            			var chkTerms 	= checkbox.eq(0).is(':checked');
+            			var chkFinance 	= checkbox.eq(1).is(':checked');
+            			var chkPrivacy 	= checkbox.eq(2).is(':checked');
+            			var chkLocation	= checkbox.eq(3).is(':checked');
+            			
+            			alert(chkTerms);	
+	            			
+                    	                    	            			
+            			//체크여부확인
+            			/*            			
             			//회원폼 이동
             			var type = [[${type}]];
             			if(type == 'normal'){
@@ -17,8 +28,12 @@
             			}else{
             				location.href='/kmarket/member/register-seller';	
             			}
+            			*/
             		});
             	});
+            	
+            
+            	
             
             </script>
 				<h1>약관동의</h1>
@@ -45,7 +60,7 @@
 				</section>
 
 				<div>
-					<input type="button" class="agree" value="동의하기" />
+					<input id="nextBtn" type="button" class="agree" value="동의하기" />
 				</div>
 </div>
        
