@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>living-market:생활·가구</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .bx-wrapper{
+            box-shadow: none;
+            border: none;
+            margin-top: 10px;
+        }   
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <header>
+            <div class="top">
+                <div>
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                    <a href="#">주문배송</a>
+                    <a href="#">고객센터</a>
+                </div>
+            </div>
+            <div class="logo">
+                <div>
+                    <a href="#">
+                        <img src="./img/logo.jpg" alt="logo">DOMUN OR CASA
+                    </a>
+                    <form action="#">
+                        <input type="text" name="search">
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="m_main">
+                    <ul>
+                        <li class="category">
+                            <a href="#"><i class="fa fa-bars" aria-hidden="true"></i>전체카테고리</a>
+                            <ol>
+                                <li>
+                                    <a href="#">
+                                        가구·패브릭
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        수납·정리
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        생활용품
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        가전
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        홈데코
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        주방
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        욕실
+                                    </a>
+                                </li>
+                            </ol>
+                        </li>
+                        <li><a href="#">최신상품</a></li>
+                        <li><a href="#">베스트</a></li>
+                        <li><a href="#">특가상품</a></li>
+                        <li><a href="#">이벤트</a></li>
+                    </ul>
+                    <section>
+                        <div>
+                            <a href="#">#소파</a>
+                            <a href="#">#가구</a>
+                            <a href="#">#인테리어</a>
+                            <a href="#">#조명</a>
+                        </div>
+                    </section>
+                </div>
+                
+            </div>
+        </header>
+        <main id="main">
+            <!--슬라이더 영역-->
+            <section class="slider">
+                <ul>
+                    <li><img src="./img/slider_banner_01.jpg" alt="slider_banner_01"></li>
+                    <li><img src="./img/slider_banner_02.jpg" alt="slider_banner_02"></li>
+                    <li><img src="./img/slider_banner_03.jpg" alt="slider_banner_03"></li>
+                    <li><img src="./img/slider_banner_04.jpg" alt="slider_banner_04"></li>
+                </ul>
+            </section>
+            <!--추천상품 영역-->
+            <section class="recommend">
+                <div>
+                    <h4><a href="#">추천상품</a></h4>
+                    <article>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            
+                            
+                        </ul>
+                    </article>
+                </div>
+            </section>
+            <!--베스트상품 영역-->
+            <section class="best">
+                <div>
+                    <h4><a href="#">베스트 상품</a></h4>
+                    <article>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                    <del>320,200원</del>
+                                </div>
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+            <!--이벤트배너 영역-->
+            <section class="event">
+                <div>
+                    <a href="#"><img src="./img/evnet_banner.jpg" alt="event_01"></a>
+                </div>
+            </section>
+            <!--특가상품 영역-->
+            <section class="discount">
+                <div>
+                    <h4><a href="#">특가상품</a></h4>
+                    <article>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="./img/pre_view_item01.jpg" alt="item01">
+                                </a>
+                                <div>
+                                    <a href="#">[폴만] 포레 원목 침대 Q K 겸용</a>
+                                    <span>289,000원</span>
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </article>
+                </div>
+            </section>
+            <!--최신리뷰 영역-->
+            <section class="new_review">
+                <div>
+                    <h4><a href="#">오늘의 리뷰</a></h4>
+                    <article>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <div class="review_image">
+                                        <img src="./img/review_01.jfif" alt="review_01">
+                                    </div>
+                                    <div class="review_name">
+                                        <div>이국적인 느낌나는 가구를 원한다면<br/></div>
+                                        <div>
+                                            <img src="./img/unname_logo.png" alt="no_image">
+                                            <span>달리는가구맨</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <section>
+                <ul>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">인재채용</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">이용안내</a></li>
+                </ul>
+                <div>
+                    <section>
+                        <h4>고객센터</h4>
+                        <div>
+                            <a href="#"><img src="./img/kakaotalk.png" alt="kakaotalk"></a>
+                            <p>
+                                고객센터 운영시간 <br />
+                                평일 : 오전 9시 – 오후 8시<br />
+                                주말 및 공휴일 휴무<br />
+                            </p>
+                        </div>
+                        <div>
+                            <a href="#"><img src="./img/qna.png" alt="qna"></a>
+                            <p>
+                                24시간 접수가능<br />
+                                고객센터 운영시간에 순차적으로 답변해드리겠습니다.<br />
+                            </p>
+                        </div>                    
+                    </section>
+                    <section class="company">
+                        <h4>(주)리빙마켓</h4>
+                        <div>
+                            <a href="./index.html"><img src="./img/logo.jpg" alt="logo"></a>
+                            <p>
+                                부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />
+                                대표이사 : 강래구<br />
+                                사업자등록번호 : 220-81-83676 사업자정보확인<br />
+                                통신판매업신고 : 강남 10630호 Fax : 02-589-8842<br />
+                            </p>
+                        </div>
+                        <ul>
+                            <li><a href="#"><img src="./img/insta_logo.png" alt="insta_logo"></a></li>
+                            <li><a href="#"><img src="./img/blog_logo.png" alt="nblog_logo"></a></li>
+                            <li><a href="#"><img src="./img/facebook_logo.png" alt="facebook_logo"></a></li>
+                        </ul>
+                    </section>
+                </div>
+            </section>
+        </footer>
+    </div>
+
+    
+</body>
+</html>

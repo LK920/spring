@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>living-market:생활·가구</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /*네비게이션 영역*/
+        #list > nav{
+            width: 1200px;
+            margin: 0 auto;
+        }
+        #list > nav > div{
+            padding-top: 30px;
+        }
+        #list > nav > div>.cate_ico{
+            width: 100%;
+            height: 40px;
+            padding-bottom: 10px;
+            box-sizing: border-box;
+        }
+        #list > nav >div>div>img{
+            width: 40px;
+            height: 40px;
+            vertical-align: top;
+        }
+        #list > nav >div>div>span{
+            display: inline-block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-left: 2px;
+            
+        }
+        #list > nav >div>ul{
+            width: 100%;
+            height: 25px;
+            margin-top: 5px;
+            border-bottom: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        #list > nav >div>ul>li{
+            float: left;
+
+        }
+        #list > nav >div>ul>li>a{
+            font-weight: bold;
+            font-size: 13px;
+            padding: 0 10px 7px;
+            line-height: 20px;
+            
+        }
+        #list > nav >div>ul>li>a:hover{
+            color: #35c5f0;
+            border-bottom: 1px solid #35c5f0;
+            box-sizing: border-box;
+        }
+
+        /*상품목록*/
+        #list>section{
+            width: 1200px;
+            margin: 0 auto;
+        }
+        /*상품 분류 관련*/
+        #list>section>div{
+            width: 100%;
+            min-height: 20px;
+            margin-top: 10px;
+        }
+        #list>section>.list_head>span{
+            font-size: 14px;
+            font-weight: bold;
+            padding-left: 5px;
+
+        }
+        #list>section>.list_head>div{
+            position: relative;
+            float: right;
+            width: 120px;
+            height: 20px;
+            padding-right: 20px;
+            z-index: 1;
+        }
+        #list>section>.list_head>div>a{
+            display: block;
+            padding-right: 13px;
+            padding-bottom: 10px;
+            font-size: 15px;
+            text-align: right;
+            color: #35c5f0;
+            overflow: hidden;
+        }
+        #list>section>.list_head>div>a>i{
+            margin-left: 5px;
+        }
+        
+        #list>section>.list_head>div>ul{
+            display: none;
+            position: absolute;
+            right: 30px;
+            top: 27px;
+            width: 98px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        #list>section>.list_head>div>ul>li{}
+        #list>section>.list_head>div>ul>li>a{
+            display: block;
+            overflow: hidden;
+            width: 93px;
+            height: 30px;
+            white-space: nowrap;
+            font-weight: bold;
+            text-align: right;
+            font-size: 15px;
+            color: #35c5f0;
+
+
+        }
+        /*상품*/
+        #list>section> .list_item{
+            padding: 0 17px;
+            overflow: hidden;
+        }
+        #list>section> .list_item>div{}
+        #list>section> .list_item>div>ul{}
+        #list>section> .list_item li{
+            float: left;
+            width: 270px;
+            height: 414px;
+            padding: 10px 30px 0 0;
+        }
+        #list>section> .list_item li>div{
+            width: 100%;
+            height: 100%;
+            padding-bottom: 30px;
+        }
+        #list>section> .list_item li>div>.list_img{
+            width: 100%;
+            height: 270px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        #list>section> .list_item li>div>.list_img img{
+            width: 100%;
+            height: 100%;
+        }
+        #list>section .list_content{
+            width: 100%;
+            height: 110px;
+            box-sizing: border-box;
+            padding: 0 10px;
+        }
+        #list>section .list_content>h1{
+            margin-top: 9px;
+        }
+        #list>section .list_content>h1>span{
+            font-size: 13px;
+            font-weight: 500;
+            color: black;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+        }
+        #list>section .list_content>span{
+            margin-top: 3px;
+            display: block;
+            font-size: 17px;
+            line-height: 23px;
+            text-align: right;
+        }
+        #list>section .list_content>span>span{
+            font-size: 17px;
+            font-weight: bold;
+        }
+        #list>section .list_content>p{
+            margin-top: 3px;
+            font-size: 12px;
+            color: #b6b6b6;
+            line-height: 16px;
+            font-weight: bold;
+            text-align: right;
+        }
+        #list>section .list_content>p>span{color: #000; font-weight: bold;}
+        #list>section .list_content>p>span>i{
+            color: #35c5f0;
+            margin-right: 2px;
+        }
+        #list>section .list_content>span:last-child{
+            margin-top: 3px;
+        }
+        #list>section .list_content>span:last-child>span{
+            display: inline-block;
+            width: 45px;
+            height: 20px;
+            font-size: 11px;
+            border-radius: 3px;
+            text-align: center;
+            color: #fff;
+            line-height: 20px;
+        }
+        #list>section .list_content>span:last-child> .free_d{
+            width: 57px;
+            background-color: rgb(255, 134, 86);
+        }
+        #list>section .list_content>span:last-child> .lower_p{
+            background-color: #9e9e9e;
+        }
+        
+        main .discount_rate{color: #35c5f0;}
+
+        /*페이지*/
+        #list > .paging{
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+        }
+        #list > .paging >span >a{
+            color: rgb(119, 119, 119);
+            font-family: 돋움, Dotum, Tahoma, sans-serif;
+            font-size: 11px;
+            letter-spacing: -1px;
+        }
+        #list > .paging > .num > a.on{color: red; font-weight: bold; }
+        #list > .paging > .num >a{
+            display: inline-block;
+            min-width: 14px;
+            margin: 0 2px;
+            padding: 8px 9px;
+            border: 1px solid #c4c4c4;
+            background: url() 0 0 repeat-x;
+            color: #000;
+            font-family: Tahoma;
+            font-size: 12px;
+            text-align: center;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        $(function(){
+            var sort = $('.sort_list > a');
+            var sort_list = $('.sort_list > ul');
+            
+            sort.click(function(){
+                if(sort_list.css('display','none')){
+                    sort_list.css('display','block')
+                }else{
+                    sort_list.css('display','none')
+                }
+            });
+        });
+        $(function(){
+
+        var cate = $('.m_main > ul > .category ');
+
+        cate.hover(function(){
+            $(this).children().eq(1).stop().slideDown(100);
+            },function(){
+            $(this).children().eq(1).stop().slideUp(100); 
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div id = "wrapper">
+        <header>
+            <div class="top">
+                <div>
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                    <a href="#">주문배송</a>
+                    <a href="#">고객센터</a>
+                </div>
+            </div>
+            <div class="logo">
+                <div>
+                    <a href="#">
+                        <img src="../img/logo.jpg" alt="logo">DOMUN OR CASA
+                    </a>
+                    <form action="#">
+                        <input type="text" name="search">
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="m_main">
+                    <ul>
+                        <li class="category">
+                            <a href="#"><i class="fa fa-bars" aria-hidden="true"></i>전체카테고리</a>
+                            <ol>
+                                <li>
+                                    <a href="#">
+                                        가구·패브릭
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        수납·정리
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        생활용품
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        가전
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        홈데코
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        주방
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        욕실
+                                    </a>
+                                </li>
+                            </ol>
+                        </li>
+                        <li><a href="#">최신상품</a></li>
+                        <li><a href="#">베스트</a></li>
+                        <li><a href="#">특가상품</a></li>
+                        <li><a href="#">이벤트</a></li>
+                    </ul>
+                    <section>
+                        <div>
+                            <a href="#">#소파</a>
+                            <a href="#">#가구</a>
+                            <a href="#">#인테리어</a>
+                            <a href="#">#조명</a>
+                        </div>
+                    </section>
+                </div>
+                
+            </div>
+        </header>
+        <main>
+            <!--상품목록-->
+            <section id="list">
+                <!--제목, 페이지 네비케이션-->
+                <nav>
+                    <div>
+                        <div class="cate_ico">
+                            <img src="../img/icon_sofa.png" alt="icon_sofa">
+                            <span>가구 · 패브릭</span>
+                        </div>
+                        <ul>
+                            <li><a href="#">전체보기</a></li>
+                            <li><a href="#">소파/거실</a></li>
+                            <li><a href="#">침실</a></li>
+                            <li><a href="#">드레스룸</a></li>
+                            <li><a href="#">학생/서재</a></li>
+                            <li><a href="#">테이블</a></li>
+                            <li><a href="#">의자/스툴</a></li>
+                            <li><a href="#">아동가구</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <!--상품목록-->
+                <section>
+                    <div class="list_head">
+                        <span>전체 1,023개</span>
+                        <!--클릭뒤에 다시 안올라감-->
+                        <div class="sort_list">
+                            <a href="#">추천순<i class="fas fa-arrow-up"></i></a>
+                            <ul>
+                                <li><a href="#">추천순</a></li>
+                                <li><a href="#">신상품순</a></li>
+                                <li><a href="#">인기순</a></li>
+                                <li><a href="#">낮은 가격순</a></li>
+                                <li><a href="#">높은 가격순</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="list_item">
+                        <div>
+                            <ul>
+                                <li>
+                                    <div>
+                                        <div class="list_img">
+                                            <a href="#">
+                                                <img src="../img/pre_view_item01.jpg" alt="item01">
+                                            </a>
+                                        </div>
+                                        <div class="list_content">
+                                            <h1><span>[오늘의딜]워터쉴드 방수 매트리스 커버</span></h1>
+                                            <span>
+                                                <span class="discount_rate">50%</span>
+                                                <span>16,800원 외</span>
+                                            </span>
+                                            <p>
+                                                <span><i class="fas fa-star"></i>4.6</span>
+                                                리뷰 10,142
+                                            </p>
+                                            <span>
+                                                <span class="free_d">무료배송</span>
+                                                <span class="lower_p">최저가</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <div class="list_img">
+                                            <a href="#">
+                                                <img src="../img/no_images.png" alt="item01">
+                                            </a>
+                                        </div>
+                                        <div class="list_content">
+                                            <h1><span>[오늘의딜]워터쉴드 방수 매트리스 커버</span></h1>
+                                            <span>
+                                                <span class="discount_rate">50%</span>
+                                                <span>16,800원 외</span>
+                                            </span>
+                                            <p>
+                                                <span><i class="fas fa-star"></i>4.6</span>
+                                                리뷰 10,142
+                                            </p>
+                                            <span>
+                                                <span class="free_d">무료배송</span>
+                                                <span class="lower_p">최저가</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <div class="list_img">
+                                            <a href="#">
+                                                <img src="../img/no_images.png" alt="item01">
+                                            </a>
+                                        </div>
+                                        <div class="list_content">
+                                            <h1><span>[오늘의딜]워터쉴드 방수 매트리스 커버</span></h1>
+                                            <span>
+                                                <span class="discount_rate">50%</span>
+                                                <span>16,800원 외</span>
+                                            </span>
+                                            <p>
+                                                <span><i class="fas fa-star"></i>4.6</span>
+                                                리뷰 10,142
+                                            </p>
+                                            <span>
+                                                <span class="free_d">무료배송</span>
+                                                <span class="lower_p">최저가</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <div class="list_img">
+                                            <a href="#">
+                                                <img src="../img/no_images.png" alt="item01">
+                                            </a>
+                                        </div>
+                                        <div class="list_content">
+                                            <h1><span>[오늘의딜]워터쉴드 방수 매트리스 커버</span></h1>
+                                            <span>
+                                                <span class="discount_rate">50%</span>
+                                                <span>16,800원 외</span>
+                                            </span>
+                                            <p>
+                                                <span><i class="fas fa-star"></i>4.6</span>
+                                                리뷰 10,142
+                                            </p>
+                                            <span>
+                                                <span class="free_d">무료배송</span>
+                                                <span class="lower_p">최저가</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <div class="list_img">
+                                            <a href="#">
+                                                <img src="../img/no_images.png" alt="item01">
+                                            </a>
+                                        </div>
+                                        <div class="list_content">
+                                            <h1><span>[오늘의딜]워터쉴드 방수 매트리스 커버</span></h1>
+                                            <span>
+                                                <span class="discount_rate">50%</span>
+                                                <span>16,800원 외</span>
+                                            </span>
+                                            <p>
+                                                <span><i class="fas fa-star"></i>4.6</span>
+                                                리뷰 10,142
+                                            </p>
+                                            <span>
+                                                <span class="free_d">무료배송</span>
+                                                <span class="lower_p">최저가</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <div class="list_img">
+                                            <a href="#">
+                                                <img src="../img/no_images.png" alt="item01">
+                                            </a>
+                                        </div>
+                                        <div class="list_content">
+                                            <h1><span>[오늘의딜]워터쉴드 방수 매트리스 커버</span></h1>
+                                            <span>
+                                                <span class="discount_rate">50%</span>
+                                                <span>16,800원 외</span>
+                                            </span>
+                                            <p>
+                                                <span><i class="fas fa-star"></i>4.6</span>
+                                                리뷰 10,142
+                                            </p>
+                                            <span>
+                                                <span class="free_d">무료배송</span>
+                                                <span class="lower_p">최저가</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <div class="list_img">
+                                            <a href="#">
+                                                <img src="../img/no_images.png" alt="item01">
+                                            </a>
+                                        </div>
+                                        <div class="list_content">
+                                            <h1><span>[오늘의딜]워터쉴드 방수 매트리스 커버</span></h1>
+                                            <span>
+                                                <span class="discount_rate">50%</span>
+                                                <span>16,800원 외</span>
+                                            </span>
+                                            <p>
+                                                <span><i class="fas fa-star"></i>4.6</span>
+                                                리뷰 10,142
+                                            </p>
+                                            <span>
+                                                <span class="free_d">무료배송</span>
+                                                <span class="lower_p">최저가</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <div class="list_img">
+                                            <a href="#">
+                                                <img src="../img/no_images.png" alt="item01">
+                                            </a>
+                                        </div>
+                                        <div class="list_content">
+                                            <h1><span>[오늘의딜]워터쉴드 방수 매트리스 커버</span></h1>
+                                            <span>
+                                                <span class="discount_rate">50%</span>
+                                                <span>16,800원 외</span>
+                                            </span>
+                                            <p>
+                                                <span><i class="fas fa-star"></i>4.6</span>
+                                                리뷰 10,142
+                                            </p>
+                                            <span>
+                                                <span class="free_d">무료배송</span>
+                                                <span class="lower_p">최저가</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <!--상품목록 페이지 번호-->
+                <div class="paging">
+                    <span class="prev"><a href="#"> ◁&nbsp이전</a></span>
+                    <span class="num">
+                        <a href="#" class="on">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">6</a>
+                    </span>
+                    <span class="next"><a href="#">다음&nbsp▷</a></span>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <section>
+                <ul>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">인재채용</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">이용안내</a></li>
+                </ul>
+                <div>
+                    <section>
+                        <h4>고객센터</h4>
+                        <div>
+                            <a href="#"><img src="../img/kakaotalk.png" alt="kakaotalk"></a>
+                            <p>
+                                고객센터 운영시간 <br />
+                                평일 : 오전 9시 – 오후 8시<br />
+                                주말 및 공휴일 휴무<br />
+                            </p>
+                        </div>
+                        <div>
+                            <a href="#"><img src="../img/qna.png" alt="qna"></a>
+                            <p>
+                                24시간 접수가능<br />
+                                고객센터 운영시간에 순차적으로 답변해드리겠습니다.<br />
+                            </p>
+                        </div>                    
+                    </section>
+                    <section class="company">
+                        <h4>(주)리빙마켓</h4>
+                        <div>
+                            <a href="../index.html"><img src="../img/logo.jpg" alt="logo"></a>
+                            <p>
+                                부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />
+                                대표이사 : 강래구<br />
+                                사업자등록번호 : 220-81-83676 사업자정보확인<br />
+                                통신판매업신고 : 강남 10630호 Fax : 02-589-8842<br />
+                            </p>
+                        </div>
+                        <ul>
+                            <li><a href="#"><img src="../img/insta_logo.png" alt="insta_logo"></a></li>
+                            <li><a href="#"><img src="../img/blog_logo.png" alt="nblog_logo"></a></li>
+                            <li><a href="#"><img src="../img/facebook_logo.png" alt="facebook_logo"></a></li>
+                        </ul>
+                    </section>
+                </div>
+            </section>
+        </footer>
+    </div>
+</body>
+</html>

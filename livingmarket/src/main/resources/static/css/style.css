@@ -1,0 +1,426 @@
+  /*초기화*/
+  * {
+    margin: 0;
+    padding: 0;
+    font: normal 15px 'jua';
+    }
+    ul, ol {list-style: none;}
+    a {text-decoration: none; color: #111;}
+    #wrapper {
+        width: 100%;
+    }
+    /*헤더 영역*/
+
+    header{
+        width: 100%;
+        height: 197px;
+    }
+    header > div{
+        width: 100%;
+        margin: 0 auto;
+    }
+    header > .top{
+       
+        height: 34px;
+    }
+    header > .top > div{
+        width: 1200px;
+        height: 100%;
+        text-align: right;
+        margin: 0 auto;
+    }
+    header > .top > div > a{
+        height: 100%;
+        margin-bottom: 10px;
+        line-height: 35px;
+        border-left: 1px solid #e9e9e9;          
+        padding: 0 10px;
+        color: #646464;
+    }
+    header > .top >div > a:hover{
+        color: #35c5f0;
+        font-weight: bold
+    }
+    header > .logo{
+        height: 120px;
+    }
+    header > .logo > div {
+        position: relative;
+        width: 1200px;
+        height: 100%;
+        margin: 0 auto;
+    }
+    header > .logo img{
+        width: 55px;
+        height: 55px;
+    }
+    header > .logo > div >a {
+        position: absolute;
+        left: 40%;
+        top: 20%;
+        font-size: 20px;
+        color: #fff;
+        background-color: #35c5f0;
+        font-weight: bold;
+    }
+    header > .logo > div > form{
+        position: absolute;
+        right: 0;
+        bottom: 8px;
+        
+    }
+    header > .logo > div > form > input{
+        width: 180px;
+        height: 26px;
+        padding: 5px 50px 5px 10px;
+        border: 1px solid #f7f7f7;
+        border-radius: 30px;
+        background-color: #f7f7f7;
+        font-size: 15px;
+        color: #656565;
+    }
+    header > .logo > div > form > button{
+        position: absolute;
+        right: 5px;
+        bottom: 6px;
+        width: 30px;
+        height: 30px;
+        border: none;
+        background-color: #f7f7f7;
+    }
+
+    header > .menu{
+        background: #f2f2f2;
+        border-bottom: 1px solid #ddd;
+        box-sizing: border-box;      
+    }
+    header > .menu > .m_main{
+        position: relative;
+        width: 1200px;
+        height: 44px;
+        margin: 0 auto;
+    }
+    header > .menu > .m_main >ul{
+        float: left;
+        width: 80%;
+        height: 100%;
+        box-sizing: border-box;
+    }
+    header > .menu > .m_main >ul >li{
+        float: left;
+        width: 190px;
+        height: 100%;
+        padding: 10px 30px 0;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: 22px;
+    }
+    header > .menu > .m_main > ul > li > a{
+        height: 100%;
+        font-size: 14px;
+        padding-bottom: 14px;
+    }
+    header > .menu > .m_main >ul > li:hover{
+        border-bottom: 2px solid #35c5f0;
+    }
+    header > .menu > .m_main >ul > li:hover>a{
+        font-weight: bold;
+        color: #35c5f0;
+    }
+    header > .menu > .m_main >ul > li > a>i{
+        margin-right: 3px;
+    }
+    /* 전체카테고리 열기*/
+    
+    header > .menu > .m_main ol{
+        position: absolute;
+        left: 0;
+        top: 43px;
+        display: none;
+        width: 200px;
+        height: auto;
+        border: 1px solid #35c5f0 ;
+        background: #fff;
+        box-sizing: border-box;
+        z-index: 10000;
+        text-align: left;
+    }
+    header > .menu > .m_main ol > li{
+        height: 44px;
+        padding: 15px 0 0 40px;
+        box-sizing: border-box;
+        
+    }
+    header > .menu > .m_main ol > li >a{
+        font-size: 15px;
+    }
+    header > .menu > .m_main ol > li >a:hover{
+        font-weight: bold;
+        color : #35c5f0;
+        padding-bottom: 2px;
+        border-bottom: 1.8px solid #35c5f0;
+        box-sizing: border-box;
+    }
+    /*메인메뉴 - 인기 태그*/
+    header > .menu > .m_main > section{
+        float: right;
+        width: 20%;
+        height: 100%;
+        padding: 5px 0;
+        box-sizing: border-box;
+        
+    }
+    header > .menu > .m_main > section > div {
+        height: 30px;
+        padding-top: 4px;
+        line-height: 22px;
+        text-align: center;
+        background-color: #f7f7f7;
+        border-radius: 30px;
+        box-sizing: border-box;
+        
+    }
+    header > .menu > .m_main > section > div > a{
+        color: #646464;
+        padding-right: 4px;
+    }
+
+         
+        /*메인 영역*/        
+        main{
+            width: 100%;
+            min-height: 600px;
+        }
+        main> section{
+            width: 100%;
+            min-height: 200px;
+        }
+        main>section>div{
+            width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        main> .slider{
+            width: 100%;
+            height: 300px;
+            margin: 0 auto;
+            
+        }
+        main>section>div>h4{
+            width: unset;
+            padding: 30px 0 20px;
+            text-align: center;
+        }
+        main>section>div>h4>a:hover{
+            text-decoration: underline;
+            color: #35c5f0;
+        }
+        main>section>div>h4>a{
+            font-size: 28px;
+            font-weight: bold;
+        }
+        main>section>div>article{
+            width: 100%;
+        }
+        main>section>div>article>ul{}
+        main>section>div>article>ul>li{
+            display: inline-block;
+            width: 250px;
+            height: 430px;
+            margin: 8px 20px 0;
+            text-align: right;
+        }
+        main>section>div>article>ul>li>a{}
+        main>section>div>article>ul>li>a>img{
+            width: 250px;
+            height: 300px;
+        }
+        main>section>div>article>ul>li>div{}
+        main>section>div>article>ul>li>div>a{
+            text-align:left;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 13px;
+        }
+        main>section>div>article>ul>li>div>span{
+            display: block;
+            padding-top: 6px;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        main>section>div>article>ul>li>div>del{
+            font-size: 12px; color: #aaa;
+        }
+        main> .event{
+            width: 100%;
+            height: 300px;
+            background-color: #eeeeee;
+        }
+        main> .event img{
+            width: 100%;
+            height: 230px;
+            margin: 35px 0;
+        }
+        main > .new_review li{
+            height: auto;
+        }
+        main > .new_review >div>article>ul>li>a>div{
+            overflow: hidden;
+            border-radius: 6px;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        main > .new_review >div>article>ul>li>a>div>img{
+            width: 100%;
+            height: 100%;
+        }
+        main > .new_review .review_name{
+            height: 65px;
+            padding: 5px 10px;
+        }
+        main > .new_review >div>article>ul>li>a>div>div{
+            font-size: 15px;
+            max-height: 38.5px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        main > .new_review >div>article>ul>li>a>div>div:nth-child(2){
+            display: block;
+            font-size: 13px;
+            padding-bottom: 5px;
+        }
+        main > .new_review >div>article>ul>li>a>div>div>img{
+            width: 22px;
+            height: 22px;
+            border-radius: 100%;
+            vertical-align: -5px;
+        }
+        main > .new_review >div>article>ul>li>a>div>div>span{
+            font-size: 11px;
+            color: #a8a8a8;
+        }
+
+        /*페이지*/
+        .paging{
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .paging >span >a{
+            color: rgb(119, 119, 119);
+            font-family: 돋움, Dotum, Tahoma, sans-serif;
+            font-size: 11px;
+            letter-spacing: -1px;
+        }
+        .paging > .num > a.on{color: red; font-weight: bold; }
+        .paging > .num >a{
+            display: inline-block;
+            min-width: 14px;
+            margin: 0 2px;
+            padding: 8px 9px;
+            border: 1px solid #c4c4c4;
+            background: url() 0 0 repeat-x;
+            color: #000;
+            font-family: Tahoma;
+            font-size: 12px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+
+
+    /*푸터*/
+        footer{
+            width: 100%;
+            height: 192px;
+            background-color: #f9f9f9;;
+            border-top: 1px solid #e9e9e9;
+            box-sizing: border-box;
+        }
+        footer>section{
+            width: 1200px;
+            margin: 0 auto;
+            
+        }
+        footer>section>div{
+            width: 100%;
+        }
+        footer>section>ul{
+            width: 1200px;
+            height: 40px;
+            margin: 0 auto;
+            padding-top: 10px;
+            border-bottom: 1px solid #e9e9e9;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        footer>section>ul>li{
+            display: inline-block;
+            padding: 0 10px;
+            border-left: 1px solid #e9e9e9;
+        }
+        footer>section>div>ul>li:last-child{border-right: 1px solid #e9e9e9;}
+
+        footer>section>div>section{
+            float: left;
+            width: 50%;
+            height: 160px;
+            
+        }
+        footer>section>div>section>h4{
+            padding: 10px 0 5px 15px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        footer>section>div>section>div{
+            padding-left: 8px;
+            padding-top: 5px;
+            height: 65px;
+            box-sizing: border-box;
+        }
+        footer>section>div>section>div>a{
+            padding-top: 5px;
+            float: left;
+            
+        }
+        footer>section>div>section>div>a>img{
+            width: 100px;
+            height: 45px;
+        }
+        footer>section>div>section>div>p{
+            display: inline-block;
+            margin-left: 20px;
+            line-height: 150%;
+            font-weight: 700;
+        }
+        footer > section > div > section:nth-child(1) > div:nth-child(3) > p{ padding-top: 10px;}
+
+        footer .company >div{
+            height: 65%;
+        }
+        footer .company >div img{
+            width: 80px;
+            height: 80px;
+        }
+        footer .company >div>p {
+            padding-top: 8px;
+        }
+        footer .company ul{
+            padding: 0 10px;
+        }
+        footer .company ul>li{
+            display: inline-block;
+        }
+        footer .company >ul img{
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+        }
+
+        
+        

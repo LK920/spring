@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>living-market:생활·가구</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="../js/common.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        #mypage{}
+        #mypage>div{
+            padding: 40px 15px;
+        }
+        #mypage>.my_info>div{
+            display: flex;
+            box-shadow: 0 1px 3px 0 #dbdbdb;
+            padding: 10px;
+            border-radius: 10px;
+            min-height: 60px;
+            margin-bottom: 20px;
+        }
+
+        #mypage>.my_info>div>a{
+            display: flex;
+            flex: 1 0 0px;
+            -webkit-box-align: center;
+            justify-content: center;
+            border-right: 1px solid #dbdbdb;
+            min-height: 60px;
+            padding: 20px;
+            box-sizing: border-box;
+            
+        }
+        #mypage>.my_info>div>a:nth-of-type(3){
+            border: 0;
+        }
+        #mypage>.my_info>div>a>.img_container{
+            width: 54px;
+            margin-right: 15px;
+            padding: 0;
+        }
+        #mypage>.my_info>div>a>.img_container>img{
+            width: 54px;
+        }
+        #mypage>.my_info>div>a>div{
+            text-align: center;
+            vertical-align: middle;
+            word-break: break-all;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        #mypage>.my_info>div>a>div>span{
+            font-size: 20px;
+            vertical-align: bottom;
+        }
+        #mypage>.my_info>div>a>div>span:nth-of-type(2){
+            display: inline-block;
+            color: #35c5f0;
+            font-weight: 700;
+            margin-left: 5px;
+            min-width: 30px;
+        }
+
+        #mypage>.my_info>div>div>p{
+            width: 787px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #mypage>.my_info>div>a>div>p>span{}
+        
+
+
+
+        #mypage>div>.sub_content{
+            float: left;
+            width: 200px;
+        }
+        #mypage>div>.sub_content>h4{
+            font-size: 40px;
+            padding: 10px;
+        }
+        #mypage>div>.sub_content>div{
+        }
+        #mypage>div>.sub_content>div>ul{}
+        #mypage>div>.sub_content>div>ul>li{
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            width: 100%;
+            height: 40px;
+            padding-top: 6px;
+            padding-left: 7px;
+
+        }
+        #mypage>div>.sub_content>div>ul>li>a{
+            font-size: 20px;
+            letter-spacing: 3px;
+        }
+        #mypage>div>.sub_content>div>ul>li>a::after{
+            content: ">";
+            float: right;
+            margin-right: 7px;
+            }
+
+        #mypage>div>.order_content{
+            float: right;
+            width: 950px;
+            min-height: 530px;
+        }
+        #mypage>div>.order_content>h4{
+            font-size: 40px;
+            padding: 10px;
+        }
+        #mypage>div>.order_content>div{
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        #mypage>div>.order_content>div>.table{
+            min-height: 530px;
+        }
+        #mypage>div>.order_content>div>div>table{
+            width: 100%;
+            border-top: 2px solid #35c5f0;
+            border-collapse: collapse;
+        }
+        #mypage>div>.order_content>div>div>table>thead{}
+        #mypage>div>.order_content>div>div>table th{
+            height: 40px;
+            border-bottom: 1px solid #ccc;
+        }
+        #mypage>div>.order_content>div>div>table th:nth-child(1){width: 60px;}
+        #mypage>div>.order_content>div>div>table th:nth-child(2){width: auto;}
+        #mypage>div>.order_content>div>div>table th:nth-child(3){width: 60px;}
+        #mypage>div>.order_content>div>div>table th:nth-child(4){width: 160px;}
+        #mypage>div>.order_content>div>div>table th:nth-child(5){width: 130px;}
+
+        #mypage>div>.order_content>div>div>table tr{
+        }
+        #mypage>div>.order_content>div>div>table tr>td{
+            height: 50px;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+        }
+        #mypage>div>.order_content>div>div>table tr>td:nth-child(1){width: 60px}
+        #mypage>div>.order_content>div>div>table tr>td:nth-child(2){
+            width: auto;
+            text-align: left;
+            }
+        #mypage>div>.order_content>div>div>table tr>td:nth-child(3){width: 60px;}
+        #mypage>div>.order_content>div>div>table tr>td:nth-child(4){width: 160px;}
+        #mypage>div>.order_content>div>div>table tr>td:nth-child(5){width: 130px;}
+        #mypage>div>.order_content>div>div>table tr>td>a{}
+
+
+
+    </style>
+    <script>
+    </script>
+</head>
+<body>
+    <div id = "wrapper">
+        <header>
+            <div class="top">
+                <div>
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                    <a href="#">주문배송</a>
+                    <a href="#">고객센터</a>
+                </div>
+            </div>
+            <div class="logo">
+                <div>
+                    <a href="#">
+                        <img src="../img/logo.jpg" alt="logo">DOMUN OR CASA
+                    </a>
+                    <form action="#">
+                        <input type="text" name="search">
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="m_main">
+                    <ul>
+                        <li class="category">
+                            <a href="#"><i class="fa fa-bars" aria-hidden="true"></i>전체카테고리</a>
+                            <ol>
+                                <li>
+                                    <a href="#">
+                                        가구·패브릭
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        수납·정리
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        생활용품
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        가전
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        홈데코
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        주방
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        욕실
+                                    </a>
+                                </li>
+                            </ol>
+                        </li>
+                        <li><a href="#">최신상품</a></li>
+                        <li><a href="#">베스트</a></li>
+                        <li><a href="#">특가상품</a></li>
+                        <li><a href="#">이벤트</a></li>
+                    </ul>
+                    <section>
+                        <div>
+                            <a href="#">#소파</a>
+                            <a href="#">#가구</a>
+                            <a href="#">#인테리어</a>
+                            <a href="#">#조명</a>
+                        </div>
+                    </section>
+                </div>
+                
+            </div>
+        </header>
+        <main>
+            <section id="mypage">
+                <div class="my_info">
+                    <div>
+                        <a href="#">
+                            <div class="img_container">
+                                <img src="../img/coupon.png" alt="coupon">
+                            </div>
+                            <div>
+                                <span>쿠폰</span>
+                                <span>1</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="img_container">
+                                <img src="../img/coins.png" alt="coupon">
+                            </div>
+                            <div>
+                                <span>포인트</span>
+                                <span>2,766</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="img_container">
+                                <img src="../img/crown.png" alt="coupon">
+                            </div>
+                            <div>
+                                <span>등급</span>
+                                <span>MASTER</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <div class="img_container">
+                                <img src="../img/shopping-cart.png" alt="coupon">
+                            </div>
+                            <div>
+                                <span>장바구니</span>
+                            </div>
+                        </a>
+                        <div>
+                            <p>
+                                <span>나의 추천코드 :</span>
+                                <span>K1K2OH21G</span>
+                                <span>나는 5000P, 친구는 5000원 쿠폰</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="sub_content">
+                        <h4>
+                            강래구
+                            <span>고객님</span>
+                        </h4>
+                        <div>
+                            <ul>
+                                <li>
+                                    <a href="#">주문내역</a>
+                                </li>
+                                <li>
+                                    <a href="#">상품후기</a>
+                                </li>
+                                <li>
+                                    <a href="#">적립금</a>
+                                </li>
+                                <li>
+                                    <a href="#">개인정보수정</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="order_content">
+                        <h4>주문내역</h4>
+                        <div>
+                            <div class="table">
+                                <table>
+                                    <thead>
+                                        <th>번호</th>
+                                        <th>상품정보</th>
+                                        <th>수량</th>
+                                        <th>주문일자</th>
+                                        <th>주문현황</th>
+                                    </thead>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <a href="#">에모아 장롱 - 덕수궁 에디션</a>
+                                        </td>
+                                        <td>1</td>
+                                        <td>2020-09-10</td>
+                                        <td>구매확정</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <a href="#">에모아 장롱 - 덕수궁 에디션</a>
+                                        </td>
+                                        <td>1</td>
+                                        <td>2020-09-10</td>
+                                        <td>구매확정</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <a href="#">에모아 장롱 - 덕수궁 에디션</a>
+                                        </td>
+                                        <td>1</td>
+                                        <td>2020-09-10</td>
+                                        <td>구매확정</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="paging">
+                                <span class="prev"><a href="#"> ◁&nbsp이전</a></span>
+                                <span class="num">
+                                    <a href="#" class="on">1</a>
+                                    <a href="#">2</a>
+                                    <a href="#">3</a>
+                                    <a href="#">4</a>
+                                    <a href="#">5</a>
+                                    <a href="#">6</a>
+                                </span>
+                                <span class="next"><a href="#">다음&nbsp▷</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <section>
+                <ul>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">인재채용</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">이용안내</a></li>
+                </ul>
+                <div>
+                    <section>
+                        <h4>고객센터</h4>
+                        <div>
+                            <a href="#"><img src="../img/kakaotalk.png" alt="kakaotalk"></a>
+                            <p>
+                                고객센터 운영시간 <br />
+                                평일 : 오전 9시 – 오후 8시<br />
+                                주말 및 공휴일 휴무<br />
+                            </p>
+                        </div>
+                        <div>
+                            <a href="#"><img src="../img/qna.png" alt="qna"></a>
+                            <p>
+                                24시간 접수가능<br />
+                                고객센터 운영시간에 순차적으로 답변해드리겠습니다.<br />
+                            </p>
+                        </div>                    
+                    </section>
+                    <section class="company">
+                        <h4>(주)리빙마켓</h4>
+                        <div>
+                            <a href="../index.html"><img src="../img/logo.jpg" alt="logo"></a>
+                            <p>
+                                부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />
+                                대표이사 : 강래구<br />
+                                사업자등록번호 : 220-81-83676 사업자정보확인<br />
+                                통신판매업신고 : 강남 10630호 Fax : 02-589-8842<br />
+                            </p>
+                        </div>
+                        <ul>
+                            <li><a href="#"><img src="../img/insta_logo.png" alt="insta_logo"></a></li>
+                            <li><a href="#"><img src="../img/blog_logo.png" alt="nblog_logo"></a></li>
+                            <li><a href="#"><img src="../img/facebook_logo.png" alt="facebook_logo"></a></li>
+                        </ul>
+                    </section>
+                </div>
+            </section>
+        </footer>
+    </div>
+</body>
+</html>

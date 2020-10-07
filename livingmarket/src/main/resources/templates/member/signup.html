@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>living-market:생활·가구</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="../js/common.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        
+        #signup{
+            width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        #signup>div{
+            border-bottom: 3px solid #35c5f0;
+        }
+        #signup>div>h1{
+            display: inline-block;
+            width: 80%;
+            font-size: 30px;
+            padding-left: 42px;
+            background: url("../img/logo_1.jpg") no-repeat;
+            background-size: 40px;
+            box-sizing: border-box;
+        }
+        #signup>div>div{
+            display: inline-block;
+            width: 19%;
+            text-align: right;
+            box-sizing: border-box;
+        }
+        #signup>div>div>input[type="checkbox"]{}
+        #signup>div>div>span{
+            font-size: 17px;
+        }
+
+        #signup>section{
+            box-sizing: border-box;
+            padding: 10px 10px 0 10px;
+        }
+        #signup>section>div{
+        }
+        #signup>section>div>h4{
+            font-size: 17px;
+            border-bottom: 2px solid #d9d9d9;
+            box-sizing: border-box;
+            margin-bottom: 7px;
+        }
+        #signup>section>div>h4>span.essential{
+            color: red;
+        }
+        #signup>section>div>textarea{
+            width: 100%;
+            height: 140px;
+            resize: none;
+        }
+        #signup>section>div>div{
+            text-align: right;
+        }
+        #signup>section>div>div>input[type="checkbox"]{
+
+        }
+        #signup>section>div>div>span{
+            font-size: 17px;
+        }
+        #signup>section>p{}
+        #signup>section>p>span{}
+        #signup>section:nth-of-type(3)>div{
+            display: inline-block;
+        }
+        #signup>section>div>input{}
+        #signup>section>div>span{}
+
+        #signup>div:nth-of-type(2){
+            text-align: center;
+            border-bottom: none;
+            
+        }
+        #signup>div>input[type="button"]{
+            margin: 20px 0;
+            width: 240px;
+            height: 45px;
+            color: #fff;
+            font-size: 24px;
+            letter-spacing: 4px;
+            background-color: #35c5f0;
+            border: none;
+            border-radius: 10px;
+        }
+
+    </style>
+    <script>
+    </script>
+</head>
+<body>
+    <div id = "wrapper">
+        <header>
+            <div class="top">
+                <div>
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                    <a href="#">주문배송</a>
+                    <a href="#">고객센터</a>
+                </div>
+            </div>
+            <div class="logo">
+                <div>
+                    <a href="#">
+                        <img src="../img/logo.jpg" alt="logo">DOMUN OR CASA
+                    </a>
+                    <form action="#">
+                        <input type="text" name="search">
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="m_main">
+                    <ul>
+                        <li class="category">
+                            <a href="#"><i class="fa fa-bars" aria-hidden="true"></i>전체카테고리</a>
+                            <ol>
+                                <li>
+                                    <a href="#">
+                                        가구·패브릭
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        수납·정리
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        생활용품
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        가전
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        홈데코
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        주방
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        욕실
+                                    </a>
+                                </li>
+                            </ol>
+                        </li>
+                        <li><a href="#">최신상품</a></li>
+                        <li><a href="#">베스트</a></li>
+                        <li><a href="#">특가상품</a></li>
+                        <li><a href="#">이벤트</a></li>
+                    </ul>
+                    <section>
+                        <div>
+                            <a href="#">#소파</a>
+                            <a href="#">#가구</a>
+                            <a href="#">#인테리어</a>
+                            <a href="#">#조명</a>
+                        </div>
+                    </section>
+                </div>
+                
+            </div>
+        </header>
+        <main>
+            <div>
+                <section id="signup">
+                    <div>
+                        <h1>약관동의</h1>
+                        <div>
+                            <input type="checkbox">
+                            <span>전체 동의합니다.</span>
+                        </div>
+                    </div>
+                    <section>
+                        <div>
+                            <h4>
+                                이용약관 동의
+                                <span class="essential">(필수)</span>
+                            </h4>
+                            <textarea class="terms" readonly></textarea>
+                            <div>
+                                <input type="checkbox">
+                                <span>동의합니다.</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>
+                                전자금융거래 이용약관
+                                <span class="essential">(필수)</span>
+                            </h4>
+                            <textarea class="financial" readonly></textarea>
+                            <div>
+                                <input type="checkbox">
+                                <span>동의합니다.</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>
+                                개인정보 수집동의
+                                <span class="essential">(필수)</span>
+                            </h4>
+                            <textarea class="privacy" readonly></textarea>
+                            <div>
+                                <input type="checkbox">
+                                <span>동의합니다.</span>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div>
+                            <h4>
+                                위치정보 이용약관
+                                <span class="choice">(선택)</span>
+                            </h4>
+                            <textarea class="loctaion" readonly></textarea>
+                            <div>
+                                <input type="checkbox">
+                                <span>동의합니다.</span>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <p>
+                            무료배송, 할인쿠폰 등 혜택/정보 수신 동의
+                            <span class="choice">(선택)</span>
+                        </p>
+                        <div>
+                            <input type="checkbox">
+                            <span>SMS</span>
+                        </div>
+                        <div>
+                            <input type="checkbox">
+                            <span>이메일</span>
+                        </div>
+                    </section>
+                    <div>
+                        <input type="button" value="동의하기">
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <section>
+                <ul>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">인재채용</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">이용안내</a></li>
+                </ul>
+                <div>
+                    <section>
+                        <h4>고객센터</h4>
+                        <div>
+                            <a href="#"><img src="../img/kakaotalk.png" alt="kakaotalk"></a>
+                            <p>
+                                고객센터 운영시간 <br />
+                                평일 : 오전 9시 – 오후 8시<br />
+                                주말 및 공휴일 휴무<br />
+                            </p>
+                        </div>
+                        <div>
+                            <a href="#"><img src="../img/qna.png" alt="qna"></a>
+                            <p>
+                                24시간 접수가능<br />
+                                고객센터 운영시간에 순차적으로 답변해드리겠습니다.<br />
+                            </p>
+                        </div>                    
+                    </section>
+                    <section class="company">
+                        <h4>(주)리빙마켓</h4>
+                        <div>
+                            <a href="../index.html"><img src="../img/logo.jpg" alt="logo"></a>
+                            <p>
+                                부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />
+                                대표이사 : 강래구<br />
+                                사업자등록번호 : 220-81-83676 사업자정보확인<br />
+                                통신판매업신고 : 강남 10630호 Fax : 02-589-8842<br />
+                            </p>
+                        </div>
+                        <ul>
+                            <li><a href="#"><img src="../img/insta_logo.png" alt="insta_logo"></a></li>
+                            <li><a href="#"><img src="../img/blog_logo.png" alt="nblog_logo"></a></li>
+                            <li><a href="#"><img src="../img/facebook_logo.png" alt="facebook_logo"></a></li>
+                        </ul>
+                    </section>
+                </div>
+            </section>
+        </footer>
+    </div>
+</body>
+</html>

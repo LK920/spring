@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8">
+    <title>living-market:생활·가구</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="../js/common.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        #cart{}
+        #cart>div{
+            width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+            box-sizing: border-box;
+
+        }
+        #cart>div>h4{
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 12px;
+            line-height: 30px;
+        }
+        #cart>div>h4>span{
+            letter-spacing: 1px;
+            color: #b9b9b9;
+        }
+        #cart>div>div{
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        #cart>div>div>table{
+            width: 100%;
+            border-bottom: 3px solid #35c5f0;
+            border-top: 3px solid #35c5f0;
+            border-collapse: collapse;
+        }
+        #cart>div>div>table>thead{}
+        #cart>div>div>table>thead th{
+            padding: 10px 0;
+            font-size: 17px;
+            font-weight: bold;
+            border-bottom: 1px solid #b9b9b9;
+        }
+        #cart>div>div>table>thead th:nth-child(1){
+            width: 20px;
+            height: 20px;
+            
+        }
+        #cart>div>div>table>thead th:nth-child(2){
+            width: 100px;
+            text-align: left;
+        }
+        #cart>div>div>table>thead th:nth-child(3){
+            width: auto;
+        }
+        #cart>div>div>table>thead th:nth-child(4){
+            width: 50px;
+        }
+        #cart>div>div>table>thead th:nth-child(5){
+            width: 150px;
+        }
+        #cart>div>div>table>thead th:nth-child(6){
+            width: 150px;
+        }
+        #cart>div>div>table>thead th>input{}
+
+        #cart>div>div>table tr{
+            
+        }
+        #cart>div>div>table>tbody{}
+        #cart>div>div>table td{
+            padding: 10px 0;
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            
+        }
+        #cart>div>div>table td:nth-child(1){width: 20px;}
+        #cart>div>div>table td:nth-child(2){width: 100px;}
+        #cart>div>div>table td:nth-child(3){width: auto; text-align: left;}
+        #cart>div>div>table td:nth-child(4){width: 50px;}
+        #cart>div>div>table td:nth-child(5){width: 150px;}
+        #cart>div>div>table td:nth-child(6){width: 150px;}
+        #cart>div>div>table td>input{}
+        #cart>div>div>table td>div{
+            margin: 0 5px;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #c9c9c9;
+            overflow: hidden;
+        }
+        #cart>div>div>table td>div>img{
+            width: 100%;
+            height: 100%;
+        }
+        #cart>div>div>table td>p{
+            height: 100px;
+            padding: 10px 0 10px 15px;
+            line-height: 20px;
+            box-sizing: border-box;
+        }
+        #cart>div>div>table td>p>span{
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            padding-top: 5px;
+        }
+        #cart>div>div>table td>p>span:nth-child(3){
+            display: inline-block;
+            color: #35c5f0;
+        }
+        #cart>div>div>table td>p>del{
+            margin-left: 3px;
+            color: #c9c9c9;
+        }
+
+        #cart>div>div:last-child{
+            text-align: right;
+        }
+        #cart>div>div>input{
+            margin: 10px 0;
+            width: 135px;
+            height: 38px;
+            background-color: #35c5f0;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+
+
+        }
+
+        #cart> .result_cart{}
+        #cart> .result_cart>div{}
+        #cart> .result_cart>div> .cal{
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        #cart> .result_cart>div> .cal> div{
+            display: inline-block;
+            width: 180px;
+            height: 180px;
+            border: 2px solid #b9b9b9;
+            border-radius: 120px;
+            box-sizing: border-box;
+            text-align: center;
+            vertical-align: middle;
+        }
+        #cart> .result_cart>div> .cal> div>div{
+            width: 100%;
+            height: 50%;
+            padding-top: 5px;
+        }
+        #cart> .result_cart>div> .cal> div>div:nth-child(1){
+            padding-top: 40px;
+            box-sizing: border-box;
+        }
+        #cart> .result_cart>div> .cal> div>div:nth-child(1)>span{
+            font-size: 16px;
+            font-weight: bold;
+        }
+        #cart> .result_cart>div> .cal> div>div>span{
+            font-size: 24px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        #cart> .result_cart>div> .cal> i{
+            font-size: 50px;
+            vertical-align: middle;
+            margin: 0 40px;
+        }
+        #cart> .result_cart>div> .cal>div:last-child{border-color: #35c5f0;}
+        #cart> .result_cart>div> p{
+            text-align: right;
+            font-size: 14px;
+            color: #c9c9c9;
+            padding-bottom: 5px;
+        }
+        #cart .purchase>input{
+            
+        }
+
+
+    </style>
+    <script>
+    </script>
+</head>
+<body>
+    <div id = "wrapper">
+        <header>
+            <div class="top">
+                <div>
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                    <a href="#">주문배송</a>
+                    <a href="#">고객센터</a>
+                </div>
+            </div>
+            <div class="logo">
+                <div>
+                    <a href="#">
+                        <img src="../img/logo.jpg" alt="logo">DOMUN OR CASA
+                    </a>
+                    <form action="#">
+                        <input type="text" name="search">
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="m_main">
+                    <ul>
+                        <li class="category">
+                            <a href="#"><i class="fa fa-bars" aria-hidden="true"></i>전체카테고리</a>
+                            <ol>
+                                <li>
+                                    <a href="#">
+                                        가구·패브릭
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        수납·정리
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        생활용품
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        가전
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        홈데코
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        주방
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        욕실
+                                    </a>
+                                </li>
+                            </ol>
+                        </li>
+                        <li><a href="#">최신상품</a></li>
+                        <li><a href="#">베스트</a></li>
+                        <li><a href="#">특가상품</a></li>
+                        <li><a href="#">이벤트</a></li>
+                    </ul>
+                    <section>
+                        <div>
+                            <a href="#">#소파</a>
+                            <a href="#">#가구</a>
+                            <a href="#">#인테리어</a>
+                            <a href="#">#조명</a>
+                        </div>
+                    </section>
+                </div>
+                
+            </div>
+        </header>
+        <main>
+            <!--장바구니 페이지-->
+            <section id="cart">
+                <!--구매 물건-->
+                <div class="select_cart">
+                    <h4>
+                        장바구니<br/>
+                        <span>*주문하실 상품명 및 수량을 정확하게 확인해 주세요.</span>
+                    </h4>
+                    <div>
+                        <table>
+                            <thead>
+                                <th><input type="checkbox" name="전체선택"></th>
+                                <th>전체선택</th>
+                                <th>상품정보</th>
+                                <th>수량</th>
+                                <th>상품금액</th>
+                                <th>배송비</th>
+                            </thead>
+                            <tr>
+                                <td><input type="checkbox" name="개별선택"></td>
+                                <td>
+                                    <div>
+                                        <img src="../img/no_images.png" alt="item_img">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>
+                                        <span class="tit cart_item">베스트 매트리스 6종</span>
+                                        <span>사양 : 싱글</span>
+                                        <span class="dis_price">69,950원</span>
+                                        <del class="org_price">110,200원</del>
+                                    </p>
+                                </td>
+                                <td>1</td>
+                                <td>68,950원</td>
+                                <td>33,000원</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="개별선택"></td>
+                                <td>
+                                    <div>
+                                        <img src="../img/no_images.png" alt="item_img">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>
+                                        <span class="tit cart_item">베스트 매트리스 6종</span>
+                                        <span>사양 : 싱글</span>
+                                        <span class="dis_price">69,950원</span>
+                                        <del class="org_price">110,200원</del>
+                                    </p>
+                                </td>
+                                <td>1</td>
+                                <td>68,950원</td>
+                                <td>33,000원</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <input type="button" value="선택 삭제">
+                    </div>
+                </div>
+                <!--결제 금액 산정-->
+                <div class="result_cart">
+                    <div>
+                        <div class="cal">
+                            <div class="cicle">
+                                <div><span>상품 금액</span></div>
+                                <div class="tit tot_price"><span>110,950원</span></div>
+                            </div>
+                            <i class="fas fa-minus"></i>
+                            <div class="cicle">
+                                <div><span>할인 금액</span></div>
+                                <div class="tit tot_dis_price"><span>41,250원</span></div>
+                            </div>
+                            <i class="fas fa-plus"></i>
+                            <div class="cicle">
+                                <div><span>배송비</span></div>
+                                <div class="tit tot_deliver_price"><span>33,000원</span></div>
+                            </div>
+                            <i class="fas fa-equals"></i>
+                            <div class="cicle">
+                                <div><span>결제 예정 금액</span></div>
+                                <div class="tit tot_rs_price"><span>101,950원</span></div>
+                            </div>
+                        </div>
+                        <p>*쿠폰 및 적립금은 다음 화면에서 사용가능</p>
+                    </div>
+                    <div class="purchase"><input type="button" value="구매하기"></div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <section>
+                <ul>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">인재채용</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">이용안내</a></li>
+                </ul>
+                <div>
+                    <section>
+                        <h4>고객센터</h4>
+                        <div>
+                            <a href="#"><img src="../img/kakaotalk.png" alt="kakaotalk"></a>
+                            <p>
+                                고객센터 운영시간 <br />
+                                평일 : 오전 9시 – 오후 8시<br />
+                                주말 및 공휴일 휴무<br />
+                            </p>
+                        </div>
+                        <div>
+                            <a href="#"><img src="../img/qna.png" alt="qna"></a>
+                            <p>
+                                24시간 접수가능<br />
+                                고객센터 운영시간에 순차적으로 답변해드리겠습니다.<br />
+                            </p>
+                        </div>                    
+                    </section>
+                    <section class="company">
+                        <h4>(주)리빙마켓</h4>
+                        <div>
+                            <a href="../index.html"><img src="../img/logo.jpg" alt="logo"></a>
+                            <p>
+                                부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />
+                                대표이사 : 강래구<br />
+                                사업자등록번호 : 220-81-83676 사업자정보확인<br />
+                                통신판매업신고 : 강남 10630호 Fax : 02-589-8842<br />
+                            </p>
+                        </div>
+                        <ul>
+                            <li><a href="#"><img src="../img/insta_logo.png" alt="insta_logo"></a></li>
+                            <li><a href="#"><img src="../img/blog_logo.png" alt="nblog_logo"></a></li>
+                            <li><a href="#"><img src="../img/facebook_logo.png" alt="facebook_logo"></a></li>
+                        </ul>
+                    </section>
+                </div>
+            </section>
+        </footer>
+    </div>
+</body>
+</html>
