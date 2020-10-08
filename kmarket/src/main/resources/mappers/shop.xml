@@ -15,6 +15,24 @@
 		<if test="sort == 5">ORDER BY `review` DESC;</if>
 		<if test="sort == 6">ORDER BY `rdate` DESC;</if>
 	</select>
+	
+	<select id="selectProduct" resultType="kr.co.kmarket.vo.ProductsVo">
+		SELECT *, Floor(price*(1-discount/100)) AS salePrice FROM `km_products`
+		WHERE `code` = #{code};
+	</select>
+	<insert id="insertCart">
+		INSERT INTO `km_products_cart` SET
+		`uid` = #{uid},
+		`code` = #{code},
+		`name` = #{name},
+		`count` = #{count},
+		`price` = #{price},
+		`discount` = #{discount},
+		`point` = #{point},
+		`delivery` = #{delivery},
+		`total` = #{total},
+		`rdate` = NOW();		
+	</insert>
    <!--
 	<insert id="insertUser">
 		INSERT INTO `USER3` VALUES (#{uid}, #{name}, #{hp}, #{age});		

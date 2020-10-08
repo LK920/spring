@@ -28,12 +28,12 @@
       <article th:each="item:${items}">
         <ul>
           <li>
-            <a href="#" class="thumb"><img th:src="@{'/thumb/'+${item.cate1}+'/'+${item.cate2}+'/'+${item.thumb1}}" alt="상품이미지"/></a>
+            <a th:href="@{/shop/view(code=${item.code})}" class="thumb"><img th:src="@{'/thumb/'+${item.cate1}+'/'+${item.cate2}+'/'+${item.thumb1}}" alt="상품이미지"/></a>
           </li>
           <li>
-            <h3 class="name">[[${item.name}]]</h3>
+            <h3 class="name"><a th:href="@{/shop/view(code=${item.code})}">[[${item.name}]]</a></h3>
             <p class="desc">
-              <a href="#">[[${item.descript}]]</a>
+              [[${item.descript}]]
             </p>
           </li>
           <li>

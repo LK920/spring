@@ -18,7 +18,7 @@
      <section id ="hit" class="hit">
          <h3><span>히트상품</span></h3>
          <article th:each="hit:${hitList}">
-             <a href="#">
+             <a th:href="@{/shop/view(code=${hit.code})}">
                  <div class="thumb">
                    <img th:src="@{'/thumb/'+${hit.cate1}+'/'+${hit.cate2}+'/'+${hit.thumb1}}" alt="t1">
                  </div>
