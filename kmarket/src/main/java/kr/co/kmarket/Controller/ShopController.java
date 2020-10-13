@@ -34,8 +34,8 @@ public class ShopController {
 	public String list(int cate1, int cate2, int sort, Model model, HttpSession sess) {
 		
 		List<ProductsVo> items = service.selectShop(cate1, cate2, sort);
-		
-		String[] tits = service.geTitles(sess, cate1, cate2);
+		service.setTitles(sess, cate1, cate2);
+		String[] tits = service.getTitles(sess);
 		
 		model.addAttribute("tit1", tits[0]);
 		model.addAttribute("tit2", tits[1]);
@@ -53,7 +53,7 @@ public class ShopController {
 		MemberVo member = (MemberVo) sess.getAttribute("member");
 		
 		ProductsVo vo = service.selectProduct(code);
-		String[] tits = service.geTitles(sess, vo.getCate1(), vo.getCate2());
+		String[] tits = service.getTitles(sess);
 		
 		model.addAttribute("tit1", tits[0]);
 		model.addAttribute("tit2", tits[1]);
@@ -64,9 +64,42 @@ public class ShopController {
 	}
 	
 	@GetMapping("/shop/cart")
-	public String cart() {
+	public String cart(Model model, HttpSession sess) {
 		
-		return "/shop/cart";
+		MemberVo member = (MemberVo) sess.getAttribute("member");
+		
+		if(member != null) {
+			List<ProductCartVo> items =  service.selectCart(member.getUid());
+			model.addAttribute("items", items);
+			
+			//전체 합계에 출력할 데이터
+			int count = items.size(); //items안에 있는 갯수
+			int price = 0;
+			int sale = 0;
+			int delivery = 0;
+			int point = 0;
+			int total = 0;
+			for(ProductCartVo item: items) {
+				price 		+= item.getPrice()*item.getCount();
+				sale 		+= (item.getPrice()*item.getDiscount()/100)*item.getCount();
+				delivery 	+= item.getDelivery();
+				point 		+= item.getPoint();
+				total		+= item.getTotal();
+			}
+			
+			
+			model.addAttribute("count", count);
+			model.addAttribute("price", price);
+			model.addAttribute("sale", sale);
+			model.addAttribute("delivery", delivery);
+			model.addAttribute("point", point);
+			model.addAttribute("total", total);
+			
+			return "/shop/cart";
+		}else {
+			return "redirect:/member/login?success=cart";
+		}
+		
 	}
 	@ResponseBody
 	@PostMapping("/shop/cart")
