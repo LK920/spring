@@ -61,28 +61,28 @@
                 <table border="0">
                   <tr>
                     <td>상품수</td>
-                    <td>[[${count}]]</td>
+                    <td>[[${totalInfo.count}]]</td>
                   </tr>
                   <tr>
                     <td>상품금액</td>
-                    <td>[[${#numbers.formatInteger(price, 3, 'COMMA')}]]</td>
+                    <td>[[${#numbers.formatInteger(totalInfo.price, 3, 'COMMA')}]]</td>
                   </tr>
                   <tr>
                     <td>할인금액</td>
-                    <td>-[[${#numbers.formatInteger(sale, 3, 'COMMA')}]]</td>
+                    <td>-[[${#numbers.formatInteger(totalInfo.sale, 3, 'COMMA')}]]</td>
                   </tr>
                   <tr>
                     <td>배송비</td>
-                    <td th:if="${delivery > 0}">[[${#numbers.formatInteger(delivery, 3, 'COMMA')}]]</td>
-                    <td th:if="${delivery == 0}">무료배송</td>
+                    <td th:if="${totalInfo.delivery > 0}">[[${#numbers.formatInteger(totalInfo.delivery, 3, 'COMMA')}]]</td>
+                    <td th:if="${totalInfo.delivery == 0}">무료배송</td>
                   </tr>              
                   <tr>
                     <td>포인트</td>
-                    <td>[[${#numbers.formatInteger(point, 3, 'COMMA')}]]</td>
+                    <td>[[${#numbers.formatInteger(totalInfo.point, 3, 'COMMA')}]]</td>
                   </tr>
                   <tr>
                     <td>전체주문금액</td>
-                    <td>[[${#numbers.formatInteger(total, 3, 'COMMA')}]]</td>
+                    <td>[[${#numbers.formatInteger(totalInfo.total, 3, 'COMMA')}]]</td>
                   </tr>
                 </table>
                 <input type="button" name="" value="주문하기">

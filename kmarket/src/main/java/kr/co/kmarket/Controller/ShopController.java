@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.kmarket.persistence.ShopRepo;
 import kr.co.kmarket.service.ShopService;
+import kr.co.kmarket.vo.CartTotalInfoVo;
 import kr.co.kmarket.vo.CategoriesVo;
 import kr.co.kmarket.vo.MemberVo;
 import kr.co.kmarket.vo.ProductCartVo;
@@ -71,29 +72,10 @@ public class ShopController {
 		if(member != null) {
 			List<ProductCartVo> items =  service.selectCart(member.getUid());
 			model.addAttribute("items", items);
+			//전체합계에 출력될 데이터
+			CartTotalInfoVo totalInfo = service.cartTotalInfo(items);
 			
-			//전체 합계에 출력할 데이터
-			int count = items.size(); //items안에 있는 갯수
-			int price = 0;
-			int sale = 0;
-			int delivery = 0;
-			int point = 0;
-			int total = 0;
-			for(ProductCartVo item: items) {
-				price 		+= item.getPrice()*item.getCount();
-				sale 		+= (item.getPrice()*item.getDiscount()/100)*item.getCount();
-				delivery 	+= item.getDelivery();
-				point 		+= item.getPoint();
-				total		+= item.getTotal();
-			}
-			
-			
-			model.addAttribute("count", count);
-			model.addAttribute("price", price);
-			model.addAttribute("sale", sale);
-			model.addAttribute("delivery", delivery);
-			model.addAttribute("point", point);
-			model.addAttribute("total", total);
+			model.addAttribute("totalInfo", totalInfo);
 			
 			return "/shop/cart";
 		}else {

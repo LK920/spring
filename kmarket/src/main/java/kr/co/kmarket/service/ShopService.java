@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.kmarket.dao.ShopDAO;
+import kr.co.kmarket.vo.CartTotalInfoVo;
 import kr.co.kmarket.vo.CategoriesVo;
 import kr.co.kmarket.vo.ProductCartVo;
 import kr.co.kmarket.vo.ProductsVo;
@@ -23,6 +24,14 @@ public class ShopService {
 	
 	public ProductsVo selectProduct(int code) {
 		return dao.selectProduct(code);
+	};
+	
+	public int insertCart(ProductCartVo vo) {
+		return dao.insertCart(vo);
+	}
+	
+	public List<ProductCartVo> selectCart(String uid){
+		return dao.selectCart(uid);
 	};
 	
 	public void setTitles(HttpSession sess, int cate1, int cate2) {
@@ -45,14 +54,27 @@ public class ShopService {
 		return tits;
 	}
 	
-	public int insertCart(ProductCartVo vo) {
-		
-		return dao.insertCart(vo);
-		
+	public CartTotalInfoVo cartTotalInfo(List<ProductCartVo> items) {
+		//전체 합계에 출력할 데이터
+		int count = items.size(); //items안에 있는 갯수
+		int price = 0;
+		int sale = 0;
+		int delivery = 0;
+		int point = 0;
+		int total = 0;
+		for(ProductCartVo item: items) {
+			price 	 += item.getPrice()*item.getCount();
+			sale 	 += (item.getPrice()*item.getDiscount()/100)*item.getCount();
+			delivery += item.getDelivery();
+			point 	 += item.getPoint();
+			total	 += item.getTotal();
+		}
+		return new CartTotalInfoVo(count, price, sale, delivery, point, total);
 	}
-	public List<ProductCartVo> selectCart(String uid){
-		return dao.selectCart(uid);
-	};
+	
+
+	
+	
 	
 
 }
