@@ -5,25 +5,36 @@
   <!-- 상품 상세페이지 -->
   <section id="view" layout:fragment="content">
   <script th:src="@{/js/productOptioncount.js}"></script> 
-  <script>
+  <script th:inline="javascript">
 	//장바구니 버튼 구현
 	$(function(){
 		$('.btn > .cart' ).click(function(){
-			/*
-			if(){
+			
+			var member = [[${member}]];
+			var product = [[${product}]];
+			//구매 갯수를 뷰에서 가져옴
+			var count = $('.option > input[name=count]').val();
+			// 할인율이 적용된 전체 구매금액
+			var total = product.price * count*(1-product.discount/100);
+			
+			
+			if(member == null){
 				alert("로그인을 하십시오.");
+				//로그인 페이지로 이동
+				location.replace('/kmarket/member/login');
 				return false;
 			}
-			*/
+			
 			var param = {
-					'uid': "aaa",
-					'code': 123124,
-					'name': "홍길동",
-					'count': 3,
-					'discount': 10,
-					'point': 30,
-					'delivery': 2500,
-					'total': "5100"
+					'uid': member.uid,
+					'code': product.code,
+					'name': product.name,
+					'count': count,
+					'price' : product.price,
+					'discount': product.discount,
+					'point': product.point,
+					'delivery': product.delivery,
+					'total': total
 			};
 			var url = "/kmarket/shop/cart";
 			$.post(url, param, function(data){
