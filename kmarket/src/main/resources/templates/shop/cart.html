@@ -3,7 +3,7 @@
 	  layout:decorate="/layout/layout_shop.html">
 
 <section id="cart" layout:fragment="content">
-  <script>
+  <script th:inline="javascript">
   	$(function(){
   		
   		//전체 선택 및 선택 취소
@@ -16,24 +16,22 @@
   			}
   		});
   		
-  		
+  		//선택 삭제버튼 클릭
   		$('input[name=del]').click(function(){
   			
-  			var codes = [];
+  			var seqs = [];
   			
   			$('input[name=chk]:checked').each(function(i){
-  				//codes[]에 checked된 input의  value를 넣어둔다. 
-  				codes[i] = $(this).val();
+  				//seqs[]에 checked된 input의  value를 넣어둔다. 
+  				seqs[i] = $(this).val();
   			});	
-			if(codes.length == 0){
+			if(seqs.length == 0){
 				alert('최소 한 개 이상의 상품을 선택하세요.');
 				return false;
 			}
 			
-			var uid = $('input[name=uid]').val();
-			
   			//서버로 상품코드 전송
-			var param = {'uid': uid ,'codes':codes};
+			var param = {'seqs':seqs};
 			var url = '/kmarket/shop/cartDel';
 			
 			$.ajax({
@@ -48,12 +46,32 @@
 					 location.replace('/kmarket/shop/cart');
 				}
 			});
-  		});//선택 삭제 버튼
+  		});//선택 삭제 버튼 끝
+  		
+  		//선택한 상품 주문 금액
+  		
+  		
   		
   		//주문하기 버튼
   		$('input[name=order]').click(function(){
   			
-			});
+			var seqs = [];
+  			
+  			$('input[name=chk]:checked').each(function(i){
+  				//seqs[]에 checked된 input의  value를 넣어둔다. 
+  				seqs[i] = $(this).val();
+  			});	
+			if(seqs.length == 0){
+				alert('최소 한 개 이상의 상품을 선택하세요.');
+				return false;
+			}
+			
+			var seqs = {'seqs' : seqs};
+			//배열로 된 파라미터 넘기기
+			var params = $.param(seqs, true);
+			
+			location.href = '/kmarket/shop/order?'+params;
+		});//주문하기 버튼 끝
   	});
   	
   </script>
@@ -86,7 +104,7 @@
             <td colspan="7">장바구니에 상품이 없습니다.</td>
           </tr>
           <tr th:each="item:${items}">
-            <td><input type="checkbox" name="chk" th:value="${item.code}"></td>
+            <td><input type="checkbox" name="chk" th:value="${item.seq}"></td>
             <td >
               <article>
                 <a href="#"><img th:src="@{'/thumb/'+${item.cate1}+'/'+${item.cate2}+'/'+${item.thumb1}}" alt=""></a>

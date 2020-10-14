@@ -94,16 +94,18 @@ public class ShopController {
 	
 	@ResponseBody
 	@PostMapping("/shop/cartDel")
-	public int cartDel(int[] codes, String uid) {
+	public int cartDel(int[] seqs) {
 		
-		int result = service.deleteCart(uid, codes); 
+		int result = service.deleteCart(seqs); 
 		
 		return result;
 		
 	}
 	
 	@GetMapping("/shop/order")
-	public String order() {
+	public String order(int[] seqs, Model model) {
+			List<ProductCartVo> orders = service.selectOrder(seqs);
+			model.addAttribute("orders", orders);
 		return "/shop/order";
 	}
 	
