@@ -5,12 +5,57 @@
 <section id="cart" layout:fragment="content">
   <script>
   	$(function(){
-  		var chk = $('input[name=chkbox]');
   		
-  		chk.click(function(){
-  			alert('확인');
+  		//전체 선택 및 선택 취소
+  		$('input[name=all]').click(function(){
+  			var isChecked = $(this).is(':checked');
+  			if(isChecked){
+  				$('input[name=chk]').attr('checked', true);
+  			}else{
+  				$('input[name=chk]').attr('checked', false);
+  			}
   		});
+  		
+  		
+  		$('input[name=del]').click(function(){
+  			
+  			var codes = [];
+  			
+  			$('input[name=chk]:checked').each(function(i){
+  				//codes[]에 checked된 input의  value를 넣어둔다. 
+  				codes[i] = $(this).val();
+  			});	
+			if(codes.length == 0){
+				alert('최소 한 개 이상의 상품을 선택하세요.');
+				return false;
+			}
+			
+			var uid = $('input[name=uid]').val();
+			
+  			//서버로 상품코드 전송
+			var param = {'uid': uid ,'codes':codes};
+			var url = '/kmarket/shop/cartDel';
+			
+			$.ajax({
+				url : url,
+				data : param,
+				type : 'post',
+				//traditional은 jquery 배열 전송시 반드시 추가되는 옵션
+				traditional : true,
+				dataType : 'text',
+				success : function(data){
+					 alert('삭제한 상품 갯수 : '+data);
+					 location.replace('/kmarket/shop/cart');
+				}
+			});
+  		});//선택 삭제 버튼
+  		
+  		//주문하기 버튼
+  		$('input[name=order]').click(function(){
+  			
+			});
   	});
+  	
   </script>
   <!-- 제목, 페이지 네비게이션 -->
   <nav>
@@ -22,6 +67,7 @@
   
   <section>
     <form action="#">
+    <input  type="hidden" name="uid" th:value="${session.member.uid}"/>
       <table>
         <thead>
           <tr>
@@ -40,7 +86,7 @@
             <td colspan="7">장바구니에 상품이 없습니다.</td>
           </tr>
           <tr th:each="item:${items}">
-            <td><input type="checkbox" name="chkbox"></td>
+            <td><input type="checkbox" name="chk" th:value="${item.code}"></td>
             <td >
               <article>
                 <a href="#"><img th:src="@{'/thumb/'+${item.cate1}+'/'+${item.cate2}+'/'+${item.thumb1}}" alt=""></a>
@@ -93,7 +139,7 @@
         <td>[[${#numbers.formatInteger(totalInfo.total, 3, 'COMMA')}]]</td>
       </tr>
     </table>
-    <input type="button" name="" value="주문하기">
+    <input type="button" name="order" value="주문하기">
 
   </div>
   

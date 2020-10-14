@@ -39,7 +39,17 @@
 		ON a.`code` = b.`code`
 		WHERE `uid` = #{uid};
 	</select>
-	
+	<!-- parameterType은 해당 쿼리문 수행했을때 수행한 행의 값 -->
+	<delete id="deleteCart" parameterType="int">
+		DELETE FROM `km_products_cart` 
+		WHERE `uid` = #{uid} AND
+		`code` IN 
+		<foreach collection="codes" item="code" open="(" close=")" separator=",">
+			#{code}		
+		</foreach>;
+		
+		<!-- collection은 받아올 배열 명을 입력,item은 배열내 값들을 하나씩 저장할 변수명, open 열고, close 닫고, seperator 배열 내 구분 기호 -->
+	</delete>
    <!--
 	<insert id="insertUser">
 		INSERT INTO `USER3` VALUES (#{uid}, #{name}, #{hp}, #{age});		

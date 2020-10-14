@@ -72,6 +72,7 @@ public class ShopController {
 		if(member != null) {
 			List<ProductCartVo> items =  service.selectCart(member.getUid());
 			model.addAttribute("items", items);
+			
 			//전체합계에 출력될 데이터
 			CartTotalInfoVo totalInfo = service.cartTotalInfo(items);
 			
@@ -89,6 +90,16 @@ public class ShopController {
 		
 		int result = service.insertCart(vo);
 		return new ResultVo(result);
+	}
+	
+	@ResponseBody
+	@PostMapping("/shop/cartDel")
+	public int cartDel(int[] codes, String uid) {
+		
+		int result = service.deleteCart(uid, codes); 
+		
+		return result;
+		
 	}
 	
 	@GetMapping("/shop/order")
