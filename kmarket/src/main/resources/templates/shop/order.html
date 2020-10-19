@@ -13,21 +13,26 @@
 			});
 			
 			$('.btnApply').click(function(){
-				var currentPoint = [[${session.member.point}]];
-				var applyPoint = $('input[name=applyPoint]').val();
 				
-				if(currentPoint < applyPoint ){
+				var currentPoint = [[${session.member.point}]];
+				var txtPoint = $('input[name=txtPoint]').val();
+				
+				if(currentPoint < txtPoint ){
 					alert('가지고 계신 포인트가 사용할 포인트보다 큽니다.');
 					return ;
 				}
-				$('.info > table tr:eq(4) > td:eq(1)').text('-'+applyPoint);
+				$('.info > table tr:eq(4) > td:eq(1)').text('-'+txtPoint.toLocaleString());
 				
 				//전체 주문금액 다시 계산
 				var totalTg = $('.info > table tr:eq(5) > td:eq(1)');
 				var totalPrice = [[${totInfo.total}]];
-				var totalPrice = totalPrice - applyPoint;
+				var totalPrice = totalPrice - txtPoint;
 				
 				totalTg.text(totalPrice.toLocaleString());
+				
+				// 폼전송에 사용하기 위해 입력필드에 입력
+	  			//$('input[name=applyPoint]').val(-txtPoint);
+	  			//$('input[name=total]').val(totalPrice);
 			});
 			//결제하기 버튼 클릭
 			$('input[name=btnSubmit]').click(function(){
@@ -68,13 +73,40 @@
 					alert('결제 방법을 선택해주세요.');
 					return;
 				}
+				
+				// 상품정보 정리,취합
+	  			var products = '';
+	  			
+	  			$('.row').each(function(){
+	  				var code     = $(this).find('.code').val();
+	  				var count    = $(this).find('.count').val();
+	  				var price    = $(this).find('.price').val();
+	  				var discount = $(this).find('.discount').val();
+	  				var point    = $(this).find('.point').val();
+	  				var delivery = $(this).find('.delivery').val();
+	  				var total    = $(this).find('.total').val();
+	  				//DB에 저장 할 때 하나의 컬럼에 추가하기 위해서 열로 만들기(아래 정의한 함수에 맞춰서 사용)
+	  				products += String.format('{0},{1},{2},{3},{4},{5},{6}|', code, count, price, discount, point, delivery, total);
+	  			});
+	  			
+	  			// 폼전송에 사용하기 위해 입력필드에 입력
+	  			$('input[name=products]').val(products);
+				
 				//최종 전송하기
 				$('#orderForm').submit();
 				
 			});
 		});
 		
-		
+		// 자바스크립트 Format String 함수 
+	  	// 출처 : https://bemeal2.tistory.com/275
+	  	String.format = function() {
+	  		let args = arguments; 
+	  		return args[0].replace(/{(\d+)}/g, function(match, num) { 
+	  			num = Number(num) + 1; 
+	  			return typeof(args[num]) != undefined ? args[num] : match; 
+	  		}); 
+	  	}
 	</script>
   
   <!-- 제목, 페이지 네비게이션 -->
@@ -101,9 +133,21 @@
                   <tr class="empty">
                     <td colspan="7">장바구니에 상품이 없습니다.</td>
                   </tr>
-                  <tr th:each="order:${orders}">
+                  <tr class="row" th:each="order:${orders}">
                     <td>
                       <article>
+                      	<!-- 장바구니에 상품 seq(PK)를 지정해서 주문완료 후 장바구니에서 삭제하기 위한 가상 입력필드 -->
+                      	<input type="hidden" name="cartSeqs"   th:value="${order.seq}"/>
+                      	
+                      	<!-- 상품 문자열을 생성하기 위한  가상 입력필드 -->
+                      	<input type="hidden" class="code"     th:value="${order.code}"/>
+                      	<input type="hidden" class="count"    th:value="${order.count}"/>
+                      	<input type="hidden" class="price"    th:value="${order.price}"/>
+                      	<input type="hidden" class="discount" th:value="${order.discount}"/>
+                      	<input type="hidden" class="point"    th:value="${order.point}"/>
+                      	<input type="hidden" class="delivery" th:value="${order.delivery}"/>
+                      	<input type="hidden" class="total"    th:value="${order.total}"/>
+                      	
                         <a href="#"><img th:src="@{'/thumb/'+${order.cate1}+'/'+${order.cate2}+'/'+${order.thumb1}}" alt=""></a>
                         <div>
                           <h2><a href="#">[[${order.name}]]</a></h2>
@@ -164,7 +208,7 @@
                 <div>
                     <p>현재 포인트 : <span>[[${session.member.point}]]</span>점</p>
                     <label>
-                        <input type="text" name="applyPoint" />점
+                        <input type="text" name="txtPoint" />점
                         <input type="button" class="btnApply" value="적용"/>
                     </label>
                     <span>포인트 1,000점 이상이면 현금처럼 사용 가능합니다.</span>
@@ -208,6 +252,16 @@
             </article>
 
             <div class="info">
+            	<!-- 주문 테이블 저장을 위한 가상 입력필드 -->                      	
+				<input type="hidden" name="uid"        th:value="${session.member.uid}"/>
+		    	<input type="hidden" name="products"   value=""/>
+				<input type="hidden" name="count"      th:value="${totInfo.count}"/>
+				<input type="hidden" name="price"      th:value="${totInfo.price}"/>
+				<input type="hidden" name="discount"   th:value="-${totInfo.sale}"/>
+				<input type="hidden" name="point"      th:value="${totInfo.point}"/>
+				<input type="hidden" name="applyPoint" value="0"/>				
+				<input type="hidden" name="delivery"   th:value="${totInfo.delivery}"/>				
+				<input type="hidden" name="total"      value="0"/>
                 <h2>최종결제 정보</h2>
                 <table border="0">
                   <tr>
