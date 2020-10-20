@@ -3,133 +3,137 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="/layout/layout_member.html">
 
-            <!--로그인 페이지-->
-            <section layout:fragment="content" id="register">
-                <div>
-                    <h4>회원가입</h4>
-                    <p>
+<!--로그인 페이지-->
+<section layout:fragment="content" id="register">
+	<script>
+		$(document).ready(function(){
+			var valid = false;
+			$('.confirm_uid').click(function(e){
+				e.preventDefault();
+				
+				var value = $('input[name=uid]').val();
+				/*uid 체크*/
+				if(value.length < 4 || value.length > 12){
+					alert("영문, 숫자로 4~12자까지 설정해 주세요.");
+					return;
+				}
+				alert("확인");
+				
+			});
+		});
+		
+	</script>
+    <div>
+        <h4>회원가입</h4>
+        <p>
+            <span class="essential">*</span>
+            필수입력사항
+        </p>
+    </div>
+    <form action="#">
+    	<input type="hidden" name="type" value="1"/>
+        <article>
+            <table border="0">
+                <tr>
+                    <td>
+                        아이디
                         <span class="essential">*</span>
-                        필수입력사항
-                    </p>
-                </div>
-                <form action="#">
-                    <article>
-                        <table border="0">
-                            <tr>
-                                <td>
-                                    아이디
-                                    <span class="essential">*</span>
-                                </td>
-                                <td>
-                                    <input type="text" placeholder="영문, 숫자로 4~12자까지 설정해 주세요.">
-                                    <a href="#">중복확인</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    비밀번호
-                                    <span class="essential">*</span>
-                                </td>
-                                <td>
-                                    <input type="text" placeholder="영문, 숫자, 특수문자를 조합하여 8~12자까지 설정해 주세요.">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    비밀번호확인
-                                    <span class="essential">*</span>
-                                </td>
-                                <td>
-                                    <input type="text" placeholder="비밀번호를 확인">
-                                </td>
-                            </tr>
-                            <tr>
-                                
-                                <td>
-                                    이름
-                                    <span class="essential">*</span>
-                                </td>
-                                <td>
-                                    <input type="text" placeholder="이름을 입력">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    EMAIL
-                                    <span class="essential">*</span>
-                                </td>
-                                <td>
-                                    <input type="text" placeholder="이메일 입력">
-                                    <a href="#">중복확인</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    휴대폰
-                                    <span class="essential">*</span>
-                                </td>
-                                <td>
-                                    <input type="text" placeholder="-포함 13자리를 입력하세요.">
-                                </td>
-                            </tr>
-                            <tr class="addr">
-                                <td>주소</td>
-                                <td>
-                                    <div>
-                                        <input type="text" placeholder="우편번호 입력 클릭" readonly>
-                                    </div>
-                                    <div>
-                                        <input type="text" size="50" placeholder="주소를 검색하세요." readonly>
-                                    </div>
-                                    <div>
-                                        <input type="text" size="50" placeholder="상세주소를 입력하세요." readonly>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="sex">
-                                <td>
-                                    성별
-                                </td>
-                                <td>
-                                    <label>
-                                        <input type="radio" >&nbsp;남
-                                    </label>
-                                    <label>
-                                        <input type="radio" >&nbsp;여
-                                    </label>
-                                    <label>
-                                        <input type="radio" >&nbsp;선택안함
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    생년월일
-                                </td>
-                                <td>
-                                    <div class="birth_day">
-                                        <input type="text" placeholder="YYYY">
-                                        <span>/</span>
-                                        <input type="text" placeholder="MM">
-                                        <span>/</span>
-                                        <input type="text" placeholder="DD">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    추가입력사항
-                                </td>
-                                <td>
-                                    <input type="text" placeholder="추천인 입력">
-                                </td>
-                            </tr>
-                        </table>
-                    </article>
-                    <div>
-                        <input type="submit" value="회원가입">
-                    </div>
-                </form>
-            </section>
+                    </td>
+                    <td>
+                        <input type="text" name="uid" placeholder="영문, 숫자로 4~12자까지 설정해 주세요.">
+                        <a href="#" class="confirm_uid" >중복확인</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        비밀번호
+                        <span class="essential">*</span>
+                    </td>
+                    <td>
+                        <input type="text" name="pass1" placeholder="영문,숫자,특수문자를 조합하여 8~12자까지 설정해주세요.">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        비밀번호확인
+                        <span class="essential">*</span>
+                    </td>
+                    <td>
+                        <input type="text" name="pass2"  placeholder="비밀번호를 확인">
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td>
+                        이름
+                        <span class="essential">*</span>
+                    </td>
+                    <td>
+                        <input type="text" name="name" placeholder="이름을 입력">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        EMAIL
+                        <span class="essential">*</span>
+                    </td>
+                    <td>
+                        <input type="text" name="email" placeholder="이메일 입력">
+                        <a href="#">중복확인</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>휴대폰
+                        <span class="essential">*</span>
+                    </td>
+                    <td>
+                        <input type="text" name="hp" placeholder="-포함 13자리를 입력하세요.">
+                    </td>
+                </tr>
+                <tr class="addr">
+                    <td>주소 <span class="essential">*</span></td>
+                    <td>
+                        <div>
+                            <input type="text" name="zip" placeholder="우편번호 입력 클릭" readonly>
+                        </div>
+                        <div>
+                            <input type="text" size="50" name="addr1" placeholder="주소를 검색하세요." readonly>
+                        </div>
+                        <div>
+                            <input type="text" size="50" name="addr2" placeholder="상세주소를 입력하세요." readonly>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="sex">
+                    <td>성별</td>
+                    <td>
+                        <label><input type="radio" name="gender" value="1">&nbsp;남</label>
+                        <label><input type="radio" name="gender" value="2">&nbsp;여</label>
+                        <label><input type="radio" name="gender" value="3">&nbsp;선택안함</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>생년월일</td>
+                    <td>
+                        <div class="birth_day">
+                            <input type="text" placeholder="YYYY">
+                            <span>/</span>
+                            <input type="text" placeholder="MM">
+                            <span>/</span>
+                            <input type="text" placeholder="DD">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>추가입력사항</td>
+                    <td><input type="text" placeholder="추천인 입력"></td>
+                </tr>
+            </table>
+        </article>
+        <div>
+            <input type="submit" value="회원가입">
+        </div>
+    </form>
+</section>
         
 </html>

@@ -3,81 +3,117 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="/layout/layout_member.html">
 
-            <div layout:fragment="content">
-                <section id="signup">
-                    <div>
-                        <h1>약관동의</h1>
-                        <div>
-                            <input type="checkbox">
-                            <span>전체 동의합니다.</span>
-                        </div>
-                    </div>
-                    <section>
-                        <div>
-                            <h4>
-                                이용약관 동의
-                                <span class="essential">(필수)</span>
-                            </h4>
-                            <textarea class="terms" readonly></textarea>
-                            <div>
-                                <input type="checkbox">
-                                <span>동의합니다.</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h4>
-                                전자금융거래 이용약관
-                                <span class="essential">(필수)</span>
-                            </h4>
-                            <textarea class="financial" readonly></textarea>
-                            <div>
-                                <input type="checkbox">
-                                <span>동의합니다.</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h4>
-                                개인정보 수집동의
-                                <span class="essential">(필수)</span>
-                            </h4>
-                            <textarea class="privacy" readonly></textarea>
-                            <div>
-                                <input type="checkbox">
-                                <span>동의합니다.</span>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <div>
-                            <h4>
-                                위치정보 이용약관
-                                <span class="choice">(선택)</span>
-                            </h4>
-                            <textarea class="loctaion" readonly></textarea>
-                            <div>
-                                <input type="checkbox">
-                                <span>동의합니다.</span>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <p>
-                            무료배송, 할인쿠폰 등 혜택/정보 수신 동의
-                            <span class="choice">(선택)</span>
-                        </p>
-                        <div>
-                            <input type="checkbox">
-                            <span>SMS</span>
-                        </div>
-                        <div>
-                            <input type="checkbox">
-                            <span>이메일</span>
-                        </div>
-                    </section>
-                    <div>
-                        <input type="button" value="동의하기">
-                    </div>
-                </section>
+<div layout:fragment="content">
+	<script>
+		$(function(){
+			//전체 체크 
+			$('input[name=all]').click(function(){
+				//alert('확인');
+				var isChecked = $(this).is(':checked');
+				
+	 			if(isChecked){
+	 				//체크 
+	 				$('input[type=checkbox]').attr('checked', true);
+	 				
+	 			}else{
+	 				//체크해제
+	 				$('input[type=checkbox]').attr('checked', false);
+	 			}
+				
+	 		 });
+			//필수 체크 했는지 확인
+			$('input[type=button]').click(function(){
+				
+				var chkBox = $("input[type=checkbox]");
+				
+				var chkTerms 	= chkBox.eq(1).is(':checked');
+    			var chkFinance 	= chkBox.eq(2).is(':checked');
+    			var chkPrivacy 	= chkBox.eq(3).is(':checked');
+    			
+				if(!chkTerms || !chkFinance || !chkPrivacy){
+					alert("필수 동의를 체크 하세요.");
+				}else{
+					location.href = '/livingmarket/member/register';
+				}
+				
+			});
+			
+		});
+	</script>
+    <section id="signup">
+        <div>
+            <h1>약관동의</h1>
+            <div>
+                <input type="checkbox" name="all">
+                <span>전체 동의합니다.</span>
             </div>
+        </div>
+        <section>
+            <div>
+                <h4>
+                    이용약관 동의
+                    <span class="essential">(필수)</span>
+                </h4>
+                <textarea class="terms" readonly>[[${termsVo.terms}]]</textarea>
+                <div>
+                    <input type="checkbox" name="chk_terms">
+                    <span>동의합니다.</span>
+                </div>
+            </div>
+            <div>
+                <h4>
+                    전자금융거래 이용약관
+                    <span class="essential">(필수)</span>
+                </h4>
+                <textarea class="financial" readonly>[[${termsVo.finance}]]</textarea>
+                <div>
+                    <input type="checkbox" name="chk_financial">
+                    <span>동의합니다.</span>
+                </div>
+            </div>
+            <div>
+                <h4>
+                    개인정보 수집동의
+                    <span class="essential">(필수)</span>
+                </h4>
+                <textarea class="privacy" readonly>[[${termsVo.privacy}]]</textarea>
+                <div>
+                    <input type="checkbox" name="chk_privacy">
+                    <span>동의합니다.</span>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h4>
+                    위치정보 이용약관
+                    <span class="choice">(선택)</span>
+                </h4>
+                <textarea class="loctaion" readonly>[[${termsVo.location}]]</textarea>
+                <div>
+                    <input type="checkbox" name="chk_location">
+                    <span>동의합니다.</span>
+                </div>
+            </div>
+        </section>
+        <section>
+            <p>
+                무료배송, 할인쿠폰 등 혜택/정보 수신 동의
+                <span class="choice">(선택)</span>
+            </p>
+            <div>
+                <input type="checkbox" name="chk_sms">
+                <span>SMS</span>
+            </div>
+            <div>
+                <input type="checkbox" name="chk_email">
+                <span>이메일</span>
+            </div>
+        </section>
+        <div>
+            <input type="button" value="동의하기">
+        </div>
+    </section>
+</div>
         
 </html>
