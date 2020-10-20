@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>living-market:생활·가구</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+    <link rel="stylesheet" th:href="@{/css/view.css}">
+    <link rel="stylesheet" th:href="@{/css/order.css}">
+    <link rel="stylesheet" th:href="@{/css/order-complete.css}">
+    
+    <style>
+       
+    </style>
+    <script>
+        $(function(){
+            var sort = $('.sort_list > a');
+            var sort_list = $('.sort_list > ul');
+            
+            sort.click(function(){
+                if(sort_list.css('display','none')){
+                    sort_list.css('display','block')
+                }else if(sort_list.css('display',"block")){
+                    sort_list.css('display','none')
+                }
+            });
+        });
+        $(function(){
+
+        var cate = $('.m_main > ul > .category ');
+
+        cate.hover(function(){
+            $(this).children().eq(1).stop().slideDown(100);
+            },function(){
+            $(this).children().eq(1).stop().slideUp(100); 
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div id = "wrapper">
+        <header th:include="/fragments/_header.html::_header"></header>
+        <main>
+            <!--상품목록-->
+            <section layout:fragment="content" ></section>
+        </main>
+        <footer th:include="/fragments/_footer.html::_footer"></footer>
+    </div>
+</body>
+</html>

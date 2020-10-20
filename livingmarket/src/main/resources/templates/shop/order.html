@@ -1,692 +1,226 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>living-market:생활·가구</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <script src="../js/common.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-        #order{}
-        #order>div{
-            width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-            box-sizing: border-box;
+<html xmlns:th = "http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="/layout/layout_shop.html">
 
-        }
-        #order>div>h4{
-            text-align: center;
-            font-size: 30px;
-            font-weight: bold;
-            line-height: 30px;
-        }
-        /*주문할 상품 정보*/
-        #order>div>form>div>h3{
-            font-size: 14px;
-            font-weight: bold;
-            padding-bottom: 5px;            
-        }
-        #order>div>form>div{
-            width: 100%;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        #order>div>form>div>table{
-            width: 100%;
-            border-bottom: 3px solid #35c5f0;
-            border-top: 3px solid #35c5f0;
-            border-collapse: collapse;
-        }
-        #order>div>form>div>table>thead{}
-        #order>div>form>div>table>thead th{
-            padding: 10px 0;
-            border-bottom: 1px solid #b9b9b9;
-            box-sizing: border-box;
-            font-size: 17px;
-            font-weight: bold;
-        }
-        #order>div>form>div>table>thead th:nth-child(1){width: 10px; opacity: 0;}
-        #order>div>form>div>table>thead th:nth-child(2){width: auto; text-align: left; padding-left: 270px;}
-        #order>div>form>div>table>thead th:nth-child(3){width: 50px;}
-        #order>div>form>div>table>thead th:nth-child(4){width: 150px;}
-        #order>div>form>div>table>thead th:nth-child(5){width: 150px;}
-        #order>div>form>div>table>thead th>input{}
-
-        #order>div>form>div>table tr{
-            width: 100%;
-        }
-        #order>div>form>div>table>tbody{}
-        #order>div>form>div>table td{
-            padding: 10px 0;
-            font-size: 17px;
-            font-weight: 600;
-            text-align: center;
-            
-        }
-        #order>div>form>div>table td:nth-child(1){width: 100px;}
-        #order>div>form>div>table td:nth-child(2){width: auto; text-align: left;}
-        #order>div>form>div>table td:nth-child(3){width: 50px;}
-        #order>div>form>div>table td:nth-child(4){width: 150px;}
-        #order>div>form>div>table td:nth-child(5){width: 150px;}
-        #order>div>form>div>table td>input{}
-        #order>div>form>div>table td>div{
-            margin: 0 5px;
-            width: 100px;
-            height: 100px;
-            border: 1px solid #c9c9c9;
-            overflow: hidden;
-        }
-        #order>div>form>div>table td>div>img{
-            width: 100%;
-            height: 100%;
-        }
-        #order>div>form>div>table td>p{
-            height: 100px;
-            padding-left: 20px;
-            line-height: 20px;
-        }
-        #order>div>form>div>table td>p>span{
-            display: block;
-            font-size: 14px;
-            font-weight: bold;
-            padding-top: 5px;
-        }
-        #order>div>form>div>table td>p>span:nth-child(3){
-            display: inline-block;
-            color: #35c5f0;
-        }
-        #order>div>form>div>table td>p>del{
-            margin-left: 3px;
-            color: #c9c9c9;
-        }
-        
-
-        #order .order_tot_info{
-            margin-top: 20px;
-            box-sizing: border-box;
-        }
-        #order .order_tot_info>article{
-        }
-        #order .order_tot_info>article>h3{
-            width: 100%;
-            font-size: 14px;
-            font-weight: bold;
-            padding: 6px 0;
-            border-bottom: 3px solid #d9d9d9;
-        }
-        #order .order_tot_info>article>div{
-            padding: 6px;
-            box-sizing: border-box;
-        }
-        #order .order_tot_info>article>div>label{
-            display: block;
-            padding: 6px;
-        }
-        #order .order_tot_info>article>div>label>span:nth-child(1){
-            display: inline-block;
-            width: 170px;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        #order .order_tot_info>article>div>label>input[type="text"]{
-            height: 24px;
-            font-size: 15px;
-            padding: 2px;
-        }
-        #order .order_tot_info>article>div>label input[type="radio"], span, select, img{
-            vertical-align: middle;
-        }
-        
-        /*주문자 정보*/
-        #order .order_tot_info>.user{}
-        #order .order_tot_info > article.user > div > label.sms_box{
-            padding-left: 180px;
-        }
-        #order .order_tot_info>article>div>label>input[type="checkbox"]{}
-        #order .order_tot_info>article>div>label> .explain_hp{color: #b9b9b9;}
-        /*배송 정보*/
-
-        #order .order_tot_info>article>div>label.zip>input[type="button"]{
-            width: 75px;
-            height: 32px;
-            vertical-align: top;
-            color: #35c5f0;
-            font-weight: bold;
-            border: 1px solid #35c5f0;
-            background-color: #f0f4f9;
-        }
-        #order .order_tot_info>article>div>label> .addr1{width: 440px;}
-        #order .order_tot_info>article>div>label> .addr2{width: 220px;}
-        #order .order_tot_info>article>div>label> .delivery_memo{width: 440px;}
-        /*쿠폰 적립금*/
-        #order .order_tot_info>.discount{
-            width: 760px;
-        }
-        #order .order_tot_info>.discount>div>label{
-            border-bottom: 1px solid #c9c9c9;
-            padding-bottom: 10px;
-            margin-bottom: 5px;
-        }
-        #order .order_tot_info>.discount>div>label>div{
-            display: inline-block;
-            position: relative;
-            width: 390px;
-            height: 37px;
-        }
-        #order .order_tot_info>.discount>div>label>div>div{
-            width: 100%;
-            height: 37px;
-            padding: 0 8px;
-            border: 1px solid #000;
-            box-sizing: border-box;
-            background-color: #fff;
-            font-size: 12px;
-            line-height: 33px;
-            color: #000;
-            vertical-align: top;
-            cursor: pointer;
-        }
-        #order .order_tot_info>.discount>div>label>div>div:last-child{
-            position: absolute;
-            display: none;
-            left: 0;
-            top: 36px;
-            width: 100%;
-            padding: 0;
-            z-index: 1;
-        }
-        #order .order_tot_info>article>div>label>div>div>ul{display: block;}
-        #order .order_tot_info>article>div>label>div>div>ul>li{
-            padding: 10px 5px;
-            font-size: 15px;
-            font-weight: bold;
-            line-height: 16px;
-            border-top: 1px solid #949296;
-        }
-        #order .order_tot_info>article>div>label>p{
-            padding: 10px 0 0 175px;
-            line-height: 19px;
-        }
-        #order .order_tot_info>article>div>label>p>span{
-            font-size: 20px;
-            font-weight: bold;
-            color: #35c5f0;
-        }
-        /*결제수단  */
-        #order .order_tot_info>.payment{
-            width: 760px;
-        }
-        #order .order_tot_info>.payment>div>label>div{
-            display: inline-block;
-        }
-        #order .order_tot_info>.payment>div>label>div>div{
-            float: left;
-            margin-right: 10px;
-        }
-        #order .order_tot_info>.payment>div>label>div>div>span{}
-        #order .order_tot_info>.payment>div>label>div>div>select{}
-        #order .order_tot_info>.payment>div>label>div>div>select>option{}
-        #order .order_tot_info>.payment>div>label>img{
-            width: 80px;
-            height: 20px;
-        }
-        /*결제금액*/
-        #order .bottom{
-            position: relative;
-        }
-        #order .order_tot_info>.final_info{
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 300px;
-            height: 412px;
-            background: #fff;
-            padding: 6px 20px;
-        }
-        #order .order_tot_info>.final_info>h3{
-            font-weight: bold;
-            font-size: 20px;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-        }
-        #order .order_tot_info>.final_info>div{
-            width: 100%;
-            padding: 20px;
-            border: 2px solid #c9c9c9;
-            background-color: #fafafa;
-            box-sizing: border-box;
-        }
-        #order .order_tot_info>.final_info>ul{
-            
-        }
-        #order .order_tot_info>.final_info>div>ul>li:first-child{border-bottom: 1px solid #000;}
-        #order .order_tot_info>.final_info>div>ul>li:nth-child(2){color: #b7b7b7;}
-        #order .order_tot_info>.final_info>div>ul>li:nth-child(2)>span:first-child{padding-left: 5px;}
-        #order .order_tot_info>.final_info>div>ul>li:nth-child(3){color: #b7b7b7;}
-        #order .order_tot_info>.final_info>div>ul>li:nth-child(3)>span:first-child{padding-left: 5px;}
-        #order .order_tot_info>.final_info>div>ul>li>span{
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            line-height: 36px;
-        }
-        #order .order_tot_info>.final_info>div>ul>li>span:last-child{
-            float: right;
-            text-align: right;
-        }
-        #order .order_tot_info>.final_info>div>ul>li:nth-child(7){border-top: 1px solid #000;}
-        #order .order_tot_info>.final_info>div>ul>li:nth-child(7)>span:last-child{color: #35c5f0; font-size: 18px; font-weight: bold;}
-        #order .order_tot_info>.final_info>div>ul>li>p{text-align: right;}
-        #order .order_tot_info>.final_info>div>ul>li>p>span:first-child{
-            display: inline-block;
-            text-align: center;
-            width: 29px;
-            height: 14px;
-            padding: 3px 0;
-            padding-left: 2px;
-            border: 2px solid #fff;
-            border-radius: 16px;
-            background-color: #35c5f0;
-            font-size: 12px;
-            font-weight: bold;
-            color: #fff;
-        }
-        #order .order_tot_info>.final_info>div>ul>li>p>span:last-child{color: #b7b7b7;}
-        /*alert*/
-        #order .order_tot_info>.alert{
-            padding: 20px;
-        }
-        #order .order_tot_info>.alert>div{
-            padding: 10px;
-            background-color: #fafafa;
-        }
-        #order .order_tot_info>.alert>div>ul{}
-        #order .order_tot_info>.alert>div>ul>li{
-            font-size: 14px;
-            line-height: 24px;
-            color: #b1b1b1;
-        }
-        /*결제 버튼*/
-        #order .order_tot_info> .submit{
-            width: 100%;
-            height: 115px;
-            padding: 40px 0 20px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-        #order .order_tot_info>div>input[type="submit"]{
-            width: 250px;
-            height: 46px;
-            background-color: #35c5f0;
-            border: none;
-            border-radius: 16px;
-            font-size: 25px;
-            font-weight: bold;
-            color: #fff;
-            letter-spacing: 3px;
-        }
-    </style>
-    <script>
-    </script>
-</head>
-<body>
-    <div id = "wrapper">
-        <header>
-            <div class="top">
-                <div>
-                    <a href="#">로그인</a>
-                    <a href="#">회원가입</a>
-                    <a href="#">주문배송</a>
-                    <a href="#">고객센터</a>
-                </div>
-            </div>
-            <div class="logo">
-                <div>
-                    <a href="#">
-                        <img src="../img/logo.jpg" alt="logo">DOMUN OR CASA
-                    </a>
-                    <form action="#">
-                        <input type="text" name="search">
-                        <button><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-            </div>
-            <div class="menu">
-                <div class="m_main">
-                    <ul>
-                        <li class="category">
-                            <a href="#"><i class="fa fa-bars" aria-hidden="true"></i>전체카테고리</a>
-                            <ol>
-                                <li>
-                                    <a href="#">
-                                        가구·패브릭
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        수납·정리
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        생활용품
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        가전
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        홈데코
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        주방
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        욕실
-                                    </a>
-                                </li>
-                            </ol>
-                        </li>
-                        <li><a href="#">최신상품</a></li>
-                        <li><a href="#">베스트</a></li>
-                        <li><a href="#">특가상품</a></li>
-                        <li><a href="#">이벤트</a></li>
-                    </ul>
-                    <section>
-                        <div>
-                            <a href="#">#소파</a>
-                            <a href="#">#가구</a>
-                            <a href="#">#인테리어</a>
-                            <a href="#">#조명</a>
-                        </div>
-                    </section>
-                </div>
-                
-            </div>
-        </header>
-        <main>
             <!--장바구니 페이지-->
-            <section id="order">
-                <!--구매 물건-->
-                <div class="order_list">
-                    <h4>
-                        주문/결제
-                    </h4>
-                    <form action="#">
-                        <div>
-                            <h3>주문상품</h3>
-                            <table>
-                                <thead>
-                                    <th>그림</th>
-                                    <th>상품정보</th>
-                                    <th>수량</th>
-                                    <th>상품금액</th>
-                                    <th>배송비</th>
-                                </thead>
-                                <tr>
-                                    <td>
-                                        <div>
-                                            <img src="../img/no_images.png" alt="item_img">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            <span class="tit order_item">베스트 매트리스 6종</span>
-                                            <span>사양 : 싱글</span>
-                                            <span class="dis_price">69,950원</span>
-                                            <del class="org_price">110,200원</del>
-                                        </p>
-                                    </td>
-                                    <td>1</td>
-                                    <td>68,950원</td>
-                                    <td>33,000원</td>
-                                </tr>
-                            </table>
-                            <section class="order_tot_info middle">
-                                <article class="user">
-                                    <h3>주문자 정보</h3>
-                                    <div>
-                                        <label>
-                                            <span>보내는분</span>
-                                            <input type="text" name="name">
-                                        </label>
-                                        <label class="hp">
-                                            <span>휴대폰</span>
-                                            <input type="text">
-                                            <span class="explain_hp"> - 포함 입력</span>
-                                        </label>
-                                        <label class="email">
-                                            <span>이메일</span>
-                                            <input type="text">
-                                        </label>
-                                        <label class="sms_box">
-                                            <input type="checkbox" name="수신동의">
-                                            <span>SMS수신동의(배송정보를 SMS로 보내드립니다.)</span>
-                                        </label>
-                                    </div>
-                                </article>
-                                <article class="delivery">
-                                    <h3>배송 정보</h3>
-                                    <div>
-                                        <label>
-                                            <span>받는분</span>
-                                            <input type="text">
-                                        </label>
-                                        <label class="zip">
-                                            <span>우편번호</span>
-                                            <input type="text" placeholder="우편번호를 검색">
-                                            <input type="button" value="배송지 검색">
-                                        </label>
-                                        <label>
-                                            <span>주소</span>
-                                            <input type="text" class="addr1" placeholder="기본주소를 입력">
-                                            <input type="text"class="addr2" placeholder="상세주소를 입력">
-                                        </label>
-                                        <label>
-                                            <span>휴대전화</span>
-                                            <input type="text">
-                                        </label>
-                                        <label>
-                                            <span>배송 메모</span>
-                                            <input type="text" class="delivery_memo">
-                                        </label>
-                                    </div>
-                                </article>
-                            </section>
-                            <section class="order_tot_info bottom">
-                                <article class="discount">
-                                    <h3>쿠폰/적립금</h3>
-                                    <div>
-                                        <label>
-                                            <span>쿠폰적용</span>
-                                            <div>
-                                                <div>적용할 쿠폰 선택</div>
-                                                <div>
-                                                    <ul>
-                                                        <li>사용 가능한 쿠폰이 없습니다.</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </label>
-                                        <label>
-                                            <span>적립금 적용</span>
-                                            <input type="text" placeholder="사용할 포인트 입력">
-                                            <p>
-                                                3만원 이상 결제시 포인트 사용가능<br>
-                                                사용가능한 포인트
-                                                <span>2,766P</span>
-                                            </p>
-                                        </label>
-                                    </div>
-                                </article>
-                                <article class="payment">
-                                    <h3>결제 수단</h3>
-                                    <div>
-                                        <label>
-                                            <span>일반</span>
-                                            <div>
-                                                <div>
-                                                    <input type="radio">
-                                                    <span>신용카드</span>
-                                                </div>
-                                                <div>
-                                                    <select name="카드 선택">
-                                                        <option>신한카드</option>
-                                                        <option>BC카드</option>
-                                                        <option>국민카드</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </label>
-                                        <label>
-                                            <span>무통장 입금</span>
-                                            <input type="radio">
-                                            <span>무통장입금</span>
-                                        </label>
-                                        <label>
-                                            <span>토스</span>
-                                            <input type="radio">
-                                            <img src="../img/toss_logo.png" alt="img_toss">
-                                        </label>
-                                        <label>
-                                            <span>네이버페이</span>
-                                            <input type="radio">
-                                            <img src="../img/logo_black.png" alt="img_naverpay">
-                                        </label>
-                                        <label>
-                                            <span>Payco</span>
-                                            <input type="radio">
-                                            <img src="../img/payco_log.png" alt="img_payco">
-                                        </label>
-                                        <label>
-                                            <span>휴대폰</span>
-                                            <input type="radio">
-                                            <span>휴대폰 결제</span>
-                                        </label>
-                                    </div>
-                                </article>
-                                <div class="final_info">
-                                    <h3>결제금액</h3>
-                                    <div>
-                                        <ul>
-                                            <li>
-                                                <span>주문금액</span>
-                                                <span>9,000원</span>
-                                            </li>
-                                            <li>
-                                                <span>상품금액</span>
-                                                <span>9,000원</span>
-                                            </li>
-                                            <li>
-                                                <span>상품할인</span>
-                                                <span>11,000원</span>
-                                            </li>
-                                            <li>
-                                                <span>배송비</span>
-                                                <span>11,000원</span>
-                                            </li>
-                                            <li>
-                                                <span>쿠폰 할인</span>
-                                                <span>11,000원</span>
-                                            </li>
-                                            <li>
-                                                <span>적립금사용</span>
-                                                <span>11,000원</span>
-                                            </li>
-                                            <li>
-                                                <span>최종결제금액</span>
-                                                <span>11,000원</span>
-                                            </li>
-                                            <li>
-                                                <p>
-                                                    <span>적립</span>
-                                                    <span>450원</span>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <article class="alert">
-                                    <div>
-                                        <ul>
-                                            <li>※ 페이코, 네이버페이, 토스, 차이 결제는 결제 시 결제하신 수단으로만 환불되는 점 양해부탁드립니다.</li>
-                                            <li>※ 고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한 LG데이콤의 구매안전(에스크로) 서비스를 이용하실 수 있습니다</li>
-                                            <li>※ 보안강화로 Internet Explorer 8 미만 사용 시 결제창이 뜨지 않을 수 있습니다</li>
-                                        </ul>
-                                    </div>
-                                </article>
-                                <div class="submit">
-                                    <input type="submit" value="결제하기">
-                                </div>
-                            </section>
-                        </div>
-                    </form>
-                </div>
-                <!--결제 금액 산정-->
-            </section>
-        </main>
-        <footer>
-            <section>
-                <ul>
-                    <li><a href="#">회사소개</a></li>
-                    <li><a href="#">인재채용</a></li>
-                    <li><a href="#">개인정보처리방침</a></li>
-                    <li><a href="#">이용안내</a></li>
-                </ul>
-                <div>
-                    <section>
-                        <h4>고객센터</h4>
-                        <div>
-                            <a href="#"><img src="../img/kakaotalk.png" alt="kakaotalk"></a>
-                            <p>
-                                고객센터 운영시간 <br />
-                                평일 : 오전 9시 – 오후 8시<br />
-                                주말 및 공휴일 휴무<br />
-                            </p>
-                        </div>
-                        <div>
-                            <a href="#"><img src="../img/qna.png" alt="qna"></a>
-                            <p>
-                                24시간 접수가능<br />
-                                고객센터 운영시간에 순차적으로 답변해드리겠습니다.<br />
-                            </p>
-                        </div>                    
-                    </section>
-                    <section class="company">
-                        <h4>(주)리빙마켓</h4>
-                        <div>
-                            <a href="../index.html"><img src="../img/logo.jpg" alt="logo"></a>
-                            <p>
-                                부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />
-                                대표이사 : 강래구<br />
-                                사업자등록번호 : 220-81-83676 사업자정보확인<br />
-                                통신판매업신고 : 강남 10630호 Fax : 02-589-8842<br />
-                            </p>
-                        </div>
-                        <ul>
-                            <li><a href="#"><img src="../img/insta_logo.png" alt="insta_logo"></a></li>
-                            <li><a href="#"><img src="../img/blog_logo.png" alt="nblog_logo"></a></li>
-                            <li><a href="#"><img src="../img/facebook_logo.png" alt="facebook_logo"></a></li>
-                        </ul>
-                    </section>
-                </div>
-            </section>
-        </footer>
-    </div>
-</body>
+   <section layout:fragment="content" id="order">
+       <!--구매 물건-->
+       <div class="order_list">
+           <h4>
+               주문/결제
+           </h4>
+           <form action="#">
+               <div>
+                   <h3>주문상품</h3>
+                   <table>
+                       <thead>
+                           <th>그림</th>
+                           <th>상품정보</th>
+                           <th>수량</th>
+                           <th>상품금액</th>
+                           <th>배송비</th>
+                       </thead>
+                       <tr>
+                           <td>
+                               <div>
+                                   <img th:src="@{/img/no_images.png}" alt="item_img">
+                               </div>
+                           </td>
+                           <td>
+                               <p>
+                                   <span class="tit order_item">베스트 매트리스 6종</span>
+                                   <span>사양 : 싱글</span>
+                                   <span class="dis_price">69,950원</span>
+                                   <del class="org_price">110,200원</del>
+                               </p>
+                           </td>
+                           <td>1</td>
+                           <td>68,950원</td>
+                           <td>33,000원</td>
+                       </tr>
+                   </table>
+                   <section class="order_tot_info middle">
+                       <article class="user">
+                           <h3>주문자 정보</h3>
+                           <div>
+                               <label>
+                                   <span>보내는분</span>
+                                   <input type="text" name="name">
+                               </label>
+                               <label class="hp">
+                                   <span>휴대폰</span>
+                                   <input type="text">
+                                   <span class="explain_hp"> - 포함 입력</span>
+                               </label>
+                               <label class="email">
+                                   <span>이메일</span>
+                                   <input type="text">
+                               </label>
+                               <label class="sms_box">
+                                   <input type="checkbox" name="수신동의">
+                                   <span>SMS수신동의(배송정보를 SMS로 보내드립니다.)</span>
+                               </label>
+                           </div>
+                       </article>
+                       <article class="delivery">
+                           <h3>배송 정보</h3>
+                           <div>
+                               <label>
+                                   <span>받는분</span>
+                                   <input type="text">
+                               </label>
+                               <label class="zip">
+                                   <span>우편번호</span>
+                                   <input type="text" placeholder="우편번호를 검색">
+                                   <input type="button" value="배송지 검색">
+                               </label>
+                               <label>
+                                   <span>주소</span>
+                                   <input type="text" class="addr1" placeholder="기본주소를 입력">
+                                   <input type="text"class="addr2" placeholder="상세주소를 입력">
+                               </label>
+                               <label>
+                                   <span>휴대전화</span>
+                                   <input type="text">
+                               </label>
+                               <label>
+                                   <span>배송 메모</span>
+                                   <input type="text" class="delivery_memo">
+                               </label>
+                           </div>
+                       </article>
+                   </section>
+                   <section class="order_tot_info bottom">
+                       <article class="discount">
+                           <h3>쿠폰/적립금</h3>
+                           <div>
+                               <label>
+                                   <span>쿠폰적용</span>
+                                   <div>
+                                       <div>적용할 쿠폰 선택</div>
+                                       <div>
+                                           <ul>
+                                               <li>사용 가능한 쿠폰이 없습니다.</li>
+                                           </ul>
+                                       </div>
+                                   </div>
+                               </label>
+                               <label>
+                                   <span>적립금 적용</span>
+                                   <input type="text" placeholder="사용할 포인트 입력">
+                                   <p>
+                                       3만원 이상 결제시 포인트 사용가능<br>
+                                       사용가능한 포인트
+                                       <span>2,766P</span>
+                                   </p>
+                               </label>
+                           </div>
+                       </article>
+                       <article class="payment">
+                           <h3>결제 수단</h3>
+                           <div>
+                               <label>
+                                   <span>일반</span>
+                                   <div>
+                                       <div>
+                                           <input type="radio">
+                                           <span>신용카드</span>
+                                       </div>
+                                       <div>
+                                           <select name="카드 선택">
+                                               <option>신한카드</option>
+                                               <option>BC카드</option>
+                                               <option>국민카드</option>
+                                           </select>
+                                       </div>
+                                   </div>
+                               </label>
+                               <label>
+                                   <span>무통장 입금</span>
+                                   <input type="radio">
+                                   <span>무통장입금</span>
+                               </label>
+                               <label>
+                                   <span>토스</span>
+                                   <input type="radio">
+                                   <img th:src="@{/img/toss_logo.png}" alt="img_toss">
+                               </label>
+                               <label>
+                                   <span>네이버페이</span>
+                                   <input type="radio">
+                                   <img th:src="@{/img/logo_black.png}" alt="img_naverpay">
+                               </label>
+                               <label>
+                                   <span>Payco</span>
+                                   <input type="radio">
+                                   <img th:src="@{/img/payco_log.png}" alt="img_payco">
+                               </label>
+                               <label>
+                                   <span>휴대폰</span>
+                                   <input type="radio">
+                                   <span>휴대폰 결제</span>
+                               </label>
+                           </div>
+                       </article>
+                       <div class="final_info">
+                           <h3>결제금액</h3>
+                           <div>
+                               <ul>
+                                   <li>
+                                       <span>주문금액</span>
+                                       <span>9,000원</span>
+                                   </li>
+                                   <li>
+                                       <span>상품금액</span>
+                                       <span>9,000원</span>
+                                   </li>
+                                   <li>
+                                       <span>상품할인</span>
+                                       <span>11,000원</span>
+                                   </li>
+                                   <li>
+                                       <span>배송비</span>
+                                       <span>11,000원</span>
+                                   </li>
+                                   <li>
+                                       <span>쿠폰 할인</span>
+                                       <span>11,000원</span>
+                                   </li>
+                                   <li>
+                                       <span>적립금사용</span>
+                                       <span>11,000원</span>
+                                   </li>
+                                   <li>
+                                       <span>최종결제금액</span>
+                                       <span>11,000원</span>
+                                   </li>
+                                   <li>
+                                       <p>
+                                           <span>적립</span>
+                                           <span>450원</span>
+                                       </p>
+                                   </li>
+                               </ul>
+                           </div>
+                       </div>
+                       <article class="alert">
+                           <div>
+                               <ul>
+                                   <li>※ 페이코, 네이버페이, 토스, 차이 결제는 결제 시 결제하신 수단으로만 환불되는 점 양해부탁드립니다.</li>
+                                   <li>※ 고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한 LG데이콤의 구매안전(에스크로) 서비스를 이용하실 수 있습니다</li>
+                                   <li>※ 보안강화로 Internet Explorer 8 미만 사용 시 결제창이 뜨지 않을 수 있습니다</li>
+                               </ul>
+                           </div>
+                       </article>
+                       <div class="submit">
+                           <input type="submit" value="결제하기">
+                       </div>
+                   </section>
+               </div>
+           </form>
+       </div>
+       <!--결제 금액 산정-->
+   </section>
+        
 </html>

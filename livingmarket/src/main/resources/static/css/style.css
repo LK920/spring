@@ -304,6 +304,12 @@
             font-size: 11px;
             color: #a8a8a8;
         }
+        /*슬라이더*/
+         .bx-wrapper{
+            box-shadow: none;
+            border: none;
+            margin-top: 10px;
+        }   
 
         /*페이지*/
         .paging{
@@ -421,6 +427,19 @@
             height: 25px;
             margin-right: 5px;
         }
+        #top {
+		    position: fixed;
+		    left: 50%;
+		    bottom: 10px;
+		    margin-left: 600px;
+		    /* display: none; */
+		    width: 42px;
+		    height: 42px;
+		    background-image: url('../img/top.png');
+		    border: none;
+		    font-size: 0;
+		    cursor: pointer;
+		}
 
         
         

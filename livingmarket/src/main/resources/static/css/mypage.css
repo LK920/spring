@@ -1,0 +1,142 @@
+#mypage{}
+        #mypage>div{
+            padding: 40px 15px;
+        }
+        #mypage>.my_info>div{
+            display: flex;
+            box-shadow: 0 1px 3px 0 #dbdbdb;
+            padding: 10px;
+            border-radius: 10px;
+            min-height: 60px;
+            margin-bottom: 20px;
+        }
+
+        #mypage>.my_info>div>a{
+            display: flex;
+            flex: 1 0 0px;
+            -webkit-box-align: center;
+            justify-content: center;
+            border-right: 1px solid #dbdbdb;
+            min-height: 60px;
+            padding: 20px;
+            box-sizing: border-box;
+            
+        }
+        #mypage>.my_info>div>a:nth-of-type(3){
+            border: 0;
+        }
+        #mypage>.my_info>div>a>.img_container{
+            width: 54px;
+            margin-right: 15px;
+            padding: 0;
+        }
+        #mypage>.my_info>div>a>.img_container>img{
+            width: 54px;
+        }
+        #mypage>.my_info>div>a>div{
+            text-align: center;
+            vertical-align: middle;
+            word-break: break-all;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        #mypage>.my_info>div>a>div>span{
+            font-size: 20px;
+            vertical-align: bottom;
+        }
+        #mypage>.my_info>div>a>div>span:nth-of-type(2){
+            display: inline-block;
+            color: #35c5f0;
+            font-weight: 700;
+            margin-left: 5px;
+            min-width: 30px;
+        }
+
+        #mypage>.my_info>div>div>p{
+            width: 787px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #mypage>.my_info>div>a>div>p>span{}
+        
+
+
+
+        #mypage>div>.sub_content{
+            float: left;
+            width: 200px;
+        }
+        #mypage>div>.sub_content>h4{
+            font-size: 40px;
+            padding: 10px;
+        }
+        #mypage>div>.sub_content>div{
+        }
+        #mypage>div>.sub_content>div>ul{}
+        #mypage>div>.sub_content>div>ul>li{
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            width: 100%;
+            height: 40px;
+            padding-top: 6px;
+            padding-left: 7px;
+
+        }
+        #mypage>div>.sub_content>div>ul>li>a{
+            font-size: 20px;
+            letter-spacing: 3px;
+        }
+        #mypage>div>.sub_content>div>ul>li>a::after{
+            content: ">";
+            float: right;
+            margin-right: 7px;
+            }
+
+        #mypage>div>.order_content{
+            float: right;
+            width: 950px;
+            min-height: 530px;
+        }
+        #mypage>div>.order_content>h4{
+            font-size: 40px;
+            padding: 10px;
+        }
+        #mypage>div>.order_content>div{
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        #mypage>div>.order_content>div>.table{
+            min-height: 530px;
+        }
+        #mypage>div>.order_content>div>div>table{
+            width: 100%;
+            border-top: 2px solid #35c5f0;
+            border-collapse: collapse;
+        }
+        #mypage>div>.order_content>div>div>table>thead{}
+        #mypage>div>.order_content>div>div>table th{
+            height: 40px;
+            border-bottom: 1px solid #ccc;
+        }
+        #mypage>div>.order_content>div>div>table th:nth-child(1){width: 60px;}
+        #mypage>div>.order_content>div>div>table th:nth-child(2){width: auto;}
+        #mypage>div>.order_content>div>div>table th:nth-child(3){width: 60px;}
+        #mypage>div>.order_content>div>div>table th:nth-child(4){width: 160px;}
+        #mypage>div>.order_content>div>div>table th:nth-child(5){width: 130px;}
+
+        #mypage>div>.order_content>div>div>table tr{
+        }
+        #mypage>div>.order_content>div>div>table tr>td{
+            height: 50px;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+        }
+        #mypage>div>.order_content>div>div>table tr>td:nth-child(1){width: 60px}
+        #mypage>div>.order_content>div>div>table tr>td:nth-child(2){
+            width: auto;
+            text-align: left;
+            }
+        #mypage>div>.order_content>div>div>table tr>td:nth-child(3){width: 60px;}
+        #mypage>div>.order_content>div>div>table tr>td:nth-child(4){width: 160px;}
+        #mypage>div>.order_content>div>div>table tr>td:nth-child(5){width: 130px;}
+        #mypage>div>.order_content>div>div>table tr>td>a{}

@@ -1,269 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>living-market:생활·가구</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <script src="../js/common.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-        #login{}
+<html xmlns:th = "http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="/layout/layout_member.html">
 
-        #login>div{
-            padding: 105px 0 30px 0;
-        }
-        #login>div>div{}
-        #login>div>div>h4{
-            text-align: center;
-            font-size: 44px;
-            letter-spacing: 0.5em;
-        }
-
-        #login>div>form{}
-        #login>div>form>div{
-            width: 400px;
-            margin: 0 auto;
-
-        }
-
-        #login>div>form>div>div{
-            padding-top: 20px;
-            text-align: right;
-        }
-        #login>div>form>div>div>input[type="text"]{
-            display: block;
-            width: 400px;
-            height: 60px;
-            margin-bottom: 5px;
-            font-size: 20px;
-            background-color: #f6f6f6;
-            border: 1px solid #adadad;
-            border-radius: 10px;
-            padding: 10px 20px;
-            box-sizing: border-box;
-        }
-
-        #login>div>form>div>div>input[type="checkbox"]{
-            width: 15px;
-            height: 15px;
-            vertical-align: text-top;
-        }
-        #login>div>form>div>div:nth-child(2){
-            text-align: left;
-            padding: 2px 4px;
-            box-sizing: border-box;
-            
-        }
-        #login>div>form>div>div>span:nth-child(3){
-            float: right;
-        }
-        #login>div>form>div>div>span>a{}
-
-        #login>div>form>div>div>input[type="submit"]{
-            width: 100%;
-            height: 60px;
-            font-size: 30px;
-            font-weight: bold;
-            letter-spacing: 4px;
-            color: #fff;
-            background-color: #35c5f0;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        #login>div>div:nth-child(3){
-            padding-top: 5px;
-        }
-        #login>div>div>a{
-            display: block;
-            width: 400px;
-            height: 60px;
-            margin: 0 auto;
-            text-align: center;
-            border: 1px solid #35c5f0;
-            font-size: 30px;
-            font-weight: bold;
-            letter-spacing: 4px;
-            border-radius: 10px;
-            color: #35c5f0;
-            box-sizing: border-box;
-            padding: 12px 0;
-        }
-
-
-    </style>
-    <script>
-    </script>
-</head>
-<body>
-    <div id = "wrapper">
-        <header>
-            <div class="top">
-                <div>
-                    <a href="#">로그인</a>
-                    <a href="#">회원가입</a>
-                    <a href="#">주문배송</a>
-                    <a href="#">고객센터</a>
-                </div>
-            </div>
-            <div class="logo">
-                <div>
-                    <a href="#">
-                        <img src="../img/logo.jpg" alt="logo">DOMUN OR CASA
-                    </a>
-                    <form action="#">
-                        <input type="text" name="search">
-                        <button><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-            </div>
-            <div class="menu">
-                <div class="m_main">
-                    <ul>
-                        <li class="category">
-                            <a href="#"><i class="fa fa-bars" aria-hidden="true"></i>전체카테고리</a>
-                            <ol>
-                                <li>
-                                    <a href="#">
-                                        가구·패브릭
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        수납·정리
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        생활용품
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        가전
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        홈데코
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        주방
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        욕실
-                                    </a>
-                                </li>
-                            </ol>
-                        </li>
-                        <li><a href="#">최신상품</a></li>
-                        <li><a href="#">베스트</a></li>
-                        <li><a href="#">특가상품</a></li>
-                        <li><a href="#">이벤트</a></li>
-                    </ul>
-                    <section>
-                        <div>
-                            <a href="#">#소파</a>
-                            <a href="#">#가구</a>
-                            <a href="#">#인테리어</a>
-                            <a href="#">#조명</a>
-                        </div>
-                    </section>
-                </div>
-                
-            </div>
-        </header>
-        <main>
             <!--로그인 페이지-->
-            <section id="login">
+<section layout:fragment="content" id="login">
+    <div>
+        <div>
+            <h4>로그인</h4>
+        </div>
+        <form action="#">
+            <div>
                 <div>
-                    <div>
-                        <h4>로그인</h4>
-                    </div>
-                    <form action="#">
-                        <div>
-                            <div>
-                                <input type="text" name="uid" placeholder="아이디를 입력해주세요.">
-                                <input type="text" name="pass" placeholder="비밀번호를 입력해주세요.">
-                            </div>
-                            <div>
-                                <input type="checkbox" name="" id="">
-                                <span>보안접속</span>
-                                <span>
-                                    <a href="#">아이디 찾기</a>
-                                    &nbsp;|&nbsp;
-                                    <a href="">비밀번호 찾기</a>
-                                </span>
-                            </div>
-                            <div>
-                                <input type="submit" value="로그인">
-                            </div>
-                        </div>
-                    </form>
-                    <div>
-                        <a href="#">회원가입</a>
-                    </div>
+                    <input type="text" name="uid" placeholder="아이디를 입력해주세요.">
+                    <input type="text" name="pass" placeholder="비밀번호를 입력해주세요.">
                 </div>
-            </section>
-        </main>
-        <footer>
-            <section>
-                <ul>
-                    <li><a href="#">회사소개</a></li>
-                    <li><a href="#">인재채용</a></li>
-                    <li><a href="#">개인정보처리방침</a></li>
-                    <li><a href="#">이용안내</a></li>
-                </ul>
                 <div>
-                    <section>
-                        <h4>고객센터</h4>
-                        <div>
-                            <a href="#"><img src="../img/kakaotalk.png" alt="kakaotalk"></a>
-                            <p>
-                                고객센터 운영시간 <br />
-                                평일 : 오전 9시 – 오후 8시<br />
-                                주말 및 공휴일 휴무<br />
-                            </p>
-                        </div>
-                        <div>
-                            <a href="#"><img src="../img/qna.png" alt="qna"></a>
-                            <p>
-                                24시간 접수가능<br />
-                                고객센터 운영시간에 순차적으로 답변해드리겠습니다.<br />
-                            </p>
-                        </div>                    
-                    </section>
-                    <section class="company">
-                        <h4>(주)리빙마켓</h4>
-                        <div>
-                            <a href="../index.html"><img src="../img/logo.jpg" alt="logo"></a>
-                            <p>
-                                부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />
-                                대표이사 : 강래구<br />
-                                사업자등록번호 : 220-81-83676 사업자정보확인<br />
-                                통신판매업신고 : 강남 10630호 Fax : 02-589-8842<br />
-                            </p>
-                        </div>
-                        <ul>
-                            <li><a href="#"><img src="../img/insta_logo.png" alt="insta_logo"></a></li>
-                            <li><a href="#"><img src="../img/blog_logo.png" alt="nblog_logo"></a></li>
-                            <li><a href="#"><img src="../img/facebook_logo.png" alt="facebook_logo"></a></li>
-                        </ul>
-                    </section>
+                    <input type="checkbox" name="" id="">
+                    <span>보안접속</span>
+                    <span>
+                        <a href="#">아이디 찾기</a>
+                        &nbsp;|&nbsp;
+                        <a href="">비밀번호 찾기</a>
+                    </span>
                 </div>
-            </section>
-        </footer>
+                <div>
+                    <input type="submit" value="로그인">
+                </div>
+            </div>
+        </form>
+        <div>
+            <a href="#">회원가입</a>
+        </div>
     </div>
-</body>
+</section>
+        
 </html>

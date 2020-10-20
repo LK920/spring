@@ -1,0 +1,126 @@
+#order_complete{}
+
+        #order_complete>div{
+            width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+            box-sizing: border-box;
+        }
+        /*상단 제목*/
+        #order_complete>div>h4{
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 30px;
+        }
+        #order_complete>div>article{
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        #order_complete>div>article:nth-of-type(1)>h3{border-bottom: none;}
+        #order_complete>div>article>h3{
+            font-size: 14px;
+            font-weight: bold;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #ff9292;
+            margin-top: 20px;
+        }
+        /*상품정보*/
+        #order_complete>div>article>table{
+            width: 100%;
+            border-top: 3px solid #35c5f0;
+            border-collapse: collapse;
+        }
+        #order_complete>div>article>table td{
+            font-size: 15px;
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #c9c9c9;
+            box-sizing: border-box;
+        }
+        #order_complete>div>article>table td:nth-of-type(1){
+            width: 140px;
+        }
+        #order_complete>div>article>table td:nth-of-type(2){
+            width: auto;
+        }
+        #order_complete>div>article>table td:nth-of-type(3){
+            width: 200px;
+        }
+        #order_complete>div>article>table td>div{
+            width: 130px;
+            border: 1px solid #c0c0c0;
+            height: 150px;
+            border-radius: 6px;
+            margin-left: 10px;
+            overflow: hidden;
+        }
+        #order_complete>div>article>table td>div>img{
+            width: 100%;
+            height: 100%;
+        }
+        #order_complete>div>article>table td>p{
+            box-sizing: border-box;
+            padding: 0 20px;
+            text-align: left;
+            height: 100px;
+            line-height: 20px;
+        }
+        #order_complete>div>article>table td>p>span{
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            padding-top: 5px;
+            margin-bottom: 7px;
+        }
+        #order_complete>div>article>table td>p>span:nth-child(3){
+            display: inline-block;
+            color: #35c5f0;
+        }
+
+        #order_complete>div>article>table td>p>del{
+            margin-left: 3px;
+            color: #c9c9c9;
+        }
+        /*결제정보, 주문정보, 배송정보*/
+        #order_complete>div>article>div{
+            box-sizing: border-box;
+            padding: 10px 0 20px 30px ;
+            border-bottom: 1px solid #c9c9c9;
+        }
+        
+        #order_complete>div>article>div>label{
+            display: block;
+            width: 100%;
+            
+        }
+        #order_complete>div>article>div>label>ins{
+            text-decoration: none;
+            display: inline-block;
+            width: 120px;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 30px;
+        }
+        #order_complete>div>article>div>label>span{
+            font-size: 16px;
+        }
+        /*메인 이동*/
+        #order_complete>div>div{
+            text-align: center;
+            margin: 40px 0 20px 0;
+        }
+        #order_complete>div>div>input[type="button"]{
+            width: 250px;
+            height: 46px;
+            background-color: #35c5f0;
+            border: none;
+            border-radius: 16px;
+            font-size: 25px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 3px;
+            cursor: pointer;
+
+        }

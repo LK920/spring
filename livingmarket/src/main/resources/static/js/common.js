@@ -1,9 +1,3 @@
-/*index 슬라이더*/
-$(document).ready(function(){
-    $('.slider > ul').bxSlider({
-        pager:false
-    });
-});
 
 /* index 전체보기 메뉴*/
 $(function(){
@@ -15,4 +9,7 @@ $(function(){
         },function(){
         $(this).children().eq(1).stop().slideUp(100); 
         });
+    $('#top').click(function(){
+	   $('html, body').animate({'scrollTop' : 0});
+   	});
 });
