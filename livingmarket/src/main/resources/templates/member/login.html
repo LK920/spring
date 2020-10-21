@@ -9,11 +9,11 @@
         <div>
             <h4>로그인</h4>
         </div>
-        <form action="#">
+        <form th:action="@{/member/login}" method="post">
             <div>
                 <div>
                     <input type="text" name="uid" placeholder="아이디를 입력해주세요.">
-                    <input type="text" name="pass" placeholder="비밀번호를 입력해주세요.">
+                    <input type="password" name="pass" placeholder="비밀번호를 입력해주세요.">
                 </div>
                 <div>
                     <input type="checkbox" name="" id="">
@@ -21,7 +21,7 @@
                     <span>
                         <a href="#">아이디 찾기</a>
                         &nbsp;|&nbsp;
-                        <a href="">비밀번호 찾기</a>
+                        <a href="#">비밀번호 찾기</a>
                     </span>
                 </div>
                 <div>

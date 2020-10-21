@@ -5,23 +5,110 @@
 
 <!--로그인 페이지-->
 <section layout:fragment="content" id="register">
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script th:src="@{/js/zipcode.js}"></script>
 	<script>
-		$(document).ready(function(){
-			var valid = false;
-			$('.confirm_uid').click(function(e){
-				e.preventDefault();
-				
-				var value = $('input[name=uid]').val();
-				/*uid 체크*/
-				if(value.length < 4 || value.length > 12){
-					alert("영문, 숫자로 4~12자까지 설정해 주세요.");
-					return;
+	$(document).ready(function(){
+		//uid 체크
+		$('.confirm_uid').click(function(e){
+			e.preventDefault();
+			var uidTg = $('input[name=uid]');
+			var value = uidTg.val();
+			/*uid 체크*/
+			if(value.length < 4 || value.length > 12){
+				alert("영문, 숫자로 4~12자까지 설정해 주세요.");
+				return;
+			}
+			var param = {'uid': value};
+			
+			$.get('/livingmarket/member/checkuid',param,function(data){
+				if(data.result == 1){
+					alert("사용중인 아이디입니다.");
+					uidTg.focus();
+				}else{
+					alert("사용 가능한 아이디입니다.");
+					$('input[name=pass]').focus();
 				}
-				alert("확인");
 				
 			});
+				
+		});//uid 확인 종료
+		//비밀번호 일치 여부 확인	
+		$('input[name=pass2]').keyup(function(){
+			
+			var pass1 = $('input[name=pass]').val();
+			var pass2 = $(this).val();
+			var msg = $('.msg');
+			
+			if(pass1 != pass2){
+				msg.css("color", "red").text("비밀번호가 일치하지 않습니다.");
+			}else{
+				msg.css("color", "green").text("비밀번호가 일치합니다.");
+			}
+		});//비밀번호 일치 여부 확인 종료
+
+		//이메일 중복 확인
+		$('.btnEmail').click(function(e){
+			e.preventDefault();
+			var email = $('input[name=email]').val();
+			if(email.length == 0){
+				alert('이메일을 입력하세요.');
+				return;
+			}else{
+				var eparam = {'email' : email};
+				$.ajax({
+					url:'/livingmarket/member/checkemail',
+					data: eparam,
+					type: 'get',
+					dataType:'json',
+					success:function(data){
+						if(data.result == 1){
+	 						alert("사용중인 이메일입니다.");
+	 						$('input[name=email]').focus();
+	 					}else{
+	 						alert("사용 가능한 이메일입니다.");
+	 						$('input[name=hp]').focus();
+	 						
+	 					}
+					}
+				});
+			}
+		});//이메일 중복 확인 종료
+		//휴대폰 중복 확인
+		$('input[name=hp]').focusout(function(){
+			var hp = $('input[name=hp]');
+			if(hp.val() == ''){
+				alert('전화번호를 입력해주세요.');
+				return;
+			}else{
+				var value = hp.val();
+				var param = {'hp': value};
+				$.get('/livingmarket/member/checkHp', param, function(data){
+					if(data.result == 1){
+						alert('등록된 전화번호 입니다. 다시 입력해주세요.')
+					}else{
+						alert('사용가능한 전화번호입니다.')
+					}
+				});
+			}
 		});
+		//주소 검색
+		$('.btnZip').click(function(){
+			zipcode();
+		});	//주소 검색 종료
+		//생년월일 합치기
+		$('input[name=day]').focusout(function(){
+			var year = $('input[name=year]').val()
+			var month = $('input[name=month]').val()
+			var day = $('input[name=day]').val()
+			
+			var birth = $('input[name=birth]');
+			birth.val(year+month+day);
+					
+		});//생년월일 합치기 종료
 		
+	});
+
 	</script>
     <div>
         <h4>회원가입</h4>
@@ -30,7 +117,7 @@
             필수입력사항
         </p>
     </div>
-    <form action="#">
+    <form th:action="@{/member/register}" method="post">
     	<input type="hidden" name="type" value="1"/>
         <article>
             <table border="0">
@@ -50,7 +137,7 @@
                         <span class="essential">*</span>
                     </td>
                     <td>
-                        <input type="text" name="pass1" placeholder="영문,숫자,특수문자를 조합하여 8~12자까지 설정해주세요.">
+                        <input type="text" name="pass" placeholder="영문,숫자,특수문자를 조합하여 8~12자까지 설정해주세요.">
                     </td>
                 </tr>
                 <tr>
@@ -59,7 +146,8 @@
                         <span class="essential">*</span>
                     </td>
                     <td>
-                        <input type="text" name="pass2"  placeholder="비밀번호를 확인">
+                        <input type="text" name="pass2"  placeholder="비밀번호 확인 입력">
+                        <span class="msg">비밀번호를 확인하세요.</span>
                     </td>
                 </tr>
                 <tr>
@@ -79,7 +167,7 @@
                     </td>
                     <td>
                         <input type="text" name="email" placeholder="이메일 입력">
-                        <a href="#">중복확인</a>
+                        <a href="#" class="btnEmail">중복확인</a>
                     </td>
                 </tr>
                 <tr>
@@ -87,20 +175,21 @@
                         <span class="essential">*</span>
                     </td>
                     <td>
-                        <input type="text" name="hp" placeholder="-포함 13자리를 입력하세요.">
+                        <input type="text" name="hp" maxlength="13" placeholder="-포함 13자리를 입력하세요.">
                     </td>
                 </tr>
                 <tr class="addr">
                     <td>주소 <span class="essential">*</span></td>
                     <td>
                         <div>
-                            <input type="text" name="zip" placeholder="우편번호 입력 클릭" readonly>
+                            <input type="text" name="zip" id="zip" placeholder="우편번호 입력" readonly>
+                            <input type="button" class="btnZip" value="주소검색" />
                         </div>
                         <div>
-                            <input type="text" size="50" name="addr1" placeholder="주소를 검색하세요." readonly>
+                            <input type="text" size="50" name="addr1" id="addr1" placeholder="주소를 검색하세요." readonly>
                         </div>
                         <div>
-                            <input type="text" size="50" name="addr2" placeholder="상세주소를 입력하세요." readonly>
+                            <input type="text" size="50" name="addr2" id="addr2" placeholder="상세주소를 입력하세요.">
                         </div>
                     </td>
                 </tr>
@@ -116,17 +205,18 @@
                     <td>생년월일</td>
                     <td>
                         <div class="birth_day">
-                            <input type="text" placeholder="YYYY">
+                            <input type="text" name="year" placeholder="YYYY" maxlength="4">
                             <span>/</span>
-                            <input type="text" placeholder="MM">
+                            <input type="text" name="month" placeholder="MM" maxlength="2">
                             <span>/</span>
-                            <input type="text" placeholder="DD">
+                            <input type="text" name="day" placeholder="DD" maxlength="2">
+                            <input type="hidden" name="birth" value="" />
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>추가입력사항</td>
-                    <td><input type="text" placeholder="추천인 입력"></td>
+                    <td><input type="text" name="recUid" placeholder="추천인 입력"></td>
                 </tr>
             </table>
         </article>

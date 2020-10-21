@@ -156,7 +156,7 @@
         #register>form>article>table .addr>td{}
         #register>form>article>table .addr>td>div{
         }
-        #register>form>article>table .addr>td>div>input{
+        #register>form>article>table .addr>td>div>input[type=text]{
             height: 40px;
             border-radius: 10px;
             border:  1px solid #ccc;
@@ -217,7 +217,13 @@
             text-align: center;
             cursor: pointer;
         }
-
+		input.btnZip{
+			height: 40px;
+			width : 66px;
+            border-radius: 10px;
+            border:  1px solid #ccc;
+            margin-bottom: 10px;
+		}
         span.essential{color: red;}
         
         /*이용 약관*/

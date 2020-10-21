@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.livingmarket.dao.MemberDao">
+	<select id="checkUid" resultType="kr.co.livingmarket.vo.ResultVo">
+		SELECT COUNT(`uid`) AS `result` FROM `lm_member` WHERE `uid` = #{uid};
+	</select>
+	<select id="checkEmail" resultType="kr.co.livingmarket.vo.ResultVo">
+		SELECT COUNT(`email`) AS `result` FROM `lm_member` WHERE `email` = #{email};
+	</select>
+	<select id="checkHp" resultType="kr.co.livingmarket.vo.ResultVo">
+		SELECT COUNT(`hp`) AS `result` FROM `lm_member` WHERE `hp` = #{hp};
+	</select>
+	
+	<select id="selectMember" resultType="kr.co.livingmarket.vo.MemberVo">
+		SELECT * FROM `lm_member` WHERE `uid` = #{uid} AND `pass` = #{pass};
+	</select>	
+	
+
+   <!--
+	<insert id="insertUser">
+		INSERT INTO `USER3` VALUES (#{uid}, #{name}, #{hp}, #{age});		
+	</insert>
+
+	<select id="selectUser" resultType="kr.co.ch11_1.vo.UserVO">
+		SELECT * FROM `USER3` WHERE `uid` = #{uid};
+	</select>
+	<select id="selectUsers" resultType="kr.co.ch11_1.vo.UserVO">
+		SELECT * FROM `USER3`;
+	</select>
+	<update id="updateUser">
+		UPDATE `USER3` SET
+		`name` = #{name},
+		`hp`=#{hp},
+		`age`=#{age}
+		WHERE `uid` =#{uid};
+	</update>
+	<delete id="deleteUser">
+		DELETE FROM `USER3` WHERE `uid`=#{uid};
+	</delete>
+ -->
+</mapper>
