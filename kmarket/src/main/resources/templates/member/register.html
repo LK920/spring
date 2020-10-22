@@ -20,7 +20,7 @@
  				
  				$.get('/kmarket/member/checkUid', param,function(data){
  					
- 					if(data.result == 1){
+ 					if(data.result == 0){
  						msgId.css('color', '#45ad4a').text('사용가능한 아이디입니다.');
  					}
  				});
@@ -65,9 +65,10 @@
 					</tr>
 					<tr>
 						<th><span class="essential">*</span>성별</th>
-						<td><label><input type="radio" name="gender"
-								value="1" checked>&nbsp;남</label> <label><input
-								type="radio" name="gender" value="2">&nbsp;여</label></td>
+						<td>
+							<label><input type="radio" name="gender"value="1" checked>&nbsp;남</label>
+							<label><input type="radio" name="gender" value="2">&nbsp;여</label>
+						</td>
 					</tr>
 					<tr>
 						<th><span class="essential">*</span>EMAIL</th>
