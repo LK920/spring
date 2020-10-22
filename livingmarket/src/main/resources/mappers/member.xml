@@ -4,6 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.livingmarket.dao.MemberDao">
+	<insert id="registerMember">
+		INSERT INTO `lm_member` SET 
+							`type`=#{type},
+							`uid`=#{uid},
+							`pass`=PASSWORD(#{pass}),
+							`name`=#{name},
+							`gender`=#{gender},
+							`hp`=#{hp},
+							`email`=#{email},
+							`zip`=#{zip},
+							`addr1`=#{addr1},
+							`addr2`=#{addr2},
+							`birth`=#{birth},
+							`recUid`=#{recUid},
+							`ip`=#{ip},
+							`rdate`=#{rdate}
+	</insert>
 	<select id="checkUid" resultType="kr.co.livingmarket.vo.ResultVo">
 		SELECT COUNT(`uid`) AS `result` FROM `lm_member` WHERE `uid` = #{uid};
 	</select>
@@ -15,7 +32,7 @@
 	</select>
 	
 	<select id="selectMember" resultType="kr.co.livingmarket.vo.MemberVo">
-		SELECT * FROM `lm_member` WHERE `uid` = #{uid} AND `pass` = #{pass};
+		SELECT * FROM `lm_member` WHERE `uid` = #{uid} AND `pass` = PASSWORD(#{pass});
 	</select>	
 	
 

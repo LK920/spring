@@ -3,8 +3,10 @@
  <header th:fragment="_header">
      <div class="top">
          <div>
-             <a href="#">로그인</a>
-             <a href="#">회원가입</a>
+             <a th:if="${session.member eq null}" th:href="@{/member/login}">로그인</a>
+             <a th:if="${session.member eq null}" th:href="@{/member/signup}">회원가입</a>
+             <a th:if="${session.member}" th:href="@{/member/logout}">로그아웃</a>
+             <a th:if="${session.member}" href="#">마이페이지</a>
              <a href="#">주문배송</a>
              <a href="#">고객센터</a>
          </div>
@@ -26,41 +28,13 @@
                  <li class="category">
                      <a href="#"><i class="fa fa-bars" aria-hidden="true"></i>전체카테고리</a>
                      <ol>
-                         <li>
-                             <a href="#">
-                                 가구·패브릭
-                             </a>
-                         </li>
-                         <li>
-                             <a href="#">
-                                 수납·정리
-                             </a>
-                         </li>
-                         <li>
-                             <a href="#">
-                                 생활용품
-                             </a>
-                         </li>
-                         <li>
-                             <a href="#">
-                                 가전
-                             </a>
-                         </li>
-                         <li>
-                             <a href="#">
-                                 홈데코
-                             </a>
-                         </li>
-                         <li>
-                             <a href="#">
-                                 주방
-                             </a>
-                         </li>
-                         <li>
-                             <a href="#">
-                                 욕실
-                             </a>
-                         </li>
+                         <li><a href="#">가구·패브릭</a></li>
+                         <li><a href="#">수납·정리</a></li>
+                         <li><a href="#">생활용품</a></li>
+                         <li><a href="#">가전</a></li>
+                         <li><a href="#">홈데코</a></li>
+                         <li><a href="#">주방</a></li>
+                         <li><a href="#">욕실</a></li>
                      </ol>
                  </li>
                  <li><a href="#">최신상품</a></li>

@@ -22,6 +22,9 @@ public class MemberService {
 	public ResultVo checkHp(String hp) {
 		return dao.checkHp(hp);
 	}
+	public void registerMember(MemberVo vo) {
+		dao.registerMember(vo);
+	}
 	public MemberVo selectMember(MemberVo vo) {
 		return dao.selectMember(vo);
 	}

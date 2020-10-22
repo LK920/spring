@@ -3,8 +3,8 @@ $(function(){
 	
 	var select1 = $('select[name=cate1]');
 	var select2 = $('select[name=cate2]');
-	var cate1Url = "/kmarket/admin/product/cate1";
-	var cate2Url = "/kmarket/admin/product/cate2";
+	var cate1Url = "/livingmarket/admin/product/cate1";
+	var cate2Url = "/livingmarket/admin/product/cate2";
 	
 	$.get(cate1Url, function(cate1List){
 		
@@ -17,7 +17,7 @@ $(function(){
 	select1.change(function(){
 		
 		 var code1 = $(this).val();
-		 var param = {code1':code1};
+		 var param = {'code1':code1};
 		
 		$.get(cate2Url, param, function(cate2List){
 			

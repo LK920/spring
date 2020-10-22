@@ -25,7 +25,7 @@
  				 var param = {'codes' : codes};
  				 
  				$.ajax({
- 	 				 url:'/kmarket/admin/product/delete',
+ 	 				 url:'/livingmarket/admin/product/delete',
  	 				 type:'get',
  	 				 data: param,
  	 				 traditional : true,
@@ -33,7 +33,7 @@
  	 				 dataType:'text',
  	 				 success: function(data){
  	 					 alert('삭제 상품 갯수 : '+data);
- 	 					 location.replace('/kmarket/admin/product/list');
+ 	 					 location.replace('/livingmarket/admin/product/list');
  	 				 }
  	 			 });
  				 

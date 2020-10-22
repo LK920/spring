@@ -1,7 +1,7 @@
 <html xmlns:th = "http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="/layout/layout_admin.html">
-<!-- 스크립트 영역은 fragment태그 안으로 넣어줘야함 -->
+	  
    <section id="admin-product-register" layout:fragment="content">
 		
        <nav>
@@ -13,7 +13,6 @@
        <!-- 상품등록 컨텐츠 시작 -->
        <article>
            <form th:action="@{/admin/product/register}" method="post" enctype="multipart/form-data">
-
                <!-- 상품분류 -->
                <section>
                    <h4>상품분류</h4>
@@ -70,7 +69,7 @@
                            <td>할인율</td>
                            <td>
                                <span>0을 입력하면 할인율 없음</span>
-                               <input type="text" name="discount" required/>원
+                               <input type="text" name="discount" required/>%
                            </td>
                        </tr>
                        <tr>

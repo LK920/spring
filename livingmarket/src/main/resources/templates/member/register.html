@@ -33,13 +33,23 @@
 			});
 				
 		});//uid 확인 종료
+		//비밀번호 길이 확인
+		$('input[name=pass]').focusout(function(){
+			
+			var pass1 = $('input[name=pass]').val();
+			
+			if(pass1.length < 8 || pass1.length >12 ){
+				alert('비밀번호는 8~12자 사이로 만들어주세요.')
+				$('input[name=pass]').focus();
+			}	
+		});
 		//비밀번호 일치 여부 확인	
 		$('input[name=pass2]').keyup(function(){
 			
 			var pass1 = $('input[name=pass]').val();
 			var pass2 = $(this).val();
 			var msg = $('.msg');
-			
+						
 			if(pass1 != pass2){
 				msg.css("color", "red").text("비밀번호가 일치하지 않습니다.");
 			}else{
@@ -97,7 +107,7 @@
 			zipcode();
 		});	//주소 검색 종료
 		//생년월일 합치기
-		$('input[name=day]').focusout(function(){
+		$('input[type=submit]').click(function(){
 			var year = $('input[name=year]').val()
 			var month = $('input[name=month]').val()
 			var day = $('input[name=day]').val()
@@ -137,7 +147,7 @@
                         <span class="essential">*</span>
                     </td>
                     <td>
-                        <input type="text" name="pass" placeholder="영문,숫자,특수문자를 조합하여 8~12자까지 설정해주세요.">
+                        <input type="password" name="pass" placeholder="영문,숫자,특수문자를 조합하여 8~12자까지 설정해주세요.">
                     </td>
                 </tr>
                 <tr>
@@ -146,7 +156,7 @@
                         <span class="essential">*</span>
                     </td>
                     <td>
-                        <input type="text" name="pass2"  placeholder="비밀번호 확인 입력">
+                        <input type="password" name="pass2"  placeholder="비밀번호 확인 입력">
                         <span class="msg">비밀번호를 확인하세요.</span>
                     </td>
                 </tr>

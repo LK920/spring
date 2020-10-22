@@ -12,4 +12,5 @@ public interface MemberDao {
 	public ResultVo checkEmail(String email);
 	public ResultVo checkHp(String hp);
 	public MemberVo selectMember(MemberVo vo);
+	public void registerMember(MemberVo vo);
 }

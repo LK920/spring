@@ -32,20 +32,25 @@ public class MemberController {
 	private MemberService service;
 	
 	@GetMapping("/member/login")
-	public String login() {
+	public String login(String success, Model model) {
+		model.addAttribute("success", success);
 		return "/member/login";
 	}
 	@PostMapping("/member/login")
 	public String login(MemberVo vo , HttpSession sess) {
-		MemberVo member = service.selectMember(vo);
 		
+		MemberVo member = service.selectMember(vo);
 		if(member != null) {
 			sess.setAttribute("member", member);
-			sess.setAttribute("type", member.getType());
 			return "redirect:/";
 		}else {
 			return "redirect:/member/login?success=fail";
 		}
+	}
+	@GetMapping("/member/logout")
+	public String logout(HttpSession sess) {
+		sess.invalidate();
+		return "redirect:/";
 	}
 	@GetMapping("/member/register")
 	public String register() {
@@ -55,7 +60,7 @@ public class MemberController {
 	public String register(MemberVo vo, HttpServletRequest req) {
 		vo.setIp(req.getRemoteAddr());
 		vo.setRdate(LocalDateTime.now().toString());
-		memberRepo.save(vo);
+		service.registerMember(vo);
 		return "redirect:/member/login";
 	}
 	
