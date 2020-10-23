@@ -17,7 +17,7 @@ $(function(){
 	select1.change(function(){
 		
 		 var code1 = $(this).val();
-		 var param = {code1':code1};
+		 var param = {'code1':code1};
 		
 		$.get(cate2Url, param, function(cate2List){
 			
