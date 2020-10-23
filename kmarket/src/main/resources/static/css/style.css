@@ -831,6 +831,34 @@ h5.rating.star5 {background-position: 0 -200px;}
 #view .info > .summary .origin { font-size: 16px;}
 #view .info > .summary .banner { width: 100%;}
 
+#view .info > .summary .option > em{
+	float: left;
+    display: block;
+    width: 100px;
+    height: 22px;
+    padding: 1px 0 0;
+    font-size: 16px;
+    line-height: 22px;
+    color: #5e636d;
+    letter-spacing: -1px;
+	
+}
+#view .info > .summary .option > input[type=button]{
+	float:right;
+	width: 20px;
+	height: 23px;
+}
+#view .info > .summary .option > input[type=text]{
+	float:right;
+	width: 30px;
+    height: 21px;
+    border: 1px solid #ececec;
+    line-height: 21px;
+    color: #233549;
+    font-size: 14px;
+    text-align: center;
+}
+
 #view .info > .summary .option {
     position: relative;
     width: 100%;
@@ -843,7 +871,7 @@ h5.rating.star5 {background-position: 0 -200px;}
     color: #1e2732;
     margin-bottom: 6px;
 }
-#view .info > .summary .option button {
+#view .info > .summary > .option > input[name=button]{
     display: block;
     width: 100%;
     text-align: left;
@@ -1004,7 +1032,7 @@ h5.rating.star5 {background-position: 0 -200px;}
 
 #view .info > .summary .total {
     overflow: hidden;
-    margin-top: 16px;
+    margin-top: 30px;
 }
 #view .info > .summary .total > em {
     float: right;
@@ -1032,12 +1060,12 @@ h5.rating.star5 {background-position: 0 -200px;}
     content: "원";
 }
 
-#view .info > .summary > .btns {
+#view .info > .summary > .btn {
     overflow: hidden;
-    margin-top: 16px;
+    margin-top: 8px;
 }
 
-#view .info > .summary > .btns > button {
+#view .info > .summary > .btn > input[type=button] {
     float: left;
     width: 49%;
     height: 50px;
@@ -1047,12 +1075,12 @@ h5.rating.star5 {background-position: 0 -200px;}
     border-radius: 2px;
     cursor: pointer;
 }
-#view .info > .summary > .btns > .cart {
+#view .info > .summary > .btn > .cart {
     background: #fff;
     border: 1px solid #d9d9d9;
     color: #233549;
 }
-#view .info > .summary > .btns > .order {
+#view .info > .summary > .btn > .order {
     background: #2e8de5;
     border: 1px solid #217fd7;
     color: #fff;
