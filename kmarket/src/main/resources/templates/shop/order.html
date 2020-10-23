@@ -31,8 +31,8 @@
 				totalTg.text(totalPrice.toLocaleString());
 				
 				// 폼전송에 사용하기 위해 입력필드에 입력
-	  			//$('input[name=applyPoint]').val(-txtPoint);
-	  			//$('input[name=total]').val(totalPrice);
+	  			$('input[name=applyPoint]').val(-txtPoint);
+	  			$('input[name=total]').val(totalPrice);
 			});
 			//결제하기 버튼 클릭
 			$('input[name=btnSubmit]').click(function(){
@@ -42,7 +42,7 @@
 				var zip 	= $('input[name=zip]');
 				var addr1 	= $('input[name=addr1]');
 				var addr2 	= $('input[name=addr2]');
-				var payment	= $('input[name=payment]:checked').val();
+				var payment	= $('input[name=payment]');
 				
 				if(orderer.val() == ''){
 					alert('주문자를 입력해주세요.');
@@ -69,7 +69,7 @@
 					addr2.focus();
 					return;
 				}
-				if(!payment){
+				if(payment.is(':checked') == false){
 					alert('결제 방법을 선택해주세요.');
 					return;
 				}
@@ -125,6 +125,8 @@
                     <th>상품명</th>
                     <th>총수량</th>
                     <th>판매가</th>
+                    <th>할인</th>
+                    <th>적립포인트</th>
                     <th>배송비</th>
                     <th>소계</th>
                   </tr>
@@ -157,6 +159,8 @@
                     </td>
                     <td>[[${order.count}]]</td>
                     <td>[[${#numbers.formatInteger(order.price, 3, 'COMMA')}]]</td>
+                    <th>[[${order.discount}]]%</th>
+                    <th>[[${order.point}]]점</th>
                     <td th:if="${order.delivery == 0}">무료배송</td>
                     <td th:if="${order.delivery > 0}">[[${#numbers.formatInteger(order.delivery, 3, 'COMMA')}]]</td>
                     <td>[[${#numbers.formatInteger(order.total, 3, 'COMMA')}]]원</td>

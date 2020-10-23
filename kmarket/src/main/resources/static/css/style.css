@@ -1745,3 +1745,21 @@ h5.rating.star5 {background-position: 0 -200px;}
   position: relative;
   left: -6px;
 }
+#order-complete .home{
+	padding: 20px;
+	text-align: center;
+}
+input[name=main_button]{
+	
+    width: 200px;
+    height: 56px;
+    margin: 0 auto;
+    font-size: 26px;
+    border-width: 1px;
+    border-color: #d81818;
+    border-bottom-color: #9e1212;
+    background: #ed2f2f;
+    background-image: -webkit-linear-gradient(#ed2f2f, #dd0e0e);
+    color: #fff;
+    box-sizing: border-box;
+}

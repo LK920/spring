@@ -1,11 +1,20 @@
 package kr.co.kmarket.vo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductCartVo {
+@Entity
+@Table(name="km_products_cart")
+public class ProductsCartVo {
+	
+	@Id
 	private int seq;
 	private String uid;
 	private int code;
@@ -20,7 +29,10 @@ public class ProductCartVo {
 	private String rdate;
 	
 	//추가 필드
+	@Transient
 	private String thumb1;
+	@Transient
 	private String cate1;
+	@Transient
 	private String cate2;
 }

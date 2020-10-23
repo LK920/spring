@@ -18,7 +18,7 @@ import kr.co.kmarket.service.ShopService;
 import kr.co.kmarket.vo.OrderTotalInfoVo;
 import kr.co.kmarket.vo.CategoriesVo;
 import kr.co.kmarket.vo.MemberVo;
-import kr.co.kmarket.vo.ProductCartVo;
+import kr.co.kmarket.vo.ProductsCartVo;
 import kr.co.kmarket.vo.ProductsOrderVo;
 import kr.co.kmarket.vo.ProductsVo;
 import kr.co.kmarket.vo.ResultVo;
@@ -75,7 +75,7 @@ public class ShopController {
 		MemberVo member = (MemberVo) sess.getAttribute("member");
 		
 		if(member != null) {
-			List<ProductCartVo> items =  service.selectCart(member.getUid());
+			List<ProductsCartVo> items =  service.selectCart(member.getUid());
 			model.addAttribute("items", items);
 			
 			//전체합계에 출력될 데이터
@@ -90,7 +90,7 @@ public class ShopController {
 	}
 	@ResponseBody
 	@PostMapping("/shop/cart")
-	public ResultVo cart(ProductCartVo vo) {
+	public ResultVo cart(ProductsCartVo vo) {
 		
 		int result = service.insertCart(vo);
 		return new ResultVo(result);
@@ -109,7 +109,7 @@ public class ShopController {
 	@GetMapping("/shop/order")
 	public String order(int[] seqs, Model model) {
 		//선택 상품을 출력	
-		List<ProductCartVo> orders = service.selectOrder(seqs);
+		List<ProductsCartVo> orders = service.selectOrder(seqs);
 		model.addAttribute("orders", orders);
 		
 		OrderTotalInfoVo totInfo = service.orderTotalInfo(orders);

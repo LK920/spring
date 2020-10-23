@@ -4,7 +4,6 @@
 
 <!-- 결제완료 -->
 <section id="order-complete" layout:fragment="content">
-  
   <!-- 제목, 페이지 네비게이션 -->
   <nav>
     <h1>주문완료</h1>
@@ -18,105 +17,21 @@
       <h2>고객님의 주문이 정상적으로 완료되었습니다.<i class="far fa-smile"></i></h2>
       <p>즐거운 쇼핑이 되셨습니까? 항상 고객님을 최우선으로 생각하는 케이마켓이 되겠습니다.</p>
     </div>
-
-    <section>
-      <article class="product">
-        <h1>상품정보</h1>
-        <table border="0">
-          <tr>
-            <th>상품명</th>
-            <th>상품금액</th>
-            <th>할인금액</th>
-            <th>수량</th>
-            <th>주문금액</th>
-          </tr>
-          <tr>
-            <td>
-              <article>
-                <img th:src="@{/img/thumb-sample-t2.jpg}" alt="">
-                <div>
-                  <h2><a href="#">TH-블락체크 셔츠-그레이2 [면세]</a></h2>
-                  <p>SIZE:M / COLOR:블루 1개</p>
-                </div>
-              </article>
-            </td>
-            <td>17,000원</td>
-            <td>1,000원</td>
-            <td>1</td>
-            <td>16,000원</td>
-          </tr>
-          
-          <tr class="total">
-            <td colspan="4"></td>
-            <td>
-              <table border="0">
-                <tr>
-                  <td>총 상품금액</td>
-                  <td><span>34,000</span>원</td>
-                </tr>
-                <tr>
-                  <td>총 할인금액</td>
-                  <td><span>-2,000</span>원</td>
-                </tr>
-                <tr>
-                  <td>배송비</td>
-                  <td><span>3,000</span>원</td>
-                </tr>
-                <tr>
-                  <td>총 결제금액</td>
-                  <td><span>35,000</span>원</td>
-                </tr>
-              </table>                      
-            </td>
-          </tr>
-        </table>                
-      </article>
-
-      <article class="order">
-        <h1>주문정보</h1>
-  
-        <table border="0">
-          <tr>
-            <td>주문번호</td>
-            <td>2008101324568</td>
-            <td rowspan="3">총 결제금액</td>
-            <td rowspan="3"><span>35,000</span>원</td>
-          </tr>
-          <tr>
-            <td>결제방법</td>
-            <td>신용카드</td>
-          </tr>
-          <tr>
-            <td>주문자/연락처</td>
-            <td>홍길동/010-1234-1234</td>
-          </tr>
-        </table>
-      </article>
-
-      <article class="delivery">
-        <h1>배송정보</h1>
-        <table border="0">
-          <tr>
-            <td>수취인</td>
-            <td>홍길동</td>                    
-            <td>주문자 정보</td>
-          </tr>
-          <tr>
-            <td>연락처</td>
-            <td>010-1234-1234</td>
-            <td rowspan="2">
-              홍길동<br/>
-              010-1234-1234
-            </td>
-          </tr>
-          <tr>
-            <td>배송지 주소</td>
-            <td>부산광역시 부산진구 신천대로 53 더조은직업학교 5층 501호</td>
-          </tr>
-        </table>
-      </article>
-
-      <article class="alert">
+	
+	<div class="home">
+		<div>
+		<script>
+			$(function(){
+				$('.home input[type=button]').click(function(){
+					location.replace('/kmarket/');
+				});
+			});
+		</script>
+			<input type="button" name="main_button" value="메인으로" />
+		</div>
+	</div>
+	
+    <article class="alert">
         <h1>꼭 알아두세요.</h1>
         <ul>
           <li><span>케이마켓은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 케이마켓은 상품, 거래정보 및 거래에 대하여 책임을 지지 않습니다.</span></li>

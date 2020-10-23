@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.co.kmarket.dao.ShopDAO;
 import kr.co.kmarket.vo.OrderTotalInfoVo;
 import kr.co.kmarket.vo.CategoriesVo;
-import kr.co.kmarket.vo.ProductCartVo;
+import kr.co.kmarket.vo.ProductsCartVo;
 import kr.co.kmarket.vo.ProductsVo;
 
 @Service
@@ -26,18 +26,18 @@ public class ShopService {
 		return dao.selectProduct(code);
 	};
 	
-	public int insertCart(ProductCartVo vo) {
+	public int insertCart(ProductsCartVo vo) {
 		return dao.insertCart(vo);
 	}
 	
-	public List<ProductCartVo> selectCart(String uid){
+	public List<ProductsCartVo> selectCart(String uid){
 		return dao.selectCart(uid);
 	};
 	public int deleteCart(int[] seqs) {
 		return dao.deleteCart(seqs);
 	};
 	
-	public List<ProductCartVo> selectOrder(int[] seqs){
+	public List<ProductsCartVo> selectOrder(int[] seqs){
 		return dao.selectOrder(seqs);
 	};
 	
@@ -61,7 +61,7 @@ public class ShopService {
 		return tits;
 	}
 	
-	public OrderTotalInfoVo orderTotalInfo(List<ProductCartVo> items) {
+	public OrderTotalInfoVo orderTotalInfo(List<ProductsCartVo> items) {
 		//전체 합계에 출력할 데이터
 		int count = items.size(); //items안에 있는 갯수
 		int price = 0;
@@ -69,7 +69,7 @@ public class ShopService {
 		int delivery = 0;
 		int point = 0;
 		int total = 0;
-		for(ProductCartVo item: items) {
+		for(ProductsCartVo item: items) {
 			price 	 += item.getPrice()*item.getCount();
 			sale 	 += (item.getPrice()*item.getDiscount()/100)*item.getCount();
 			delivery += item.getDelivery();
