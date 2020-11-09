@@ -8,7 +8,7 @@ import kr.co.kmarket.vo.ProductsVo;
 
 
 @Repository
-public interface productsRepo extends JpaRepository<ProductsVo, Integer> {
+public interface MainRepo extends JpaRepository<ProductsVo, Integer> {
 	
 	
 }

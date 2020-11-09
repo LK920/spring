@@ -1340,8 +1340,9 @@ h5.rating.star5 {background-position: 0 -200px;}
 #cart > .info > table td:last-child {
   text-align: right;
 }
-#cart > .info > input[type=button] {
-  width: 100%;
+#cart input[name=order] {
+  float:right;
+  width: 250px;
   height: 56px;
   font-size: 26px;
   border-width: 1px;
